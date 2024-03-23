@@ -1,0 +1,13 @@
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/bin/Debug/net8.0/ServiceProvider.Core.deps.json
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/bin/Debug/net8.0/ServiceProvider.Core.dll
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/bin/Debug/net8.0/ServiceProvider.Core.pdb
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/obj/Debug/net8.0/ServiceProvider.Core.csproj.AssemblyReference.cache
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/obj/Debug/net8.0/ServiceProvider.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/obj/Debug/net8.0/ServiceProvider.Core.AssemblyInfoInputs.cache
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/obj/Debug/net8.0/ServiceProvider.Core.AssemblyInfo.cs
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/obj/Debug/net8.0/ServiceProvider.Core.csproj.CoreCompileInputs.cache
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/obj/Debug/net8.0/ServiceProvider.Core.sourcelink.json
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/obj/Debug/net8.0/ServiceProvider.Core.dll
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/obj/Debug/net8.0/refint/ServiceProvider.Core.dll
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/obj/Debug/net8.0/ServiceProvider.Core.pdb
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Core/obj/Debug/net8.0/ref/ServiceProvider.Core.dll
