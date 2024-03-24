@@ -10,7 +10,7 @@ public enum LogCategory : byte
     UserManagement = 5,
     RoleManagement = 6,
     ProductManagement = 7,
-    LocationManegement = 8,
+    LocationManagement = 8,
     ClientManagement = 9,
     PermissionManagement = 10,
 

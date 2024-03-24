@@ -460,19 +460,19 @@
     ]
   },
   "packageFolders": {
-    "/home/sammy/.nuget/packages/": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.WebApi/ServiceProvider.WebApi.csproj",
+      "projectUniqueName": "\\\\wsl.localhost\\Ubuntu\\home\\sammy\\projects\\modern-dotnet-graphql-api\\ServiceProvider.WebApi\\ServiceProvider.WebApi.csproj",
       "projectName": "ServiceProvider.WebApi",
-      "projectPath": "/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.WebApi/ServiceProvider.WebApi.csproj",
-      "packagesPath": "/home/sammy/.nuget/packages/",
-      "outputPath": "/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.WebApi/obj/",
+      "projectPath": "\\\\wsl.localhost\\Ubuntu\\home\\sammy\\projects\\modern-dotnet-graphql-api\\ServiceProvider.WebApi\\ServiceProvider.WebApi.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "\\\\wsl.localhost\\Ubuntu\\home\\sammy\\projects\\modern-dotnet-graphql-api\\ServiceProvider.WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/sammy/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -490,11 +490,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -529,7 +524,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
