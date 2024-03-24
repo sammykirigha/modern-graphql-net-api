@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8PQ/BPVhmk+1puh7KZU4BQr63dj/Yq1ZUJ3fqVT5XcHT6+9kbsevjbLlhCYPbpZm9w+OqCz5vbZaB+/7w4bouA==",
+  "dgSpecHash": "3kC8bOQrQTnGnp0avDGIuislwiDgZJw08LlcOZGyK/dKawwjaUGXxuTOQe6VMsi6Loll3llPzFKd7wgTzo3x3Q==",
   "success": true,
-  "projectFilePath": "/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Services/ServiceProvider.Services.csproj",
+  "projectFilePath": "\\\\wsl.localhost\\Ubuntu\\home\\sammy\\projects\\modern-dotnet-graphql-api\\ServiceProvider.Services\\ServiceProvider.Services.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
