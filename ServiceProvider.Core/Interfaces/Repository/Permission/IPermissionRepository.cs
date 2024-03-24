@@ -7,8 +7,8 @@ public interface IPermissionRepository : IRepositoryBase
 {
     Task<Permission?> GetByIdAsync(Guid id);
     IQueryable<Permission> GetList();
-    Task<RolePermission> AddAsync(Permission entity);
+    Task<Permission> AddAsync(Permission entity);
     Task<Permission> UpdateAsync(Permission entity);
-    Task<bool> DeleteAsync(Guid id);
+    Task<int> DeleteAsync(Guid id);
 }
 

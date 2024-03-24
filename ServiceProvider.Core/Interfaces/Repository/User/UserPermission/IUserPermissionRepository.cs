@@ -10,6 +10,6 @@ public interface IUserPermissionRepository : IRepositoryBase
     IQueryable<UserPermission> GetList();
     Task<UserPermission> AddAsync(UserPermission entity);
     Task<UserPermission> UpdateAsync(UserPermission entity);
-    Task<bool> DeleteAsync(Guid id);
+    Task<int> DeleteAsync(Guid id);
 }
 

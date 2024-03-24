@@ -8,5 +8,5 @@ public interface IEntityLogRepository : IRepositoryBase
     IQueryable<EntityLog> GetList();
     Task<EntityLog> AddAsync(EntityLog entity);
     Task<EntityLog> UpdateAsync(EntityLog entity);
-    Task<bool> DeleteAsync(Guid id);
+    Task<int> DeleteAsync(Guid id);
 }

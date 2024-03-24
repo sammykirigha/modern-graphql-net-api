@@ -10,6 +10,6 @@ public interface IRolePermissionRepository : IRepositoryBase
     IQueryable<RolePermission> GetList();
     Task<RolePermission> AddAsync(RolePermission entity);
     Task<RolePermission> UpdateAsync(RolePermission entity);
-    Task<bool> DeleteAsync(Guid id);
+    Task<int> DeleteAsync(Guid id);
 }
 

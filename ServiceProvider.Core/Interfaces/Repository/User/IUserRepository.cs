@@ -9,6 +9,6 @@ public interface IUserRepository : IRepositoryBase
     IQueryable<User> GetList();
     Task<User> AddAsync(User entity);
     Task<User> UpdateAsync(User entity);
-    Task<bool> DeleteAsync(Guid id);
+    Task<int> DeleteAsync(Guid id);
 }
 

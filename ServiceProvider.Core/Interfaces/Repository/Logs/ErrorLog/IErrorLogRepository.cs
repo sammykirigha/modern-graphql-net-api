@@ -9,6 +9,6 @@ public interface IErrorLogRepository : IRepositoryBase
     IQueryable<ErrorLog> GetList();
     Task<ErrorLog> AddAsync(ErrorLog entity);
     Task<ErrorLog> UpdateAsync(ErrorLog entity);
-    Task<bool> DeleteAsync(Guid id);
+    Task<int> DeleteAsync(Guid id);
 }
 

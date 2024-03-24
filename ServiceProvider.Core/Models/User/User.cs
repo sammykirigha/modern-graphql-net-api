@@ -73,6 +73,6 @@ public partial class User : IEntity
     [JsonIgnore] public virtual ICollection<EntityLog> EntityLogsLoggedIn { get; set; } = new List<EntityLog>();
     
     [JsonIgnore] public virtual ICollection<LoginLog> LoginLogs { get; set; } = new List<LoginLog>();
-    //[JsonIgnore] public virtual ICollection<UserPermission> Permissions { get; set; } = new List<UserPermission>();
+    [JsonIgnore] public virtual ICollection<UserPermission> Permissions { get; set; } = new List<UserPermission>();
 }
 

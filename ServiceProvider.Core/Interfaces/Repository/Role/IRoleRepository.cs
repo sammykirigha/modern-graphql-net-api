@@ -9,6 +9,6 @@ public interface IRoleRepository : IRepositoryBase
     IQueryable<Role> GetList();
     Task<Role> AddAsync(Role entity);
     Task<Role> UpdateAsync(Role entity);
-    Task<bool> DeleteAsync(Guid id);
+    Task<int> DeleteAsync(Guid id);
 }
 
