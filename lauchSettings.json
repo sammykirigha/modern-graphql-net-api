@@ -1,0 +1,37 @@
+{
+    "profiles": {
+      "Start Services": {
+        "commandName": "DockerCompose",
+        "commandVersion": "1.0",
+        "serviceActions": {
+          "sqlserver": "StartWithoutDebugging",
+          "azurite": "StartWithoutDebugging",
+          "webapi": "DoNotStart"
+        }
+      },
+      "Start WebApi": {
+        "commandName": "DockerCompose",
+        "commandVersion": "1.0",
+        "composeLaunchAction": "LaunchBrowser",
+        "composeLaunchServiceName": "webapi",
+        "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/graphql/",
+        "serviceActions": {
+          "sqlserver": "DoNotStart",
+          "azurite": "DoNotStart",
+          "webapi.admin": "StartDebugging"
+        }
+      },
+      "Start All": {
+        "commandName": "DockerCompose",
+        "commandVersion": "1.0",
+        "composeLaunchAction": "LaunchBrowser",
+        "composeLaunchServiceName": "webapi",
+        "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/graphql/",
+        "serviceActions": {
+          "sqlserver": "StartWithoutDebugging",
+          "azurite": "StartWithoutDebugging",
+          "webapi": "StartDebugging"
+        }
+      }
+    }
+  }
