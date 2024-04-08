@@ -1,5 +1,5 @@
 
-using ServiceProvider.Core.Interface.Models;
+using ServiceProvider.Core.Interfaces.Models;
 
 namespace ServiceProvider.Core.Models;
 
