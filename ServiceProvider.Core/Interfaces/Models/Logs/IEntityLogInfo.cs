@@ -1,14 +1,13 @@
-﻿using ServiceProvider.Core.Enums;
 
-namespace ServiceProvider.Core.Interfaces.Models.Logd;
+using ServiceProvider.Core.Enums;
+namespace ServiceProvider.Core.Interfaces.Models.Logs;
 
 public interface IEntityLogInfo
 {
-    public LogCategory Category { get; set; }
-    public string ChangeTrigger { get; set; }
-    public string? ChangeReason { get; set; }
-    
-    public Guid? UserId { get; set; }
-    public string? UserName { get; set; }
+    LogCategory Category { get; set; }
+    string ChangeTrigger { get; set; }
+    string? ChangeReason { get; set; }
+ 
+    Guid? UserId { get; set; }
+    string? UserName { get; set; }
 }
-

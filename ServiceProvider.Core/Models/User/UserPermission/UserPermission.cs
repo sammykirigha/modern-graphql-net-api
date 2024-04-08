@@ -1,6 +1,8 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
+using ServiceProvider.Core.Interface.Models;
+using ServiceProvider.Core.Models;
 
-namespace  ServiceProvider.Core.Models;
+namespace ServiceProvider.Core.Models;
 
 public partial class UserPermission : IEntity
 {

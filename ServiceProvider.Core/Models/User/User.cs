@@ -1,5 +1,6 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using ServiceProvider.Core.Enums;
+using ServiceProvider.Core.Interface.Models;
 
 namespace ServiceProvider.Core.Models;
 
@@ -64,6 +65,8 @@ public partial class User : IEntity
     /// </summary>
     public bool AccessGlobalSettings { get; set; }
     
+    public DateTime? DateModified { get; set; } = DateTime.UtcNow;
+    
     [JsonIgnore] public virtual Role? Role { get; set; }
     
     [JsonIgnore] public virtual ICollection<ErrorLog> ErrorLogsActive { get; set; } = new List<ErrorLog>();
@@ -74,5 +77,5 @@ public partial class User : IEntity
     
     [JsonIgnore] public virtual ICollection<LoginLog> LoginLogs { get; set; } = new List<LoginLog>();
     [JsonIgnore] public virtual ICollection<UserPermission> Permissions { get; set; } = new List<UserPermission>();
-}
 
+}

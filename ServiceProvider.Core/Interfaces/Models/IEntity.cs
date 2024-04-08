@@ -1,10 +1,8 @@
-﻿
-namespace ServiceProvider.Core.Models;
+namespace ServiceProvider.Core.Interfaces.Models;
 
 public interface IEntity
 {
-    public Guid Id { get; set; }
-    public DateTime DateCreated { get; set; }
-    public DateTime DateModified { get; set; }
+    public Guid Id {get; set;}
+    public DateTime DateCreated {get; set;}
+    public DateTime DateModified {get; set;}
 }
-

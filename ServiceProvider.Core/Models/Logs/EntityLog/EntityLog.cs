@@ -1,6 +1,6 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using ServiceProvider.Core.Enums;
-using ServiceProvider.Core.Models.Logs;
+using ServiceProvider.Core.Interfaces.Models.Logs;
 
 namespace ServiceProvider.Core.Models;
 
@@ -13,7 +13,7 @@ public class EntityLog: IEntityLog
     /// <summary>
     /// Date/time record created
     /// </summary>
-    public DateTime DateCreated { get; set; }
+    public DateTime CreatedAt { get; set; }
     /// <summary>
     /// Name of entity (should match class name)
     /// </summary>
@@ -71,4 +71,3 @@ public class EntityLog: IEntityLog
     [JsonIgnore] public virtual User? ActiveUser { get; set; }
     [JsonIgnore] public virtual User? LoggedInUser { get; set; }
 }
-
