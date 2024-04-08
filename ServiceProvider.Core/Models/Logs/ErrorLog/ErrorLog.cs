@@ -1,7 +1,5 @@
-﻿
-
+﻿using ServiceProvider.Core.Interfaces.Models.Logs;
 using System.Text.Json.Serialization;
-using ServiceProvider.Core.Models.Logs;
 
 namespace ServiceProvider.Core.Models;
 

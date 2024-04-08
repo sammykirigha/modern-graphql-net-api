@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using ServiceProvider.Core.Interface.Models;
+using ServiceProvider.Core.Interfaces.Models;
  
 namespace ServiceProvider.Core.Models;
 public partial class Role : IEntity
@@ -15,7 +15,8 @@ public partial class Role : IEntity
     /// <summary>
     /// Date/time record created
     /// </summary>
-    public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+    public DateTime DateModified { get; set; }
+
     /// <summary>
     /// Last date/time record changed
     /// </summary>

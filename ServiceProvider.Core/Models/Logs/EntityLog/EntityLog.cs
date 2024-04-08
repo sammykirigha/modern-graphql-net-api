@@ -10,6 +10,9 @@ public class EntityLog: IEntityLog
     /// Primary key
     /// </summary>
     public Guid Id { get; set; }
+
+    public DateTime DateCreated { get; set; }
+
     /// <summary>
     /// Date/time record created
     /// </summary>

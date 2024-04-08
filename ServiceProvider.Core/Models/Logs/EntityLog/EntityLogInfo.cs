@@ -1,5 +1,8 @@
 
 
+using ServiceProvider.Core.Enums;
+using ServiceProvider.Core.Interfaces.Models.Logs;
+
 namespace ServiceProvider.Core.Models;
 
 public class EntityLogInfo: IEntityLogInfo

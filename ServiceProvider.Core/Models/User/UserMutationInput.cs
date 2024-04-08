@@ -8,7 +8,7 @@ namespace ServiceProvider.Core.Models;
 
 public record UserMutationInput(
     [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> Id, 
-    [property: DefaultValue(UserAccessLevel.ServiceProvider)] Optional<UserAccessLevel> AccessLevel,
+    [property: DefaultValue(UserAccessLevel.SuperAdmin)] Optional<UserAccessLevel> AccessLevel,
     [property: DefaultValue(UserAccessType.Full)] Optional<UserAccessLevel> AccessType,
     [property: DefaultValue(true)] Optional<bool> IsActive,
 

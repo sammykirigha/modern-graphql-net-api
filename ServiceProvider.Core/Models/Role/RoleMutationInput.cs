@@ -1,7 +1,7 @@
-using Graphql.Core.Attributes;
 using HotChocolate;
 using HotChocolate.Types;
- 
+using ServiceProvider.Core.Attributes;
+
 namespace Graphql.Core.Models;
  
 public sealed record RoleMutationInput(

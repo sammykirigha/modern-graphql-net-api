@@ -1,4 +1,6 @@
 ﻿
+using ServiceProvider.Core.Interfaces.Models;
+
 namespace ServiceProvider.Core.Models;
 
 public class Location : IEntity

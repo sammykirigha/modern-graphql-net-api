@@ -1,5 +1,5 @@
+using ServiceProvider.Core.Interfaces.Models;
 using System.Text.Json.Serialization;
-using ServiceProvider.Core.Interface.Models;
  
 namespace ServiceProvider.Core.Models;
  
