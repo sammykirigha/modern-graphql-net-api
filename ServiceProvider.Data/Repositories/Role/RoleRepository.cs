@@ -8,7 +8,7 @@ using ServiceProvider.Data.Contexts;
 
 namespace ServiceProvider.Data.Repositories;
 
-public class RoleRespository(ServiceProviderContext context) 
+public class RoleRepository(ServiceProviderContext context) 
     : RepositoryBase(context), IRoleRepository
 {
     //
