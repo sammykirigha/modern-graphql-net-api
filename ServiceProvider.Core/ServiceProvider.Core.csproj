@@ -17,5 +17,10 @@
       <PackageReference Include="Microsoft.ApplicationInsights" Version="2.22.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
     </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\Services\ServiceProvider\" />
+    <Folder Include="Interfaces\Services\System\" />
+    <Folder Include="Utilities\" />
+  </ItemGroup>
 
 </Project>

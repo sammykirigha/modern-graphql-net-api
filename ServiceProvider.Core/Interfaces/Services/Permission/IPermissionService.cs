@@ -1,5 +1,8 @@
 ﻿using ServiceProvider.Core.Models;
 
+
+namespace ServiceProvider.Core.Interfaces.Services;
+
 public interface IPermissionService
 {
 	Task<Permission?> GetByIdAsync(Guid id);

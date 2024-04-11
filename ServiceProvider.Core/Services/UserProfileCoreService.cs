@@ -1,9 +1,7 @@
-﻿
-
-using ServiceProvider.Core.Interfaces.Services;
+﻿using ServiceProvider.Core.Interfaces.Services;
 using ServiceProvider.Core.Models;
 
-namespace PrismBenefits.Core.Services;
+namespace ServiceProvider.Core.Services;
 
 public class UserProfileCoreService : IUserProfileCoreService
 {

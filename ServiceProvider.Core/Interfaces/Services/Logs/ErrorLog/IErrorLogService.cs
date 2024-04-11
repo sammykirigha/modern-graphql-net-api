@@ -1,7 +1,7 @@
 ﻿
 using ServiceProvider.Core.Models;
 
-namespace Graphql.Core.Interfaces.Services;
+namespace ServiceProvider.Core.Interfaces.Services;
 
 public interface IErrorLogService
 {

@@ -1,9 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ExcelDataReader" Version="3.6.0" />
+        <PackageReference Include="HotChocolate" Version="13.9.0" />
+        <PackageReference Include="HotChocolate.AspNetCore" Version="13.9.0" />
+        <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="13.9.0" />
+        <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="13.9.0" />
+        <PackageReference Include="HotChocolate.Data" Version="13.9.0" />
+        <PackageReference Include="HotChocolate.Data.EntityFramework" Version="13.9.0" />
+        <PackageReference Include="HotChocolate.Types" Version="13.9.0" />
+        <PackageReference Include="HotChocolate.Types.Json" Version="13.9.0" />
+        <PackageReference Include="HotChocolate.Types.Analyzers" Version="13.9.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.2" />
+        <PackageReference Include="Microsoft.Identity.Web" Version="2.17.1" />
+        <PackageReference Include="Serilog" Version="3.1.1" />
+        <PackageReference Include="StackExchange.Redis" Version="2.7.27" />
+        <PackageReference Include="Syncfusion.HtmlToPdfConverter.Net.Linux" Version="24.2.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\ServiceProvider.Core\ServiceProvider.Core.csproj" />
+        <ProjectReference Include="..\ServiceProvider.Data\ServiceProvider.Data.csproj" />
+    </ItemGroup>
 
 </Project>

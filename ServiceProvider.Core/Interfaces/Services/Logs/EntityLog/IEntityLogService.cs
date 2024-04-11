@@ -1,6 +1,8 @@
 ﻿using ServiceProvider.Core.Interfaces.Models;
 using ServiceProvider.Core.Models;
 
+namespace ServiceProvider.Core.Interfaces.Services;
+
 public interface IEntityLogService
 {
 	Task<EntityLog> LogChangeAsync(EntityLog log);

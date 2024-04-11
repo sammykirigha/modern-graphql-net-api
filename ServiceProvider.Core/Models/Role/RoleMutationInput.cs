@@ -2,7 +2,7 @@ using HotChocolate;
 using HotChocolate.Types;
 using ServiceProvider.Core.Attributes;
 
-namespace Graphql.Core.Models;
+namespace ServiceProvider.Core.Models;
  
 public sealed record RoleMutationInput(
     [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> Id,

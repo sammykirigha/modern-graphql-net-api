@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceProvider.Core.Interfaces.Repositories;
@@ -12,7 +11,7 @@ public static class DataServiceCollectionExtensions
 {       
 	public static IServiceCollection AddDataServices(this IServiceCollection services)
 	{
-		services.AddDbContextPool<ServiceProviderContext>(options => options.UseSqlServer(AppSettings.Data.SqlConnectionString, x => x.MigrationsAssembly("Graphql.Data")));
+		services.AddDbContextPool<ServiceProviderContext>(options => options.UseSqlServer(AppSettings.Data.SqlConnectionString, x => x.MigrationsAssembly("ServiceProvider.Data")));
         
 		// Repositories
 		services.AddScoped<IRepositoryBase, RepositoryBase>();

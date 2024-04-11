@@ -1,7 +1,6 @@
-﻿using Graphql.Core.Models;
-using ServiceProvider.Core.Models;
+﻿using ServiceProvider.Core.Models;
 
-namespace Graphql.Core.Interfaces.Services;
+namespace ServiceProvider.Core.Interfaces.Services;
 
 public interface IUserPermissionService
 {

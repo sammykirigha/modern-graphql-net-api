@@ -30,6 +30,24 @@ public class EntityLogRepository(ServiceProviderContext context) : RepositoryBas
 
         return newentity;
     }
+    
+    public async Task<ICollection<EntityLog>> AddListAsync(ICollection<EntityLog> list)
+    {
+	    foreach (var entity in list)
+	    {
+		    var jsonString = JsonSerializer.Serialize(entity);
+		    var newentity = JsonSerializer.Deserialize<EntityLog>(jsonString)
+		                    ?? throw new AppException("Json conversion error for add EntityLog.");
+
+		    newentity.Id = Guid.NewGuid();
+		    newentity.CreatedAt = DateTime.UtcNow;
+
+		    Context.EntityLogs.Add(newentity);
+	    }
+	    await Context.SaveChangesAsync();
+
+	    return list;
+    }
 
     public async Task<EntityLog> UpdateAsync(EntityLog entity)
     {
