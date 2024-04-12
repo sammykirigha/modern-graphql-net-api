@@ -12,7 +12,7 @@ public class ErrorLogConfiguration : IEntityTypeConfiguration<ErrorLog>
         entity.HasKey(x => x.Id);
 
         entity.Property(x => x.Type).HasMaxLength(100);
-        entity.Property(x => x.Message).HasMaxLength(100);
+        entity.Property(x => x.Message).HasMaxLength(1000);
         entity.Property(x => x.ActiveUserName).HasMaxLength(100);
         entity.Property(x => x.LoggedInUserName).HasMaxLength(100);
 

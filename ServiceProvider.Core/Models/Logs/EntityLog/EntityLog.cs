@@ -53,10 +53,12 @@ public class EntityLog: IEntityLog
     /// List of changes made
     /// </summary>
     public string? Changes { get; set; }
+    
     /// <summary>
     /// Id of active/impersonated user (foreign key)
     /// </summary>
     public Guid? ActiveUserId { get; set; }
+
     /// <summary>
     /// Name of active/impersonated user
     /// </summary>
@@ -72,5 +74,5 @@ public class EntityLog: IEntityLog
     public string? LoggedInUserName { get; set; }
     
     [JsonIgnore] public virtual User? ActiveUser { get; set; }
-    [JsonIgnore] public virtual User? LoggedInUser { get; set; }
+    //[JsonIgnore] public virtual User? LoggedInUser { get; set; }
 }

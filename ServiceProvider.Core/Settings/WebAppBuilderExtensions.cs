@@ -24,9 +24,9 @@ public static class WebAppBuilderExt
 		azuread.Bind(AppSettings.AzureAd);
 		AppSettings.AzureAd.Scopes = azuread.GetSection(nameof(AppSettings.AzureAd.Scopes)).GetChildren().ToDictionary(x => x.Value ?? "", x => x.Key);
 
-		//prism hcm jwt settings
-		var prismHcmJwt = builder.Configuration.GetSection(ServiceProviderJwtSettings.SectionName);
-		prismHcmJwt.Bind(AppSettings.ServiceProviderJwt);
+		//serviceProvider jwt settings
+		var serviceProviderJwt = builder.Configuration.GetSection(ServiceProviderJwtSettings.SectionName);
+		serviceProviderJwt.Bind(AppSettings.ServiceProviderJwt);
 
 	}
 

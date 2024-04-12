@@ -1,6 +1,4 @@
-﻿
-
-namespace ServiceProvider.Core.Settings;
+﻿namespace ServiceProvider.Core.Settings;
 public static class AppSettings
 {
 	public const string UrlSectionName = "UrlSettings";

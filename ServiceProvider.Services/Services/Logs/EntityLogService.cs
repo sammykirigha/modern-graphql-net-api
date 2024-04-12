@@ -1,4 +1,4 @@
-﻿
+
 using Microsoft.EntityFrameworkCore;
 using ServiceProvider.Core.Enums;
 using ServiceProvider.Core.Extensions;
@@ -195,7 +195,7 @@ public class EntityLogService(
             ChangeReason = info.ChangeReason,
             //OldData = oldEntity.Serialize(),
             NewData = newEntity.Serialize(),
-            ActiveUserId = user?.ActiveUserId ?? _userProfileService.LoggedInUser.ActiveUserId,
+            // ActiveUserId = user?.ActiveUserId ?? _userProfileService.LoggedInUser.ActiveUserId,
             ActiveUserName = user?.ActiveUserFullName ?? _userProfileService.LoggedInUser.ActiveUserFullName,
             LoggedInUserId = user?.UserId.ToNullIfDefault() ?? _userProfileService.LoggedInUser.UserId.ToNullIfDefault(),
             LoggedInUserName = user?.FullName.IsEMpty(_userProfileService.LoggedInUser.FullName)
