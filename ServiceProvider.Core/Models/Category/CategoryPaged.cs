@@ -1,6 +1,11 @@
+
+
 namespace ServiceProvider.Core.Models;
-public partial class LocationPaged {
-    public Location? Location {get; set;}
+
+public partial class CategoryPaged
+{
+    public Category? Category {get; set;}
+
     public int Count {get; set;}
     public int Total {get; set;}
 }

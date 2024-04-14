@@ -1,3 +1,4 @@
+using Microsoft.ApplicationInsights.Extensibility;
 using Serilog;
 using Serilog.Events;
 using Microsoft.EntityFrameworkCore;
@@ -5,9 +6,11 @@ using ServiceProvider;
 using ServiceProvider.Core.Interfaces.Services;
 using ServiceProvider.Core.Services;
 using ServiceProvider.Core.Settings;
+using ServiceProvider.Core.Utilities;
 using ServiceProvider.Data;
 using ServiceProvider.Data.Contexts;
 using ServiceProvider.Helpers;
+using ServiceProvider.Services.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +36,7 @@ builder.AddVersionSettings();
 
 builder.Host.UseSerilog((contex, services, configuration) => configuration.ReadFrom.Configuration(contex.Configuration).ReadFrom.Services(services));
 //add services
+services.AddSingleton<ITelemetryInitializer, AppVersionTelemetryInitializer>();
 services.AddScoped<IUserProfileCoreService, UserProfileCoreService>();
 services.AddHttpContextAccessor();
 services.AddHttpClient();
@@ -68,6 +72,8 @@ app.UseDefaultFiles();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<UserProfileHandlerMiddleware>();
 
 app.MapControllers();
 app.MapGraphQL();

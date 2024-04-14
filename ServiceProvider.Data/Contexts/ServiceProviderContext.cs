@@ -24,6 +24,9 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 
     // Permission
     public virtual DbSet<Permission> Permissions { get; set; }
+
+	// Location
+	public virtual DbSet<Location> Locations { get; set; }
     
     // ********** OnModelCreating **********
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,7 +43,10 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 		
 		// permission
 		modelBuilder.ApplyConfiguration(new Configurations.PermissionConfiguration());
-		
+
+		// location
+		modelBuilder.ApplyConfiguration(new Configurations.LocationConfiguration());
+
 		//logs
 		modelBuilder.ApplyConfiguration(new Configurations.ErrorLogConfiguration());
 		modelBuilder.ApplyConfiguration(new Configurations.EntityLogConfiguration());

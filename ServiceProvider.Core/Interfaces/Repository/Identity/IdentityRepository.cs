@@ -1,6 +1,4 @@
-﻿
-
-using ServiceProvider.Core.Models;
+﻿using ServiceProvider.Core.Models;
 
 namespace ServiceProvider.Core.Interfaces.Repositories;
 

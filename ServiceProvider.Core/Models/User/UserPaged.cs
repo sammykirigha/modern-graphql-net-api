@@ -1,5 +1,3 @@
-
-
 namespace ServiceProvider.Core.Models;
 public partial class UserPaged {
     public User? User {get; set;}

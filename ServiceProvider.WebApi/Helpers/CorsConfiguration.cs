@@ -1,4 +1,6 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using ServiceProvider.Core.Settings;
+
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static class CorsConfigurationExtensions
 {
@@ -8,7 +10,7 @@ public static class CorsConfigurationExtensions
 		{
 			options.AddDefaultPolicy(policy =>
 			{
-				policy.WithOrigins("http://localhost:4200", "http://localhost:7134")
+				policy.WithOrigins(AppSettings.AngularUrl, AppSettings.ApiUrl)
 					.AllowAnyHeader()
 					.AllowAnyMethod()
 					.AllowCredentials();

@@ -19,8 +19,8 @@ public static class GraphQLConfigurationExtensions
 			.AddFiltering()
 			.AddSorting()
 			.RegisterDbContext<ServiceProviderContext>(DbContextKind.Synchronized)
-			.AddGraphQLServices();
-			//.AddServicesTypes();
+			.AddGraphQLServices()
+			.AddServicesTypes();
 
 		return services;
 	}
