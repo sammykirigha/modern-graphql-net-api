@@ -1072,7 +1072,8 @@
           "HotChocolate.Data": "13.9.0",
           "HotChocolate.Types": "13.9.0",
           "Microsoft.ApplicationInsights": "2.22.0",
-          "Microsoft.EntityFrameworkCore": "8.0.3"
+          "Microsoft.EntityFrameworkCore": "8.0.3",
+          "Microsoft.IdentityModel.JsonWebTokens": "7.4.0"
         },
         "runtime": {
           "ServiceProvider.Core.dll": {}

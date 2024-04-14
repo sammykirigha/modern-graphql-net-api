@@ -30,6 +30,17 @@ public static class DataServiceCollectionExtensions
 		//Role
 		services.AddScoped<IRoleRepository, RoleRepository>();
 		services.AddScoped<IRolePermissionRepository, RolePermissionRepository>();
+
+		//location
+		services.AddScoped<ILocationRepository, LocationRepository>();
+
+		//category
+		services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+		//service
+		services.AddScoped<IServiceRepository, ServiceRepository>();
+		services.AddScoped<IServiceLocationRepository, ServiceLocationRepository>();
+
         
 		return services;
 	}

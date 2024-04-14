@@ -1,5 +1,4 @@
-﻿
-using System.Text.Json;
+﻿using System.Text.Json;
 using HotChocolate.Authorization;
 using ServiceProvider.Core.Classes;
 using ServiceProvider.Core.Exceptions;

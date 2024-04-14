@@ -14,5 +14,8 @@ public partial class LocationConfiguration : IEntityTypeConfiguration<Location>
         entity.Property(x => x.County).HasMaxLength(50);
         entity.Property(x => x.Town).HasMaxLength(50);
         entity.Property(x => x.Area).HasMaxLength(50);
+
+        entity.HasMany(x => x.ServiceLocations)
+            .WithOne(x => x.Location);
     }
 }

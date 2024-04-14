@@ -12,6 +12,7 @@ public partial class PermissionConfiguration : IEntityTypeConfiguration<Permissi
         entity.HasKey(x => x.Id);
 
         entity.Property(x => x.Name).HasMaxLength(50);
+        
         entity.HasMany(x => x.RolePermissions)
             .WithOne(x => x.Permission);
         entity.HasMany(x => x.UserPermissions)

@@ -27,6 +27,14 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 
 	// Location
 	public virtual DbSet<Location> Locations { get; set; }
+
+	//category
+	public virtual DbSet<Category> Categories { get; set; }
+
+	// Service
+	public virtual DbSet<Service> Services { get; set; }
+	public virtual DbSet<ServiceLocation> ServiceLocations { get; set; }
+
     
     // ********** OnModelCreating **********
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -46,6 +54,13 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 
 		// location
 		modelBuilder.ApplyConfiguration(new Configurations.LocationConfiguration());
+
+		// service
+		modelBuilder.ApplyConfiguration(new Configurations.ServiceConfiguration());
+		modelBuilder.ApplyConfiguration(new Configurations.ServiceLocationConfiguration());
+
+		//category
+		modelBuilder.ApplyConfiguration(new Configurations.CategoryConfiguration());
 
 		//logs
 		modelBuilder.ApplyConfiguration(new Configurations.ErrorLogConfiguration());

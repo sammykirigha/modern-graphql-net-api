@@ -2,5 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Angular-JumpStart" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../RoutingDemo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../ms-identity-javascript-angular-tutorial" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../simple-project" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../users-app" vcs="Git" />
   </component>
 </project>
