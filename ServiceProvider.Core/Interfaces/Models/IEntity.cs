@@ -1,3 +1,5 @@
+using System;
+
 namespace ServiceProvider.Core.Interfaces.Models;
 
 public interface IEntity
