@@ -1,3 +1,4 @@
+using HotChocolate.Authorization;
 using ServiceProvider.Core.Classes;
 using ServiceProvider.Core.Exceptions;
 using ServiceProvider.Core.Extensions;
@@ -7,7 +8,8 @@ using System.Text.Json;
 
 
 namespace Graphql.Services.GraphQL;
-
+[Authorize]
+[MutationType]
 public static class ServiceLocationMutation
 {
     public static async Task<ServiceLocation> AddServiceLocation(ServiceLocationMutationInput srv, EntityLogInfo logInfo, IServiceLocationService service)

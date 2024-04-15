@@ -24,6 +24,16 @@ public static class MainServiceCollectionExtensions
 		//Role
 		services.AddScoped<IRoleService, RoleService>();
 		services.AddScoped<IRolePermissionService, RolePermissionService>();
+
+		//service
+		services.AddScoped<IServiceLocationService, ServiceLocationService>();
+		services.AddScoped<IServiceService, ServiceService>();
+
+		//location
+		services.AddScoped<ILocationService, LocationService>();
+
+		//category
+		services.AddScoped<ICategoryService, CategoryService>();
         
 		return services;
 	}
@@ -44,6 +54,16 @@ public static class MainServiceCollectionExtensions
 		//Role
 		builder.RegisterService<IRoleService>();
 		builder.RegisterService<IRolePermissionService>();
+
+		//location
+		builder.RegisterService<ILocationService>();
+
+		//category
+		builder.RegisterService<ICategoryService>();
+
+		//service
+		builder.RegisterService<IServiceLocationService>();
+		builder.RegisterService<IServiceService>();
         
 		return builder;
 	}

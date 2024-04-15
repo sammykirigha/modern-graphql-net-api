@@ -7,12 +7,12 @@ namespace ServiceProvider.Core.Models;
 
 public record ServiceMutationInput(
     [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> Id, 
+    [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> CategoryId,
+    [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> LocationId,
 
     [property: DefaultValue("")] Optional<string> Name,
      [property: DefaultValue(0.00)] Optional<decimal> Price,
 
-    Optional<Guid> LocationId,
-    Optional<Guid> CategoryId,
     [property: DefaultDateValue] Optional<DateTime> DateCreated,
     [property: DefaultDateValue] Optional<DateTime> DateModified
 );

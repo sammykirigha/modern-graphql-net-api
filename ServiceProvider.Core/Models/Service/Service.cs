@@ -36,6 +36,6 @@ public partial class Service : IEntity
  
     [JsonIgnore] public virtual Category? Category { get; set; }
 
-    [JsonIgnore] public virtual ICollection<ServiceLocation> Locations { get; set; } = new List<ServiceLocation>();
+    [JsonIgnore] public virtual Location? Location { get; set; }
  
 }

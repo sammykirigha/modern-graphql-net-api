@@ -10,11 +10,5 @@ public partial class ServiceLocationConfiguration : IEntityTypeConfiguration<Ser
     {
         entity.ToTable($"SP_{nameof(ServiceLocation)}");
         entity.HasKey(x => x.Id);
-
-        entity.HasOne(x => x.Service)
-        .WithMany(x => x.Locations);
-
-        entity.HasOne(x => x.Location)
-        .WithMany(x => x.ServiceLocations);
     }
 }
