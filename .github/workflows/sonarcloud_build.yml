@@ -50,7 +50,7 @@ jobs:
         run: azurite-blob &
 
       - name: Build and analyze
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=javareachabilityy -Dsonar.organization=javareachabilityy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONARCLOUD_TOKEN
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=service-provider -Dsonar.organization="Service Provider" -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONARCLOUD_TOKEN
         env:
           GIT_HUB_ACTIONS: ${{ secrets.GIT_HUB_ACTIONS }}  # Needed to get PR information, if any
           SONARCLOUD_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
