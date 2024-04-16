@@ -26,6 +26,16 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
     // Permission
     public virtual DbSet<Permission> Permissions { get; set; }
     
+    // categories
+    public virtual DbSet<Category> Categories { get; set; }
+    
+    //locations
+    public virtual DbSet<Location> Locations { get; set; }
+    
+    //services
+    public virtual DbSet<Service> Services { get; set; }
+    public virtual DbSet<ServiceLocation> ServiceLocations { get; set; }
+    
     // ********** OnModelCreating **********
     protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
@@ -42,10 +52,21 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 		// permission
 		modelBuilder.ApplyConfiguration(new Configurations.PermissionConfiguration());
 		
+		
 		//logs
 		modelBuilder.ApplyConfiguration(new Configurations.ErrorLogConfiguration());
 		modelBuilder.ApplyConfiguration(new Configurations.EntityLogConfiguration());
 		modelBuilder.ApplyConfiguration(new Configurations.LoginLogConfiguration());
+		
+		//service
+		modelBuilder.ApplyConfiguration(new Configurations.ServiceConfiguration());
+		modelBuilder.ApplyConfiguration(new Configurations.ServiceLocationConfiguration());
+		
+		//category
+		modelBuilder.ApplyConfiguration(new Configurations.CategoryConfiguration());
+		
+		//category
+		modelBuilder.ApplyConfiguration(new Configurations.LocationConfiguration());
 		
 		// seeding
 		DataSeeding.AddUserSeeding(modelBuilder);
