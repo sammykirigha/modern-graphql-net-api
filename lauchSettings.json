@@ -18,7 +18,7 @@
         "serviceActions": {
           "sqlserver": "DoNotStart",
           "azurite": "DoNotStart",
-          "webapi.admin": "StartDebugging"
+          "webapi": "StartDebugging"
         }
       },
       "Start All": {
