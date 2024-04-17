@@ -31,7 +31,7 @@ jobs:
 
       - name: Integration test with the dotnet CLI
         run: |
-         dotnet restore
+         dotnet restore ServiceProvider.IntegrationTests
          dotnet test ServiceProvider.IntegrationTests --no-restore
 
       - name: Run the integration tests with code coverage
