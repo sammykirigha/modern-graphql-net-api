@@ -35,7 +35,7 @@ jobs:
       
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: ./../ServiceProvider.WebApi
+        working-directory: ServiceProvider.WebApi
 
       - name: Build
         run: dotnet build --configuration Release --no-restore
