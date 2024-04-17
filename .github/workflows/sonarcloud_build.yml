@@ -59,7 +59,7 @@ jobs:
           SONARCLOUD_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         shell: pwsh
         run: |
-          dotnet sonarscanner begin /k:"modern-dotnet-graphql-api" /o:"serviceprovider" /d:sonar.token="${{ secrets.SONARCLOUD_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=integration-test-coverage.xml /d:sonar.dotnet.excludeTestProjects=true
+          dotnet sonarscanner begin /k:"sammykirigha_modern-dotnet-graphql-api" /o:"service-provider" /d:sonar.token="${{ secrets.SONARCLOUD_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=integration-test-coverage.xml /d:sonar.dotnet.excludeTestProjects=true
           dotnet build modern-dotnet-graphql-api.sln
           coverlet ServiceProvider.IntegrationTests/bin/Debug/net8.0/ServiceProvider.IntegrationTests.dll --target "dotnet" --targetargs "test ServiceProvider.IntegrationTests/ServiceProvider.IntegrationTests.csproj --no-build" -f=opencover -o="integration-test-coverage.xml"
           dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONARCLOUD_TOKEN }}"
