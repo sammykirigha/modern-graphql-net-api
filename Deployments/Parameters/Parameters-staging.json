@@ -1,0 +1,66 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sites_rum_api_name": {
+      "value": "rum-staging-api"
+    },
+    "sites_rum_ui_name": {
+      "value": "rum-staging-ui"
+    },
+    "resourceGroupName": {
+      "value": "rum-staging"
+    },
+    "app_insights_name": {
+      "value": "rum-staging-app-insights"
+    },
+    "application": {
+      "value": "rum"
+    },
+    "environment": {
+      "value": "staging"
+    },
+    "sku": {
+      "value": "S2"
+    },
+    "appName": {
+      "value": "rum"
+    },
+    "location": {
+      "value": "East US 2"
+    },
+    "Token": {
+      "value": "734uhjhuf8\">:9))&*%g873bk78"
+    },
+    "UI_URL": {
+      "value": "https://thankful-water-0dd90fc0f.4.azurestaticapps.net"
+    },
+    "storageName": {
+      "value": "rumstagingaccount123"
+    },
+    "instrumentationKey": {
+      "value": "cea8672a-d4e8-4fa9-9e9e-4ff84419203a"
+    },
+    "SendGrid_APIKey": {
+      "value": "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"
+    },
+    "connectionString": {
+      "value": "InstrumentationKey=cea8672a-d4e8-4fa9-9e9e-4ff84419203a;IngestionEndpoint=https://eastus2-4.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
+    },
+    "linuxFxVersion": {
+      "value": "DOTNETCORE|7.0"
+    },
+    "serverfarms_rum_app_service_plan_externalid": {
+      "value": "/subscriptions/2deed8cf-12c2-45fc-bf15-9f7e9247802c/resourceGroups/rum-staging/providers/Microsoft.Web/serverfarms/rum-staging-app-service-plan"
+    },
+    "appServicePlanName": {
+      "value": "rum-staging-app-service-plan"
+    },
+    "administratorLogin": {
+      "value": "rum-staging"
+    },
+    "administratorLoginPassword": {
+      "value": "351)KtjoeVO^9X0"
+    }
+  }
+}
