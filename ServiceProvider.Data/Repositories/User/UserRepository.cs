@@ -1,5 +1,4 @@
-﻿
-using System.Text.Json;
+﻿using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using ServiceProvider.Core.Exceptions;
 using ServiceProvider.Core.Interfaces.Repositories;

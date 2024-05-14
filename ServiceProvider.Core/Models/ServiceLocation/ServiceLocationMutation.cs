@@ -1,4 +1,3 @@
-
 using ServiceProvider.Core.Attributes;
 using HotChocolate;
 using HotChocolate.Types;

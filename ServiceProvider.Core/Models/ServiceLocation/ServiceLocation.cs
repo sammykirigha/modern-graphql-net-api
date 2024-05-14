@@ -25,6 +25,6 @@ public partial class ServiceLocation : IEntity
     /// Last date/time record changed
     /// </summary>
     public DateTime DateModified { get; set; } = DateTime.UtcNow;
-    [JsonIgnore] public virtual Service Service { get; set; } = null!;
-    [JsonIgnore] public virtual Location? Location { get; set; } = null!;
+    [JsonIgnore] public virtual Service? Service { get; set; }
+    [JsonIgnore] public virtual Location? Location { get; set; }
 }

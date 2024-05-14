@@ -40,7 +40,9 @@ public static class DataServiceCollectionExtensions
 		//service
 		services.AddScoped<IServiceRepository, ServiceRepository>();
 		services.AddScoped<IServiceLocationRepository, ServiceLocationRepository>();
-
+		
+		//serviceProviderclient
+		services.AddScoped<IClientRepository, ClientRepository>();
         
 		return services;
 	}

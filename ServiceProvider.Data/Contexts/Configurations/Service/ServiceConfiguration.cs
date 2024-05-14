@@ -16,8 +16,5 @@ public partial class ServiceConfiguration : IEntityTypeConfiguration<Service>
         entity.HasOne(x => x.Category)
             .WithMany(x => x.Services);
 
-        entity.HasOne(x => x.Location)
-	        .WithMany(x => x.Services);
-
     }
 }

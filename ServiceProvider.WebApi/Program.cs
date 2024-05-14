@@ -34,7 +34,7 @@ AppSettings.Data.IsEFMigration = Environment.GetCommandLineArgs().Contains("migr
 builder.AddAppSettings();
 builder.AddVersionSettings();
 
-builder.Host.UseSerilog((contex, services, configuration) => configuration.ReadFrom.Configuration(contex.Configuration).ReadFrom.Services(services));
+builder.Host.UseSerilog((context, services, configuration) => configuration.ReadFrom.Configuration(context.Configuration).ReadFrom.Services(services));
 //add services
 services.AddSingleton<ITelemetryInitializer, AppVersionTelemetryInitializer>();
 services.AddScoped<IUserProfileCoreService, UserProfileCoreService>();

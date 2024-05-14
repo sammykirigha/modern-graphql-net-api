@@ -24,6 +24,7 @@ public class Location : IEntity
     public DateTime DateCreated { get; set; }
     public DateTime DateModified { get; set; }
 
-    [JsonIgnore] public virtual ICollection<Service> Services { get; set; } = new List<Service>();
+    [JsonIgnore] public virtual ICollection<ServiceLocation> ServiceLocations { get; set; } = new List<ServiceLocation>();
+    [JsonIgnore] public virtual Client?  Client{ get; set; }
 }
 

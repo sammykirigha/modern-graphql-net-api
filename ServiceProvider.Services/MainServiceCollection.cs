@@ -34,6 +34,9 @@ public static class MainServiceCollectionExtensions
 
 		//category
 		services.AddScoped<ICategoryService, CategoryService>();
+		
+		//service provider client 
+		services.AddScoped<IClientService, ClientService>();
         
 		return services;
 	}
@@ -64,6 +67,12 @@ public static class MainServiceCollectionExtensions
 		//service
 		builder.RegisterService<IServiceLocationService>();
 		builder.RegisterService<IServiceService>();
+
+		//client
+		builder.RegisterService<IClientService>();
+
+		//user
+		builder.RegisterService<IUserService>();
         
 		return builder;
 	}

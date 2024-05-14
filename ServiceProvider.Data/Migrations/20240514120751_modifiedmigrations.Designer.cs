@@ -12,8 +12,8 @@ using ServiceProvider.Data.Contexts;
 namespace ServiceProvider.Data.Migrations
 {
     [DbContext(typeof(ServiceProviderContext))]
-    [Migration("20240414152526_AddModels")]
-    partial class AddModels
+    [Migration("20240514120751_modifiedmigrations")]
+    partial class modifiedmigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,79 @@ namespace ServiceProvider.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SP_Category", "sp");
+                });
+
+            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<Guid>("LocationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("LocationId")
+                        .IsUnique();
+
+                    b.ToTable("SP_Client", "sp");
+                });
+
+            modelBuilder.Entity("ServiceProvider.Core.Models.ClientService", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<Guid>("ServiceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("ClientServices", "sp");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.EntityLog", b =>
@@ -304,6 +377,9 @@ namespace ServiceProvider.Data.Migrations
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2(3)");
 
@@ -320,6 +396,9 @@ namespace ServiceProvider.Data.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(19,4)");
+
+                    b.Property<Guid?>("ServiceProviderClientId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -482,6 +561,36 @@ namespace ServiceProvider.Data.Migrations
                     b.ToTable("SP_UserPermission", "sp");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
+                {
+                    b.HasOne("ServiceProvider.Core.Models.Location", "Location")
+                        .WithOne("Client")
+                        .HasForeignKey("ServiceProvider.Core.Models.Client", "LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("ServiceProvider.Core.Models.ClientService", b =>
+                {
+                    b.HasOne("ServiceProvider.Core.Models.Client", "Client")
+                        .WithMany("ClientServices")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ServiceProvider.Core.Models.Service", "Service")
+                        .WithMany("ClientServices")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Service");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.EntityLog", b =>
                 {
                     b.HasOne("ServiceProvider.Core.Models.User", "ActiveUser")
@@ -556,7 +665,7 @@ namespace ServiceProvider.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("ServiceProvider.Core.Models.Service", "Service")
-                        .WithMany("Locations")
+                        .WithMany("ServiceLocations")
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -599,8 +708,15 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("Services");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
+                {
+                    b.Navigation("ClientServices");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.Location", b =>
                 {
+                    b.Navigation("Client");
+
                     b.Navigation("ServiceLocations");
                 });
 
@@ -620,7 +736,9 @@ namespace ServiceProvider.Data.Migrations
 
             modelBuilder.Entity("ServiceProvider.Core.Models.Service", b =>
                 {
-                    b.Navigation("Locations");
+                    b.Navigation("ClientServices");
+
+                    b.Navigation("ServiceLocations");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.User", b =>

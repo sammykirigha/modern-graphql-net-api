@@ -10,5 +10,16 @@ public partial class ServiceLocationConfiguration : IEntityTypeConfiguration<Ser
     {
         entity.ToTable($"SP_{nameof(ServiceLocation)}");
         entity.HasKey(x => x.Id);
+
+        entity.HasOne(sl => sl.Service)
+        .WithMany(s => s.ServiceLocations)
+        .HasForeignKey(sl => sl.ServiceId)
+        .OnDelete(DeleteBehavior.Cascade);
+        
+
+        entity.HasOne(sl => sl.Location)
+        .WithMany(l => l.ServiceLocations)
+        .HasForeignKey(sl => sl.LocationId)
+        .OnDelete(DeleteBehavior.Cascade);
     }
 }
