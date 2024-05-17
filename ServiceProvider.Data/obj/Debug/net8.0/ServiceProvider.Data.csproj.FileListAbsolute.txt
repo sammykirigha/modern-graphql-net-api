@@ -28,9 +28,9 @@
 /home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Data/obj/Debug/net8.0/ServiceProvider.Data.AssemblyInfo.cs
 /home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Data/obj/Debug/net8.0/ServiceProvider.Data.csproj.CoreCompileInputs.cache
 /home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Data/obj/Debug/net8.0/ServiceProvider.Data.sourcelink.json
-/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Data/obj/Debug/net8.0/ServiceP.8B9753E2.Up2Date
 /home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Data/obj/Debug/net8.0/ServiceProvider.Data.dll
 /home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Data/obj/Debug/net8.0/refint/ServiceProvider.Data.dll
 /home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Data/obj/Debug/net8.0/ServiceProvider.Data.pdb
 /home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Data/obj/Debug/net8.0/ServiceProvider.Data.genruntimeconfig.cache
 /home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Data/obj/Debug/net8.0/ref/ServiceProvider.Data.dll
+/home/sammy/projects/modern-dotnet-graphql-api/ServiceProvider.Data/obj/Debug/net8.0/ServiceProvider.Data.csproj.CopyComplete

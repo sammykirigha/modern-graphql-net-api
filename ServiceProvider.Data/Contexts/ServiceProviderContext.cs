@@ -37,7 +37,7 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
     
     //service provider client
     public virtual DbSet<Client> Clients { get; set; }
-    public virtual DbSet<ClientService> ClientServices { get; set; }
+    public virtual DbSet<ClientsServices> ClientServices { get; set; }
     
     // ********** OnModelCreating **********
     protected override void OnModelCreating(ModelBuilder modelBuilder)

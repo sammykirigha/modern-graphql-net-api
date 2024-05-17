@@ -1,4 +1,5 @@
 ﻿using ServiceProvider.Core.Classes;
+using HotChocolate.Authorization;
 using ServiceProvider.Core.Exceptions;
 using ServiceProvider.Core.Extensions;
 using ServiceProvider.Core.Interfaces.Services;
@@ -7,7 +8,8 @@ using System.Text.Json;
 
 
 namespace Graphql.Services.GraphQL;
-
+[Authorize]
+[MutationType]
 public static class ClientMutation
 {
     public static async Task<Client> AddClient(ClientMutationInput Client, EntityLogInfo logInfo, IClientService service)
@@ -18,6 +20,7 @@ public static class ClientMutation
 	        Client.FirstName.CheckRequired();
 	        Client.LastName.CheckRequired();
 	        Client.Phone.CheckRequired();
+            Client.LocationId.CheckRequired();
             var entity = PopulateEntity(new Client(), Client);
             entity = await service.AddAsync(entity, logInfo);
             return entity;
@@ -68,6 +71,7 @@ public static class ClientMutation
         entity.FirstName = input.FirstName.CheckForValue(entity.FirstName);
         entity.LastName = input.LastName.CheckForValue(entity.LastName);
         entity.Phone = input.Phone.CheckForValue(entity.Phone);
+        entity.LocationId = input.LocationId.CheckForValue(entity.LocationId);
 		
         entity.DateCreated = input.DateCreated.CheckForValue(entity.DateCreated);
         entity.DateModified = DateTime.UtcNow;

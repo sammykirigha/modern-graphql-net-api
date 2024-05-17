@@ -4,7 +4,7 @@ using HotChocolate.Types;
  
 namespace ServiceProvider.Core.Models;
  
-public record ClientServiceMutationInput(
+public record ClientsServicesMutationInput(
     [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> Id,
     [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> ServiceId,
     [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> ClientId,

@@ -4,11 +4,11 @@ using ServiceProvider.Core.Models;
 
 namespace ServiceProvider.Data.Contexts.Configurations;
 
-public partial class ClientServiceConfiguration : IEntityTypeConfiguration<ClientService>
+public partial class ClientsServicesConfiguration : IEntityTypeConfiguration<ClientsServices>
 {
-	public void Configure(EntityTypeBuilder<ClientService> entity)
+	public void Configure(EntityTypeBuilder<ClientsServices> entity)
 	{
-		entity.ToTable($"SP_{nameof(ClientService)}");
+		entity.ToTable($"SP_{nameof(ClientsServices)}");
 		entity.HasKey(x => x.Id);
 
 		entity.HasOne(sl => sl.Service)

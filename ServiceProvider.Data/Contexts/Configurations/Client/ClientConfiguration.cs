@@ -17,8 +17,8 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
 		entity.Property(x => x.Phone).HasMaxLength(30);
 
 		entity.HasIndex(x => x.Email).IsUnique();
-		entity.HasOne(x => x.Location)
-			.WithOne(x => x.Client);
+
+		entity.HasOne(x => x.Location).WithMany(x => x.Clients);
 
 	}
 }

@@ -14,5 +14,5 @@ public partial class Client: IEntity
 	public DateTime DateCreated { get; set; }
 	public DateTime DateModified { get; set; }
 	public virtual Location? Location { get; set; }
-	[JsonIgnore] public virtual ICollection<ClientService>? ClientServices { get; set; } = new List<ClientService>();
+	[JsonIgnore] public virtual ICollection<ClientsServices>? ClientServices { get; set; } = new List<ClientsServices>();
 }

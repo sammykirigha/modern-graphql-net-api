@@ -47,6 +47,8 @@ Generated\ Files/
 #env
 .env
 
+*.
+
 # NUnit
 *.VisualState.xml
 TestResult.xml
@@ -405,6 +407,10 @@ FodyWeavers.xsd
 # appsettings.Development.json
 appsettings.Development.json
 appversion.Development.json
+
+# appsettings.Development.json
+*.appsettings.Development.json
+*.appversion.Development.json
 
 # azurite
 /azurite_workspace

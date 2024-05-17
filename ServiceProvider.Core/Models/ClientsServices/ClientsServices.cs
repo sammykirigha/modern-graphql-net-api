@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace ServiceProvider.Core.Models;
 
-public partial class ClientService : IEntity
+public partial class ClientsServices : IEntity
 {
     /// <summary>
     /// Primary key

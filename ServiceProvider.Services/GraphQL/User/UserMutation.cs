@@ -1,4 +1,5 @@
 ﻿using ServiceProvider.Core.Classes;
+using HotChocolate.Authorization;
 using ServiceProvider.Core.Exceptions;
 using ServiceProvider.Core.Extensions;
 using ServiceProvider.Core.Interfaces.Services;
@@ -7,7 +8,8 @@ using System.Text.Json;
 
 
 namespace Graphql.Services.GraphQL;
-
+[Authorize]
+[MutationType]
 public static class UserMutation
 {
     public static async Task<User> AddUser(UserMutationInput user, EntityLogInfo logInfo, IUserService service)
