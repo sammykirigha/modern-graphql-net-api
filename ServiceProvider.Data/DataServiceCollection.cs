@@ -48,6 +48,9 @@ public static class DataServiceCollectionExtensions
 
 		//plans
 		services.AddScoped<IPlanRepository, PlanRepository>();
+
+		//payments
+		services.AddScoped<IPaymentRepository, PaymentRepository>();
         
 		return services;
 	}

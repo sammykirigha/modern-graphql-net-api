@@ -14,6 +14,22 @@ public partial class Plan : IEntity
     /// </summary>
     public string Name { get; set; } = "";
     /// <summary>
+    /// Name of plan eg Description
+    /// </summary>
+    public string Description { get; set; } = "";
+    /// <summary>
+    /// BillingCycle To define the billing cycle for the plan (e.g., monthly, yearly)
+    /// </summary>
+    public BillingCycle BillingCycle { get; set; }
+    /// <summary>
+    /// provide any applicable discount for the plan.
+    /// </summary>
+    public decimal Discount { get; set; }
+    /// <summary>
+    /// To indicate whether the plan is currently active and available for new subscriptions.
+    /// </summary>
+    public IsActive IsActive { get; set; }
+    /// <summary>
     /// Time duration for the plan
     /// </summary>
     public int Duration { get; set; }

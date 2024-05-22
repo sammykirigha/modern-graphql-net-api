@@ -41,6 +41,9 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 
 	//plan
 	public virtual DbSet<Plan> Plans { get; set; }
+
+	//payment
+	public virtual DbSet<Payment> Payments { get; set; }
     
     // ********** OnModelCreating **********
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -79,6 +82,9 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 		//service provider client
 
 		modelBuilder.ApplyConfiguration(new Configurations.PlanConfiguration());
+
+		//payment
+		modelBuilder.ApplyConfiguration(new Configurations.PaymentConfiguration());
 		
 		// seeding
 		DataSeeding.AddUserSeeding(modelBuilder);

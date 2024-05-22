@@ -41,6 +41,9 @@ public static class MainServiceCollectionExtensions
 
 		//plans
 		services.AddScoped<IPlanService, PlanService>();
+
+		//payments
+		services.AddScoped<IPaymentService, PaymentService>();
         
 		return services;
 	}
@@ -78,6 +81,9 @@ public static class MainServiceCollectionExtensions
 
 		//user
 		builder.RegisterService<IPlanService>();
+
+		//payment
+		builder.RegisterService<IPaymentService>();
         
 		return builder;
 	}
