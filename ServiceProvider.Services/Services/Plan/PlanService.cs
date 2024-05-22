@@ -1,87 +1,87 @@
-// using Microsoft.EntityFrameworkCore;
-// using ServiceProvider.Core.Classes;
-// using ServiceProvider.Core.Exceptions;
-// using ServiceProvider.Core.Interfaces.Repositories;
-// using ServiceProvider.Core.Interfaces.Services;
-// using ServiceProvider.Core.Models;
+using Microsoft.EntityFrameworkCore;
+using ServiceProvider.Core.Classes;
+using ServiceProvider.Core.Exceptions;
+using ServiceProvider.Core.Interfaces.Repositories;
+using ServiceProvider.Core.Interfaces.Services;
+using ServiceProvider.Core.Models;
 
-// namespace ServiceProvider.Services;
+namespace ServiceProvider.Services;
 
-// public class PlanService: IPlanService
-// {
-//   private readonly IPlanRepository _repository;
-//     private readonly IEntityLogService _log;
+public class PlanService: IPlanService
+{
+  private readonly IPlanRepository _repository;
+    private readonly IEntityLogService _log;
 
-//     public PlanService(
-//         IPlanRepository repository,
-//         IEntityLogService log)
-//     {
-//         _repository = repository;
-//         _log = log;
-//     }
+    public PlanService(
+        IPlanRepository repository,
+        IEntityLogService log)
+    {
+        _repository = repository;
+        _log = log;
+    }
 
-//     // QUERIES
-//     public async Task<Plan?> GetByIdAsync(Guid id)
-//     {
-//         var entity = await _repository.GetByIdAsync(id);
-//         return entity;
-//     }
+    // QUERIES
+    public async Task<Plan?> GetByIdAsync(Guid id)
+    {
+        var entity = await _repository.GetByIdAsync(id);
+        return entity;
+    }
 
-//     public IQueryable<Plan> GetList()
-//     {
-//         return _repository.GetList().AsNoTracking();
-//     }
+    public IQueryable<Plan> GetList()
+    {
+        return _repository.GetList().AsNoTracking();
+    }
 
-//     public IQueryable<PlanPaged> GetPagedList()
-//     {
-//         return (
-//             from u in _repository.GetList()
-//             select new PlanPaged
-//             {
-//                 Plan = u
-//             }
-//         ).AsNoTracking();
-//     }
+    public IQueryable<PlanPaged> GetPagedList()
+    {
+        return (
+            from u in _repository.GetList()
+            select new PlanPaged
+            {
+                Plan = u
+            }
+        ).AsNoTracking();
+    }
 
 
-//     // MUTATIONS
-//     public async Task<Plan> AddAsync(Plan input, EntityLogInfo logInfo)
-//     {
-//         using var trans = await _repository.BeginTransactionAsync();
+    // MUTATIONS
+    public async Task<Plan> AddAsync(Plan input, EntityLogInfo logInfo)
+    {
+        using var trans = await _repository.BeginTransactionAsync();
 
-//         var entity = await _repository.AddAsync(input);
-//         await _log.LogAddAsync(logInfo, entity);
+        var entity = await _repository.AddAsync(input);
+        await _log.LogAddAsync(logInfo, entity);
 
-//         await trans.CommitAsync();
+        await trans.CommitAsync();
 
-//         return entity;
-//     }
+        return entity;
+    }
 
-//     public async Task<Plan> UpdateAsync(Plan input, EntityLogInfo logInfo, Plan? oldEntity = null)
-//     {
-// 	    using var trans = await _repository.BeginTransactionAsync();
+    public async Task<Plan> UpdateAsync(Plan input, EntityLogInfo logInfo, Plan? oldEntity = null)
+    {
+	    using var trans = await _repository.BeginTransactionAsync();
 
-//         oldEntity ??= await _repository.GetByIdAsync(input.Id)
-//                       ?? throw new AppException($"{nameof(Plan)} not found.", ValidationCode.MissingRequirementEntity);
-//         var entity = await _repository.UpdateAsync(input);
-//         await _log.LogUpdateAsync(logInfo, entity, oldEntity);
+        oldEntity ??= await _repository.GetByIdAsync(input.Id)
+                      ?? throw new AppException($"{nameof(Plan)} not found.", ValidationCode.MissingRequirementEntity);
+        var entity = await _repository.UpdateAsync(input);
+        await _log.LogUpdateAsync(logInfo, entity, oldEntity);
 
-//         await trans.CommitAsync();
+        await trans.CommitAsync();
 
-//         return entity;
-//     }
+        return entity;
+    }
 
-//     public async Task<bool> DeleteAsync(Guid id, EntityLogInfo logInfo)
-//     {
-//         using var trans = await _repository.BeginTransactionAsync();
+    public async Task<bool> DeleteAsync(Guid id, EntityLogInfo logInfo)
+    {
+        using var trans = await _repository.BeginTransactionAsync();
 
-//         var entity = await _repository.GetByIdAsync(id)
-//                      ?? throw new AppException($"{nameof(Plan)} not found.", ValidationCode.MissingRequirementEntity);
-//         var result = await _repository.DeleteAsync(id);
-//         await _log.LogDeleteAsync(logInfo, entity);
+        var entity = await _repository.GetByIdAsync(id)
+                     ?? throw new AppException($"{nameof(Plan)} not found.", ValidationCode.MissingRequirementEntity);
+        var result = await _repository.DeleteAsync(id);
+        await _log.LogDeleteAsync(logInfo, entity);
 
-//         await trans.CommitAsync();
+        await trans.CommitAsync();
 
-//         return result > 0;
-//     }
-// }
+        return result > 0;
+    }
+}

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceProvider.Core.Interfaces.Repositories;
+using ServiceProvider.Core.Interfaces.Services;
 using ServiceProvider.Core.Settings;
 using ServiceProvider.Data.Contexts;
 using ServiceProvider.Data.Repositories;
@@ -44,6 +45,9 @@ public static class DataServiceCollectionExtensions
 		//serviceProviderclient
 		services.AddScoped<IClientRepository, ClientRepository>();
 		services.AddScoped<IClientsServicesRepository, ClientsServicesRepository>();
+
+		//plans
+		services.AddScoped<IPlanRepository, PlanRepository>();
         
 		return services;
 	}

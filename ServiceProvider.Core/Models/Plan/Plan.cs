@@ -1,3 +1,4 @@
+using ServiceProvider.Core.Enums;
 using ServiceProvider.Core.Interfaces.Models;
 
 namespace ServiceProvider.Core.Models;
@@ -15,7 +16,11 @@ public partial class Plan : IEntity
     /// <summary>
     /// Time duration for the plan
     /// </summary>
-    public TimeSpan Duration { get; set; }
+    public int Duration { get; set; }
+    /// <summary>
+    /// Time duration for the plan
+    /// </summary>
+    public PlanTime Time { get; set; }
         /// <summary>
     /// Time duration
     /// </summary>

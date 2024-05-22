@@ -39,8 +39,8 @@ public static class MainServiceCollectionExtensions
 		services.AddScoped<IClientService, ClientService>();
 		services.AddScoped<IClientsServicesService, ClientsServicesService>();
 
-		//user
-		services.AddScoped<IUserService, UserService>();
+		//plans
+		services.AddScoped<IPlanService, PlanService>();
         
 		return services;
 	}
@@ -77,7 +77,7 @@ public static class MainServiceCollectionExtensions
 		builder.RegisterService<IClientsServicesService>();
 
 		//user
-		builder.RegisterService<IUserService>();
+		builder.RegisterService<IPlanService>();
         
 		return builder;
 	}
