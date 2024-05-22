@@ -1,5 +1,4 @@
-﻿
-using HotChocolate.Authorization;
+﻿using HotChocolate.Authorization;
 using ServiceProvider.Core.Interfaces.Services;
 using ServiceProvider.Core.Models;
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServiceProvider.Data.Contexts;
 
@@ -11,9 +12,11 @@ using ServiceProvider.Data.Contexts;
 namespace ServiceProvider.Data.Migrations
 {
     [DbContext(typeof(ServiceProviderContext))]
-    partial class ServiceProviderContextModelSnapshot : ModelSnapshot
+    [Migration("20240522054842_changedRelationships")]
+    partial class changedRelationships
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,6 +25,21 @@ namespace ServiceProvider.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ClientService", b =>
+                {
+                    b.Property<Guid>("ClientsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ServicesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ClientsId", "ServicesId");
+
+                    b.HasIndex("ServicesId");
+
+                    b.ToTable("ClientService", "sp");
+                });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.Category", b =>
                 {
@@ -80,17 +98,12 @@ namespace ServiceProvider.Data.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<Guid?>("ServiceId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
                         .IsUnique();
 
                     b.HasIndex("LocationId");
-
-                    b.HasIndex("ServiceId");
 
                     b.ToTable("SP_Client", "sp");
                 });
@@ -398,6 +411,9 @@ namespace ServiceProvider.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(19,4)");
 
+                    b.Property<Guid?>("ServiceProviderClientId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -559,6 +575,21 @@ namespace ServiceProvider.Data.Migrations
                     b.ToTable("SP_UserPermission", "sp");
                 });
 
+            modelBuilder.Entity("ClientService", b =>
+                {
+                    b.HasOne("ServiceProvider.Core.Models.Client", null)
+                        .WithMany()
+                        .HasForeignKey("ClientsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ServiceProvider.Core.Models.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
                 {
                     b.HasOne("ServiceProvider.Core.Models.Location", "Location")
@@ -567,25 +598,21 @@ namespace ServiceProvider.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ServiceProvider.Core.Models.Service", null)
-                        .WithMany("Clients")
-                        .HasForeignKey("ServiceId");
-
                     b.Navigation("Location");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.ClientsServices", b =>
                 {
                     b.HasOne("ServiceProvider.Core.Models.Client", "Client")
-                        .WithMany("ClientServices")
+                        .WithMany()
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ServiceProvider.Core.Models.Service", "Service")
-                        .WithMany("ClientServices")
+                        .WithMany()
                         .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Client");
@@ -710,11 +737,6 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("Services");
                 });
 
-            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
-                {
-                    b.Navigation("ClientServices");
-                });
-
             modelBuilder.Entity("ServiceProvider.Core.Models.Location", b =>
                 {
                     b.Navigation("Clients");
@@ -738,10 +760,6 @@ namespace ServiceProvider.Data.Migrations
 
             modelBuilder.Entity("ServiceProvider.Core.Models.Service", b =>
                 {
-                    b.Navigation("ClientServices");
-
-                    b.Navigation("Clients");
-
                     b.Navigation("ServiceLocations");
                 });
 

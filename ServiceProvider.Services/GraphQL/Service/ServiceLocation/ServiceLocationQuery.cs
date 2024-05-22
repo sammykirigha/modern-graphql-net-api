@@ -6,7 +6,7 @@ using ServiceProvider.Core.Models;
 namespace ServiceProvider.Services.GraphQL;
 [Authorize]
 [QueryType]
-public class ServiceLocationQuery
+public static class ServiceLocationQuery
 {
 	[UseProjection]
 	[UseFiltering]
@@ -23,6 +23,5 @@ public class ServiceLocationQuery
 		=> service.GetPagedList();
     
 	[UseSingleOrDefault]
-	public static Task<ServiceLocation?> GetServiceLocationsById(IServiceLocationService service, Guid id)
-		=> service.GetByIdAsync(id);
+	public static async Task<ServiceLocation?> GetServiceLocationsById(IServiceLocationService service, Guid id) => await service.GetByIdAsync(id);
 }

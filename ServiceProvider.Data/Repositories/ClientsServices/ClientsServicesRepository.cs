@@ -20,7 +20,7 @@ public class ClientsServicesRepository(ServiceProviderContext context) : Reposit
 		newEntity.DateCreated = DateTime.UtcNow;
 		newEntity.DateCreated = DateTime.UtcNow;
 
-		Context.ClientServices.Add(newEntity);
+		Context.ClientsServices.Add(newEntity);
 		await Context.SaveChangesAsync();
 
 		return newEntity;
@@ -28,17 +28,17 @@ public class ClientsServicesRepository(ServiceProviderContext context) : Reposit
 
 	public async Task<int> DeleteAsync(Guid id)
 	{
-		var result = await Context.ClientServices.Where(x => x.Id == id).ExecuteDeleteAsync();
+		var result = await Context.ClientsServices.Where(x => x.Id == id).ExecuteDeleteAsync();
 		return result;
 	}
 
 	public async Task<ClientsServices?> GetByIdAsync(Guid id)
 	{
-		var entity = await Context.ClientServices.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+		var entity = await Context.ClientsServices.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
 		return entity;
 	}
 
-	public IQueryable<ClientsServices> GetList() => from i in Context.ClientServices select i;
+	public IQueryable<ClientsServices> GetList() => from i in Context.ClientsServices select i;
 
 	public async Task<ClientsServices> UpdateAsync(ClientsServices entity)
 	{

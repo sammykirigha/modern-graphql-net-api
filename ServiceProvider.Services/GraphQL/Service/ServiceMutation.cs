@@ -20,6 +20,8 @@ public static class ServiceMutation
             srv.Name.CheckRequired();
             srv.Price.CheckRequired();
             srv.CategoryId.CheckRequired();
+            srv.ClientId.CheckRequired();
+            
 
             var entity = PopulateEntity(new Service(), srv);
             entity = await service.AddAsync(entity, logInfo);
@@ -69,6 +71,7 @@ public static class ServiceMutation
     {
         entity.Name = input.Name.CheckForValue(entity.Name);
         entity.Price = input.Price.CheckForValue(entity.Price);
+        entity.ClientId = input.ClientId.CheckForValue(entity.ClientId);
         entity.CategoryId = input.CategoryId.CheckForValue(entity.CategoryId);
         entity.LocationId = input.LocationId.CheckForValue(entity.LocationId);
 		

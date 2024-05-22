@@ -5,7 +5,7 @@ using ServiceProvider.Core.Models;
 namespace ServiceProvider.Services.GraphQL;
 [Authorize]
 [QueryType]
-public class ClientQuery
+public static class ClientQuery
 {
 	[UseProjection]
 	[UseFiltering]
@@ -20,6 +20,5 @@ public class ClientQuery
 	public static IQueryable<ClientPaged> GetClientsPaged(IClientService service) => service.GetPagedList();
     
 	[UseSingleOrDefault]
-	public static Task<Client?> GetClientById(IClientService service, Guid id)
-		=> service.GetByIdAsync(id);
+	public static async Task<Client?> GetClientById(IClientService service, Guid id) => await service.GetByIdAsync(id);
 }

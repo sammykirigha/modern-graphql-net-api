@@ -30,10 +30,6 @@ public partial class Service : IEntity
     /// </summary>
     public Guid ClientId { get; set; }
     /// <summary>
-    /// foreign key ServiceProviderClient id
-    /// </summary>
-    public Guid? ServiceProviderClientId { get; set; }
-    /// <summary>
     /// Date/time record created
     /// </summary>
     public DateTime DateModified { get; set; }
@@ -44,6 +40,9 @@ public partial class Service : IEntity
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
  
     [JsonIgnore] public virtual Category? Category { get; set; }
+    [JsonIgnore] public virtual ICollection<Client>? Clients { get; set; }
     [JsonIgnore] public virtual ICollection<ServiceLocation>? ServiceLocations { get; set; } = new List<ServiceLocation>();
     [JsonIgnore] public virtual ICollection<ClientsServices>? ClientServices { get; set; } = new List<ClientsServices>();
 }
+
+
