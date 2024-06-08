@@ -298,6 +298,48 @@ namespace ServiceProvider.Data.Migrations
                     b.ToTable("SP_LoginLog", "sp");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.Payment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(19,4)");
+
+                    b.Property<byte>("Currency")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<byte>("PaymentMethod")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Status")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("TransactionCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("SP_Payment", "sp");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.Permission", b =>
                 {
                     b.Property<Guid>("Id")
@@ -326,14 +368,27 @@ namespace ServiceProvider.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<byte>("BillingCycle")
+                        .HasColumnType("tinyint");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2(3)");
 
                     b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2(3)");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Discount")
+                        .HasColumnType("decimal(19,4)");
+
                     b.Property<int>("Duration")
                         .HasColumnType("int");
+
+                    b.Property<byte>("IsActive")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -461,6 +516,79 @@ namespace ServiceProvider.Data.Migrations
                     b.HasIndex("ServiceId");
 
                     b.ToTable("SP_ServiceLocation", "sp");
+                });
+
+            modelBuilder.Entity("ServiceProvider.Core.Models.Subscription", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<Guid>("PlanId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("RenewalType")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<byte>("Status")
+                        .HasColumnType("tinyint");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlanId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("SP_Subscription", "sp");
+                });
+
+            modelBuilder.Entity("ServiceProvider.Core.Models.SubscriptionPayments", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<decimal?>("PaymentAmount")
+                        .HasColumnType("decimal(19,4)");
+
+                    b.Property<Guid>("PaymentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SubscriptionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PaymentId")
+                        .IsUnique();
+
+                    b.HasIndex("SubscriptionId")
+                        .IsUnique();
+
+                    b.ToTable("SP_SubscriptionPayments", "sp");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.User", b =>
@@ -661,6 +789,17 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.Payment", b =>
+                {
+                    b.HasOne("ServiceProvider.Core.Models.User", "User")
+                        .WithOne("Payment")
+                        .HasForeignKey("ServiceProvider.Core.Models.Payment", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.RolePermission", b =>
                 {
                     b.HasOne("ServiceProvider.Core.Models.Permission", "Permission")
@@ -708,6 +847,44 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("Service");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.Subscription", b =>
+                {
+                    b.HasOne("ServiceProvider.Core.Models.Plan", "Plan")
+                        .WithOne("Subscription")
+                        .HasForeignKey("ServiceProvider.Core.Models.Subscription", "PlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ServiceProvider.Core.Models.User", "User")
+                        .WithOne("Subscription")
+                        .HasForeignKey("ServiceProvider.Core.Models.Subscription", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Plan");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ServiceProvider.Core.Models.SubscriptionPayments", b =>
+                {
+                    b.HasOne("ServiceProvider.Core.Models.Payment", "Payment")
+                        .WithOne("SubscriptionPayments")
+                        .HasForeignKey("ServiceProvider.Core.Models.SubscriptionPayments", "PaymentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("ServiceProvider.Core.Models.Subscription", "Subscription")
+                        .WithOne("SubscriptionPayments")
+                        .HasForeignKey("ServiceProvider.Core.Models.SubscriptionPayments", "SubscriptionId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Payment");
+
+                    b.Navigation("Subscription");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.User", b =>
                 {
                     b.HasOne("ServiceProvider.Core.Models.Role", "Role")
@@ -753,11 +930,21 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("ServiceLocations");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.Payment", b =>
+                {
+                    b.Navigation("SubscriptionPayments");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.Permission", b =>
                 {
                     b.Navigation("RolePermissions");
 
                     b.Navigation("UserPermissions");
+                });
+
+            modelBuilder.Entity("ServiceProvider.Core.Models.Plan", b =>
+                {
+                    b.Navigation("Subscription");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.Role", b =>
@@ -776,6 +963,11 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("ServiceLocations");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.Subscription", b =>
+                {
+                    b.Navigation("SubscriptionPayments");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.User", b =>
                 {
                     b.Navigation("EntityLogsActive");
@@ -788,7 +980,11 @@ namespace ServiceProvider.Data.Migrations
 
                     b.Navigation("LoginLogs");
 
+                    b.Navigation("Payment");
+
                     b.Navigation("Permissions");
+
+                    b.Navigation("Subscription");
                 });
 #pragma warning restore 612, 618
         }

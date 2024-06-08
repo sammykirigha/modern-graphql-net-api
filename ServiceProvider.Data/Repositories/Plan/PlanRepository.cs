@@ -1,4 +1,3 @@
-
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using ServiceProvider.Core.Exceptions;

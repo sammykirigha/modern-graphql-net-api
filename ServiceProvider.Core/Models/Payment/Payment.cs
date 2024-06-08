@@ -49,5 +49,6 @@ public partial class Payment: IEntity
     /// </summary>
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     [JsonIgnore] public virtual User User { get; set; }
+    [JsonIgnore] public virtual SubscriptionPayments? SubscriptionPayments { get; set; }
 
 }

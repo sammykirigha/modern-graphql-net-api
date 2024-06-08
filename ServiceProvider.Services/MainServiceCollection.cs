@@ -1,8 +1,11 @@
-﻿
-using HotChocolate.Execution.Configuration;
+﻿using HotChocolate.Execution.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ServiceProvider.Core.Interfaces;
 using ServiceProvider.Core.Interfaces.Services;
 using ServiceProvider.Services;
+using Stripe;
+using PlanService = ServiceProvider.Services.PlanService;
+using SubscriptionService = ServiceProvider.Services.SubscriptionService;
 
 namespace ServiceProvider;
 public static class MainServiceCollectionExtensions
@@ -44,6 +47,14 @@ public static class MainServiceCollectionExtensions
 
 		//payments
 		services.AddScoped<IPaymentService, PaymentService>();
+
+		//subscriptions
+		services.AddScoped<ISubscriptionService, SubscriptionService>();
+
+		//subscription payments
+		services.AddScoped<ISubscriptionPaymentsService, SubscriptionPaymentsService>();
+
+		services.AddScoped<IStripeGateWayService<PaymentIntent>, StripeGateWayService>();
         
 		return services;
 	}
@@ -84,6 +95,15 @@ public static class MainServiceCollectionExtensions
 
 		//payment
 		builder.RegisterService<IPaymentService>();
+
+		//subscription
+		builder.RegisterService<ISubscriptionService>();
+
+		//
+		builder.RegisterService<ISubscriptionPaymentsService>();
+
+		//
+		builder.RegisterService<IStripeGateWayService<PaymentIntent>>();
         
 		return builder;
 	}

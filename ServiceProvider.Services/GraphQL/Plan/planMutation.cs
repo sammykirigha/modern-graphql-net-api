@@ -17,6 +17,9 @@ public static class PlanMuatation
         try
         {
            Plan.Name.CheckRequired();
+           Plan.Time.CheckRequired();
+           Plan.Duration.CheckRequired();
+           Plan.Price.CheckRequired();
 
            var entity = PopulateEntity(new Plan(), Plan);
            entity = await service.AddAsync(entity, logInfo);
@@ -65,6 +68,9 @@ public static class PlanMuatation
     private static Plan PopulateEntity(Plan entity, PlanMutationInput input)
     {
         entity.Name = input.Name.CheckForValue(entity.Name);
+        entity.Time = input.Time.CheckForValue(entity.Time);
+        entity.Duration = input.Duration.CheckForValue(entity.Duration);
+        entity.Price = input.Price.CheckForValue(entity.Price);
 
         entity.DateCreated = input.DateCreated.CheckForValue(entity.DateCreated);
         entity.DateModified = DateTime.UtcNow;

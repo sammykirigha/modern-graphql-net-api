@@ -5,6 +5,7 @@ using ServiceProvider.Core.Extensions;
 using ServiceProvider.Core.Interfaces.Services;
 using ServiceProvider.Core.Models;
 using System.Text.Json;
+using Microsoft.AspNetCore.Http;
 
 
 namespace Graphql.Services.GraphQL;
@@ -12,7 +13,7 @@ namespace Graphql.Services.GraphQL;
 [MutationType]
 public static class UserMutation
 {
-    public static async Task<User> AddUser(UserMutationInput user, EntityLogInfo logInfo, IUserService service)
+    public static async Task<User> AddUser(UserMutationInput user, EntityLogInfo logInfo, IUserService service, HttpContext httpContext)
     {
         try
         {
@@ -22,6 +23,12 @@ public static class UserMutation
             user.Phone.CheckRequired();
             var entity = PopulateEntity(new User(), user);
             entity = await service.AddAsync(entity, logInfo);
+            if(httpContext.User.Identity!.IsAuthenticated)
+            {
+              entity.Email = httpContext.User.Identity.Name;
+            } else{
+                entity.Email = null;
+            }
             return entity;
 
         }

@@ -10,5 +10,7 @@ public static class AppSettings
 
 	public static DataSettings Data { get; set; } = new DataSettings();
 	public static AzureAdB2CSettings AzureAd { get; set; } = new AzureAdB2CSettings();
+
+	public static StripeSettings Stripe {get; set; } = new StripeSettings();
 	public static ServiceProviderJwtSettings ServiceProviderJwt { get; set; } = new();
 }

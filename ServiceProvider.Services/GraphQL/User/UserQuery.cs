@@ -7,7 +7,7 @@ namespace ServiceProvider.Services.GraphQL;
 
 [Authorize]
 [QueryType]
-public class UserQuery
+public static class UserQuery
 {
 	[UseProjection]
 	[UseFiltering]

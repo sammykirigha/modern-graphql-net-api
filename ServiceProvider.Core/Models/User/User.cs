@@ -66,9 +66,8 @@ public partial class User : IEntity
     public bool AccessGlobalSettings { get; set; }
     [JsonIgnore] public virtual Role? Role { get; set; }
     [JsonIgnore] public virtual Payment? Payment { get; set; }
-    
+    [JsonIgnore] public virtual Subscription? Subscription { get; set; }
     [JsonIgnore] public virtual ICollection<ErrorLog> ErrorLogsActive { get; set; } = new List<ErrorLog>();
-    
     [JsonIgnore] public virtual ICollection<ErrorLog> ErrorLogsLoggedIn { get; set; } = new List<ErrorLog>();
     [JsonIgnore] public virtual ICollection<EntityLog> EntityLogsActive { get; set; } = new List<EntityLog>();
     [JsonIgnore] public virtual ICollection<EntityLog> EntityLogsLoggedIn { get; set; } = new List<EntityLog>();

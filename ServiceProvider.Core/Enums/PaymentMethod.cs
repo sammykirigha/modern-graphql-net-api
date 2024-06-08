@@ -2,7 +2,7 @@ namespace ServiceProvider.Core.Enums;
 
 public enum PaymentMethod : byte
 {
-    CreditCard = 0,
-    MPesa = 1,
-    PayPal = 2,
+    CARD = 0,
+    MPESA = 1,
+    PAYPAL = 2,
 }

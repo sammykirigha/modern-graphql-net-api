@@ -24,7 +24,7 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 
     // Permission
     public virtual DbSet<Permission> Permissions { get; set; }
-    
+
     // categories
     public virtual DbSet<Category> Categories { get; set; }
     
@@ -44,6 +44,8 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 
 	//payment
 	public virtual DbSet<Payment> Payments { get; set; }
+	public virtual DbSet<Subscription> Subscriptions { get; set; }
+	public virtual DbSet<SubscriptionPayments> SubscriptionPayments { get; set; }
     
     // ********** OnModelCreating **********
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -85,6 +87,12 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 
 		//payment
 		modelBuilder.ApplyConfiguration(new Configurations.PaymentConfiguration());
+
+		//subscription
+		modelBuilder.ApplyConfiguration(new Configurations.SubscriptionConfiguration());
+
+		//subscription payments
+	    modelBuilder.ApplyConfiguration(new Configurations.SubscriptionPaymentsConfiguration());
 		
 		// seeding
 		DataSeeding.AddUserSeeding(modelBuilder);

@@ -24,6 +24,11 @@ public static class WebAppBuilderExt
 		azuread.Bind(AppSettings.AzureAd);
 		AppSettings.AzureAd.Scopes = azuread.GetSection(nameof(AppSettings.AzureAd.Scopes)).GetChildren().ToDictionary(x => x.Value ?? "", x => x.Key);
 
+		//stripe api
+		var stripe = builder.Configuration.GetSection(StripeSettings.SectionName);
+		stripe.Bind(AppSettings.Stripe);
+		AppSettings.Stripe.SecretKey = stripe.GetSection(nameof(AppSettings.Stripe.SecretKey)).GetChildren().ToString()!;
+
 		//serviceProvider jwt settings
 		var serviceProviderJwt = builder.Configuration.GetSection(ServiceProviderJwtSettings.SectionName);
 		serviceProviderJwt.Bind(AppSettings.ServiceProviderJwt);
@@ -50,6 +55,11 @@ public static class WebAppBuilderExt
 		azuread.Bind(AppSettings.AzureAd);
 		AppSettings.AzureAd.Scopes = azuread.GetSection(nameof(AppSettings.AzureAd.Scopes)).GetChildren().ToDictionary(x => x.Value ?? "", x => x.Key);
 
+		//stripe api
+		var stripe = configuration.GetSection(StripeSettings.SectionName);
+		stripe.Bind(AppSettings.Stripe);
+		AppSettings.Stripe.SecretKey = stripe.GetSection(nameof(AppSettings.Stripe.SecretKey)).GetChildren().ToString()!;
+
 	}
 
 	public static void AddVersionSettings(this WebApplicationBuilder builder)
@@ -65,5 +75,5 @@ public static class WebAppBuilderExt
 		AppSettings.Data.StorageConnectionString = configuration.GetConnectionString("StorageConnectionString") ?? "";
 		if (AppSettings.Data.IsEFMigration)
 			AppSettings.Data.SqlConnectionString = configuration.GetConnectionString("SqlConnectionStringEF") ?? "";
-	}
+	} 
 }

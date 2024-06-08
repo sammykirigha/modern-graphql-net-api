@@ -51,6 +51,12 @@ public static class DataServiceCollectionExtensions
 
 		//payments
 		services.AddScoped<IPaymentRepository, PaymentRepository>();
+
+		//susbscription
+		services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+
+		//subscriptionpayments
+		services.AddScoped<ISubscriptionPaymentsRepository, SubscriptionPaymentsRepository>();
         
 		return services;
 	}

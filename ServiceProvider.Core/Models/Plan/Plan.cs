@@ -1,5 +1,6 @@
 using ServiceProvider.Core.Enums;
 using ServiceProvider.Core.Interfaces.Models;
+using System.Text.Json.Serialization;
 
 namespace ServiceProvider.Core.Models;
 
@@ -34,7 +35,7 @@ public partial class Plan : IEntity
     /// </summary>
     public int Duration { get; set; }
     /// <summary>
-    /// Time duration for the plan
+    /// Time time for the plan
     /// </summary>
     public PlanTime Time { get; set; }
         /// <summary>
@@ -50,4 +51,5 @@ public partial class Plan : IEntity
     /// Last date/time record changed
     /// </summary>
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+    [JsonIgnore] public virtual Subscription? Subscription { get; set; }
 }

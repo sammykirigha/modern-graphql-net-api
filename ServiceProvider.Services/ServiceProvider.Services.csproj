@@ -24,6 +24,7 @@
         <PackageReference Include="Microsoft.Identity.Web" Version="2.17.1" />
         <PackageReference Include="Serilog" Version="3.1.1" />
         <PackageReference Include="StackExchange.Redis" Version="2.7.27" />
+        <PackageReference Include="Stripe.net" Version="44.10.0-beta.1" />
         <PackageReference Include="Syncfusion.HtmlToPdfConverter.Net.Linux" Version="24.2.8" />
     </ItemGroup>
 
