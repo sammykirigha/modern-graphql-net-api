@@ -9,5 +9,6 @@ public interface ISubscriptionService
 	IQueryable<SubscriptionPaged> GetPagedList();
 	Task<Subscription> AddAsync(Subscription entity,  EntityLogInfo logInfo);
 	Task<Subscription> UpdateAsync(Subscription entity, EntityLogInfo logInfo, Subscription? oldEntity = null);
+	Task<List<Subscription>> UpdateListAsync(List<Subscription>? oldEntities = null);
 	Task<bool> DeleteAsync(Guid id, EntityLogInfo logInfo);
 }

@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using ServiceProvider.Core.Classes;
+using ServiceProvider.Core.Enums;
 using ServiceProvider.Core.Exceptions;
 using ServiceProvider.Core.Interfaces.Repositories;
 using ServiceProvider.Core.Interfaces.Services;
 using ServiceProvider.Core.Models;
+using System.Collections.ObjectModel;
 using Subscription = ServiceProvider.Core.Models.Subscription;
 
 namespace ServiceProvider.Services;
@@ -83,4 +85,37 @@ public class SubscriptionService: ISubscriptionService
 
         return result > 0;
     }
+
+	public async Task<List<Subscription>> UpdateListAsync( List<Subscription>? oldEntities = null)
+	{
+		var inputList =  _repository.GetList().Where(x => x.Status == SubscriptionStatus.Active).AsNoTracking();
+        var newList = new  List<Subscription>();
+
+        foreach (var sub in inputList)
+        {
+
+            TimeSpan timeSpan = sub.EndDate - sub.StartDate;
+            if(timeSpan.Days >= 30)
+            {
+                sub.Status = SubscriptionStatus.Expired;
+                sub.StartDate = DateTime.UtcNow;
+                sub.EndDate = DateTime.UtcNow.AddDays(31);
+                sub.DateModified = DateTime.UtcNow;
+            }
+            newList.Add(sub);
+        }
+        await _repository.UpdateListAsync(newList);
+        EntityLogInfo logInfo = new EntityLogInfo()
+        {
+            ChangeTrigger = "Updating the Subscription",
+            ChangeReason = "Monthly Subscription",
+            Category = LogCategory.PaymentManagement
+        };
+        
+        var uplist = _log.BuildUpdateEntityList(newList, oldEntities!);
+        await _log.LogUpdateListAsync(logInfo, uplist);
+
+        return newList;
+	}
+
 }

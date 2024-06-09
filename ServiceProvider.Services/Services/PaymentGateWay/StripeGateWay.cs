@@ -1,4 +1,5 @@
 using ServiceProvider.Core.Interfaces;
+using ServiceProvider.Core.Interfaces.Services;
 using ServiceProvider.Core.Settings;
 using Stripe;
 using Plan = ServiceProvider.Core.Models.Plan;
@@ -9,7 +10,9 @@ public class StripeGateWayService : IStripeGateWayService<PaymentIntent>
 {
     private readonly StripeSettings _settings;
 
-    public StripeGateWayService(StripeSettings settings)
+    public StripeGateWayService(
+        StripeSettings settings
+        )
     {
         _settings = settings ?? throw new ArgumentNullException(nameof(StripeSettings));
     }

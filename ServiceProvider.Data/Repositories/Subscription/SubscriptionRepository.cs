@@ -49,5 +49,20 @@ public class SubscriptionRepository(ServiceProviderContext context)
         var result = await Context.Subscriptions.Where(x => x.Id == id).ExecuteDeleteAsync();
         return result;
     }
+
+	public async Task<List<Subscription>> UpdateListAsync(List<Subscription>? subscriptions)
+	{
+		foreach(var sub in Context.Subscriptions)
+        {
+             if(sub.Id == Guid.Empty)
+                throw new AppException($"Id missing for Subscription update");
+            
+            Context.Entry(sub).State = EntityState.Modified;
+            sub.DateModified = DateTime.UtcNow;
+        }
+        await Context.SaveChangesAsync();
+        return subscriptions!;
+	}
+
 }
 

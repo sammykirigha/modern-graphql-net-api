@@ -16,6 +16,9 @@ public static class MainServiceCollectionExtensions
 		// logs
 		services.AddScoped<IErrorLogService, ErrorLogService>();
 		services.AddScoped<IEntityLogService, EntityLogService>();
+
+		//claim services
+		services.AddScoped<IClaimsUserService, ClaimsUserService>();
         
 		//users
 		services.AddScoped<IUserService, UserService>();
@@ -64,6 +67,9 @@ public static class MainServiceCollectionExtensions
 		// logs
 		builder.RegisterService<IErrorLogService>();
 		builder.RegisterService<IEntityLogService>();
+
+		//claims
+		builder.RegisterService<IClaimsUserService>();
         
 		//users
 		builder.RegisterService<IUserService>();

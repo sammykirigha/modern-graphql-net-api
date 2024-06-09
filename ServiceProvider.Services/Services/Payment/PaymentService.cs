@@ -18,6 +18,7 @@ public class PaymentService: IPaymentService
   private readonly ISubscriptionPaymentsRepository _subPaymentRepository;
   private readonly IPlanRepository _planRepository;
   private ISubscriptionRepository _subrepository;
+  public readonly IUserProfileService _userProfileService;
   private readonly IStripeGateWayService<PaymentIntent> _stripe;
     private readonly IEntityLogService _log;
 
@@ -27,6 +28,7 @@ public class PaymentService: IPaymentService
         ISubscriptionPaymentsRepository subPaymentRepository,
         IPlanRepository planRepository,
         ISubscriptionRepository subrepository,
+        IUserProfileService userProfileService,
         IEntityLogService log)
     {
         _repository = repository;
@@ -35,11 +37,14 @@ public class PaymentService: IPaymentService
         _stripe = stripeGateWay;
         _planRepository = planRepository;
         _subPaymentRepository = subPaymentRepository;
+        _userProfileService = userProfileService ?? throw new ArgumentNullException(nameof(IUserProfileService));
     }
 
     // QUERIES
     public async Task<Payment?> GetByIdAsync(Guid id)
     {
+        var user = await _userProfileService.GetUserProfileAsync();
+        Console.WriteLine($"I want to get the logged in user here: {user.LastName}");
         var entity = await _repository.GetByIdAsync(id);
         return entity;
     }
