@@ -4,13 +4,14 @@ using Microsoft.Extensions.Logging;
 
 namespace azure_functions
 {
-    public class Function1
+    public class UpdateSubscription
     {
         private readonly ILogger _logger;
+        private readonly IPaymentRepository paymentRepository
 
-        public Function1(ILoggerFactory loggerFactory)
+        public UpdateSubscription(ILoggerFactory loggerFactory, IPaymentRepository paymentRepository)
         {
-            _logger = loggerFactory.CreateLogger<Function1>();
+            _logger = loggerFactory.CreateLogger<UpdateSubscription>();
         }
 
         [Function("Function1")]

@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "modern_dotnet_graphql_api": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7211",
+      "launchBrowser": false
+    }
+  }
+}

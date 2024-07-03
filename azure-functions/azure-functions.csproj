@@ -26,4 +26,10 @@
   <ItemGroup>
     <Using Include="System.Threading.ExecutionContext" Alias="ExecutionContext"/>
   </ItemGroup>
+
+   <ItemGroup>
+        <ProjectReference Include="..\ServiceProvider.Core\ServiceProvider.Core.csproj" />
+        <ProjectReference Include="..\ServiceProvider.Data\ServiceProvider.Data.csproj" />
+        <ProjectReference Include="..\ServiceProvider.Services\ServiceProvider.Services.csproj" />
+    </ItemGroup>
 </Project>
