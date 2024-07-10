@@ -275,7 +275,6 @@ namespace ServiceProviders.IntegrationTests.Users
 			return new PrismBenefits.Core.Models.User
 			{
 				Id = Id ?? Guid.Empty,
-				HCMUserId = null, 
 				AccessLevel = UserAccessLevel.Client,
 				AccessType = UserAccessType.Limited,
 				IsActive = false,
@@ -283,12 +282,8 @@ namespace ServiceProviders.IntegrationTests.Users
 				LastName = "last name",
 				Email = "email",
 				RoleId = null,
-				ActiveServiceProviderId = null,
-				ActiveClientId = null,
 				ActiveUserId = null, 
 				Phone = "phone",
-				Title = "title",
-				AccessGlobalSettings = false,
 			};
 		}
 	}

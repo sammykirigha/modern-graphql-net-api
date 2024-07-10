@@ -1,0 +1,51 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "sites_serviceprovider_api_name": {
+        "value": "serviceprovider-dev-api"
+      },
+      "sites_serviceprovider_ui_name": {
+        "value": "serviceprovider-dev-ui"
+      },
+      "resourceGroupName": {
+        "value": "serviceprovider-dev"
+      },
+      "app_insights_name": {
+        "value": "serviceprovider-dev-app-insights"
+      },
+      "application": {
+        "value": "serviceprovider"
+      },
+      "environment": {
+        "value": "dev"
+      },
+      "sku": {
+        "value": "B1"
+      },
+      "appName": {
+        "value": "serviceprovider"
+      },
+      "location": {
+        "value": "East US 2"
+      },
+      "UI_URL": {
+        "value": "https://thankful-water-0dd90fc0f.4.azurestaticapps.net"
+      },
+      "linuxFxVersion": {
+        "value": "DOTNETCORE|8.0"
+      },
+      "serverfarms_serviceprovider_app_service_plan_externalid": {
+        "value": "/subscriptions/2deed8cf-12c2-45fc-bf15-9f7e9247802c/resourceGroups/service-provider-dev/providers/Microsoft.Web/serverfarms/service-provider-dev-app-service-plan"
+      },
+      "appServicePlanName": {
+        "value": "serviceprovider-dev-app-service-plan"
+      },
+      "administratorLogin": {
+        "value": "database-admin"
+      },
+      "administratorLoginPassword": {
+        "value": "Azure@1234"
+      }
+    }
+  }

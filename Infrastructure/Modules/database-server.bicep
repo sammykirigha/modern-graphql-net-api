@@ -19,8 +19,8 @@ resource sqlServerDatabase 'Microsoft.Sql/servers/databases@2022-02-01-preview' 
   name: '${databaseServer.name}-db'
   location: location
   sku: {
-    name: 'Standard'
+    name: 'Basic'
     size: '3000'
-    tier: 'Standard'
+    tier: 'Basic'
   }
 }

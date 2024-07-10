@@ -1,17 +1,13 @@
-﻿param sites_rum_api_name string
+﻿param sites_serviceprovider_api_name string
 param application string
 param environment string
 param location string
 param linuxFxVersion string
-param serverfarms_rum_app_service_plan_externalid string
-param Token string
+param serverfarms_serviceprovider_app_service_plan_externalid string
 param UI_URL string
-param instrumentationKey string
-param SendGrid_APIKey string
-param connectionString string
 
-resource sites_rum_api_name_resource 'Microsoft.Web/sites@2022-09-01' = {
-  name: sites_rum_api_name
+resource sites_serviceprovider_api_name_resource 'Microsoft.Web/sites@2022-09-01' = {
+  name: sites_serviceprovider_api_name
   location: location
   tags: {
     application: application
@@ -20,15 +16,15 @@ resource sites_rum_api_name_resource 'Microsoft.Web/sites@2022-09-01' = {
   kind: 'app,linux'
   properties: {
     enabled: true
-    serverFarmId: serverfarms_rum_app_service_plan_externalid
+    serverFarmId: serverfarms_serviceprovider_app_service_plan_externalid
     hostNameSslStates: [
       {
-        name: '${sites_rum_api_name}.azurewebsites.net'
+        name: '${sites_serviceprovider_api_name}.azurewebsites.net'
         sslState: 'Disabled'
         hostType: 'Standard'
       }
       {
-        name: '${sites_rum_api_name}.scm.azurewebsites.net'
+        name: '${sites_serviceprovider_api_name}.scm.azurewebsites.net'
         sslState: 'Disabled'
         hostType: 'Repository'
       }
@@ -64,14 +60,10 @@ resource sites_rum_api_name_resource 'Microsoft.Web/sites@2022-09-01' = {
 }
 
 resource appSettings 'Microsoft.Web/sites/config@2022-09-01' = {
-  parent: sites_rum_api_name_resource
+  parent: sites_serviceprovider_api_name_resource
   name: 'appsettings'
   properties: {
-    APPINSIGHTS_INSTRUMENTATIONKEY: instrumentationKey
-    APPLICATIONINSIGHTS_CONNECTION_STRING: connectionString
     ApplicationInsightsAgent_EXTENSION_VERSION: '~3'
-    SendGrid__APIKey: SendGrid_APIKey
-    Token: Token
     UI_URL: UI_URL
     XDT_MicrosoftApplicationInsights_Mode: 'Recommended'
   }

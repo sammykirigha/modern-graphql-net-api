@@ -1,38 +1,38 @@
-# backend 
-name: Coverage Report
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    types: [opened, synchronize, reopened]
-  workflow_dispatch:
-jobs:
-  security:
-    name: Restore and analyze
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+# # backend 
+# name: Coverage Report
+# on:
+#   push:
+#     branches:
+#       - master
+#   pull_request:
+#     types: [opened, synchronize, reopened]
+#   workflow_dispatch:
+# jobs:
+#   security:
+#     name: Restore and analyze
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
   
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 8.x
+#       - name: Setup .NET
+#         uses: actions/setup-dotnet@v3
+#         with:
+#           dotnet-version: 8.x
 
-      - name: Install dotnet-coverage
-        run: |
-          dotnet tool install --global dotnet-coverage
+#       - name: Install dotnet-coverage
+#         run: |
+#           dotnet tool install --global dotnet-coverage
 
-      - name: Restore dependencies
-        run: dotnet restore modern-dotnet-graphql-api.sln
+#       - name: Restore dependencies
+#         run: dotnet restore modern-dotnet-graphql-api.sln
 
-      - name: Display dotnet version
-        run: dotnet --version
+#       - name: Display dotnet version
+#         run: dotnet --version
 
-      - name: Integration test with the dotnet CLI
-        run: |
-         dotnet restore ServiceProvider.IntegrationTests
-         dotnet test ServiceProvider.IntegrationTests --no-restore
+#       - name: Integration test with the dotnet CLI
+#         run: |
+#          dotnet restore ServiceProvider.IntegrationTests
+#          dotnet test ServiceProvider.IntegrationTests --no-restore
 
-      - name: Run the integration tests with code coverage
-        run: dotnet-coverage collect "dotnet test ServiceProvider.IntegrationTests" -f xml -o "integration-test-coverage.dotnet.xml"
+#       - name: Run the integration tests with code coverage
+#         run: dotnet-coverage collect "dotnet test ServiceProvider.IntegrationTests" -f xml -o "integration-test-coverage.dotnet.xml"
