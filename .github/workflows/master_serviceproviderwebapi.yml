@@ -24,7 +24,8 @@ jobs:
 
       - name: Install Azure CLI
         uses: 
-        with: creds: ${{secrets.AZURE_CREDENTIALS}} 
+        with: 
+          creds: ${{secrets.AZURE_CREDENTIALS}} 
 
       #Set up Infrastructure
       - name: Orchestrate web server
@@ -44,11 +45,11 @@ jobs:
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/publish
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: .service-provider-artifact
-          path: ${{env.DOTNET_ROOT}}/publish
+      # - name: Upload artifact for deployment job
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: .service-provider-artifact
+      #     path: ${{env.DOTNET_ROOT}}/publish
 
       - name: Deploy web app to azure
         shell: pwsh
