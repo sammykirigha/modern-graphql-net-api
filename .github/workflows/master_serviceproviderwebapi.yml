@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy ASP.Net Core app to Azure Web App - serviceprovider
 
 env:
@@ -20,43 +17,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: Install Azure CLI
-        uses: azure/CLI@v2
-        with: 
-          azcliversion: 'latest'
-          creds: ${{secrets.AZURE_CREDENTIALS}} 
-
-      #Set up Infrastructure
-      - name: Orchestrate web server
-        uses: pwsh
         run: |
-          az deploy group create --resource-group ${{env.RGNAME}} --template-file ./Infrustracture/Main.bicep -p ./Infrustracture/Parameters/Parameters-dev.json
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+      - name: Set up Azure CLI
+        run: az --version
+
+      - name: Orchestrate web server
+        run: |
+          az deployment group create --resource-group ${{env.RGNAME}} --template-file ./Infrustracture/Main.bicep -p ./Infrustracture/Parameters/Parameters-dev.json
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      # build and publish .net
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/publish
 
-      # - name: Upload artifact for deployment job
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: .service-provider-artifact
-      #     path: ${{env.DOTNET_ROOT}}/publish
-
-      - name: Deploy web app to azure
-        uses: pwsh
+      - name: Deploy web app to Azure
         run: |
           Compress-Archive -Force ${{env.DOTNET_ROOT}}/publish/* publish.zip
           az webapp deployment source config-zip -g ${{env.RGNAME}} -n ${{env.AZURE_WEBAPP_NAME}} --src publish.zip
-          "The Web App URL is https://${{env.AZURE_WEBAPP_NAME}}.azurewebsites.net">>$env.GITHUB_STEP_SUMMARY
-
-          
+          echo "The Web App URL is https://${{env.AZURE_WEBAPP_NAME}}.azurewebsites.net" >> $GITHUB_ENV
