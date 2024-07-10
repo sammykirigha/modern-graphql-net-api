@@ -28,7 +28,7 @@ jobs:
 
       - name: Orchestrate web server
         run: |
-          az deployment group create --resource-group ${{env.RGNAME}} --template-file ./Infrustracture/Main.bicep -p ./Infrustracture/Parameters/Parameters-dev.json
+          az deployment group create --resource-group ${{env.RGNAME}} --template-file ./Infrastructure/Main.bicep -p ./Infrastructure/Parameters/Parameters-dev.json
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
