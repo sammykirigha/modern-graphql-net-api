@@ -18,13 +18,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@master
+      - name: Checkout code
+      - uses: actions/checkout@v2
 
       - name: Install Azure CLI
-        uses: 
+        uses: azure/CLI@v2
         with: 
+          azcliversion: 'latest'
           creds: ${{secrets.AZURE_CREDENTIALS}} 
 
       #Set up Infrastructure
