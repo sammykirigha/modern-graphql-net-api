@@ -29,7 +29,7 @@ jobs:
 
       #Set up Infrastructure
       - name: Orchestrate web server
-        shell: pwsh
+        uses: pwsh
         run: |
           az deploy group create --resource-group ${{env.RGNAME}} --template-file ./Infrustracture/Main.bicep -p ./Infrustracture/Parameters/Parameters-dev.json
 
@@ -52,7 +52,7 @@ jobs:
       #     path: ${{env.DOTNET_ROOT}}/publish
 
       - name: Deploy web app to azure
-        shell: pwsh
+        uses: pwsh
         run: |
           Compress-Archive -Force ${{env.DOTNET_ROOT}}/publish/* publish.zip
           az webapp deployment source config-zip -g ${{env.RGNAME}} -n ${{env.AZURE_WEBAPP_NAME}} --src publish.zip
