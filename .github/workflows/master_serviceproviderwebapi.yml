@@ -27,8 +27,8 @@ jobs:
         run: az --version
 
       - name: Orchestrate web server
-        run: |
-          az deployment group create --resource-group ${{env.RGNAME}} --template-file ./Infrastructure/Main.bicep -p ./Infrastructure/Parameters/Parameters-dev.json
+        run: | #az deployment sub create --name rumSubDeployment --location eastus2
+          az deployment sub create --name ${{env.RGNAME}} --template-file ./Infrastructure/Main.bicep -p ./Infrastructure/Parameters/Parameters-dev.json
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
@@ -42,7 +42,7 @@ jobs:
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/publish
 
       - name: Deploy web app to Azure
-        run: |
+        run: | 
           Compress-Archive -Force ${{env.DOTNET_ROOT}}/publish/* publish.zip
           az webapp deployment source config-zip -g ${{env.RGNAME}} -n ${{env.AZURE_WEBAPP_NAME}} --src publish.zip
           echo "The Web App URL is https://${{env.AZURE_WEBAPP_NAME}}.azurewebsites.net" >> $GITHUB_ENV
