@@ -5,6 +5,7 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '8.0' 
   RGNAME: serviceprovider-dev  #serviceprovider
+  SUBNAME: serviceproviderwebapi 
 
 on:
   push:
@@ -34,7 +35,7 @@ jobs:
 
       - name: Orchestrate web server
         run: |
-          az deployment sub create --name ${{env.RGNAME}} --location eastus2 --template-file ./Infrastructure/Main.bicep -p ./Infrastructure/Parameters/Parameters-dev.json
+          az deployment sub create --name ${{env.SUBNAME}} --location eastus2 --template-file ./Infrastructure/Main.bicep -p ./Infrastructure/Parameters/Parameters-dev.json
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
