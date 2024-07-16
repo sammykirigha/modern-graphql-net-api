@@ -24,7 +24,13 @@ jobs:
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
       - name: Set up Azure CLI
-        run: az --version
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Azure CLI script
+        run: |
+          az account show
 
       - name: Orchestrate web server
         run: | #az deployment sub create --name rumSubDeployment --location eastus2
