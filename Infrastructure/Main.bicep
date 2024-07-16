@@ -14,7 +14,7 @@ param administratorLogin string
 @secure()
 param administratorLoginPassword string
 
-var resourceGroupName = 'serviceprovider-${environment}'
+var resourceGroupName = 'serviceprovider-${environment}' //serviceprovider-dev
 
 // Creating resource group // this one has already been created so we wont create it
 resource resource_group_name 'Microsoft.Resources/resourceGroups@2021-01-01' = {
