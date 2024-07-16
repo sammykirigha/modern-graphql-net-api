@@ -33,7 +33,7 @@ jobs:
           az account show
 
       - name: Orchestrate web server
-        run: | #az deployment sub create --name rumSubDeployment --location eastus2
+        run: |
           az deployment sub create --name ${{env.RGNAME}} --location eastus2 --template-file ./Infrastructure/Main.bicep -p ./Infrastructure/Parameters/Parameters-dev.json
 
       - name: Set up .NET Core
