@@ -16,6 +16,12 @@ public class ClaimsUserService : IClaimsUserService
 	public Guid GetContextUserId()
 	{
 		var sub = _accessor.HttpContext?.User.FindFirst("sub")?.Value;
+
+        if (string.IsNullOrEmpty(sub))
+        {
+           sub = _accessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value; 
+        }
+
 		return Guid.TryParse(sub, out var id) ? id : Guid.Empty;
 	}
 

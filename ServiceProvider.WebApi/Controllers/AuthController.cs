@@ -49,8 +49,8 @@ public class AuthController : ControllerBase
 	public async Task<IActionResult> Login([FromBody] LoginRequest request)
 	{
 		var token = await _identityService.LoginAsync(request.Email, request.Password);
-		// if (token == null)
-		// 	return Unauthorized("Invalid credentials try again");
+		if (token == null)
+			return Unauthorized("Invalid credentials try again");
 
 		return Ok(new { Token = token });
 	}

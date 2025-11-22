@@ -40,6 +40,7 @@ builder.Host.UseSerilog((context, services, configuration) => configuration.Read
 //stripe gat way
 services.Configure<StripeSettings>(builder.Configuration!.GetSection("StripeSettings"));
 services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<StripeSettings>>().Value);
+
 //add services
 services.AddSingleton<ITelemetryInitializer, AppVersionTelemetryInitializer>();
 services.AddScoped<IUserProfileCoreService, UserProfileCoreService>();
@@ -52,6 +53,7 @@ services.AddIdentityConfig();
 services.AddSwaggerConfig();
 services.AddGraphQLConfig(builder.Environment);
 
+services.AddHttpContextAccessor();
 services.AddControllers();
 services.AddHealthChecks();
 System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);

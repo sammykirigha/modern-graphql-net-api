@@ -70,7 +70,6 @@ public class IdentityService : IIdentityService
 
 		// Verify the password hash
 		var passwordVerificationResult = password.VerifyPassword(user.Password);
-		Console.WriteLine($"Dev user password hash: {passwordVerificationResult}");
 		if (!passwordVerificationResult)
 			return null;
 

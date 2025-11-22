@@ -21,11 +21,6 @@ public class IdentityRepository(ServiceProviderContext context) : RepositoryBase
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     RoleId = u.RoleId,
-                    // ActiveServiceProviderId = u.ActiveServiceProviderId ?? sp.Id,
-                    //ActiveClientId = u.ActiveClientId ?? client.Id,
-                    //ActiveUserId = u.ActiveUserId ?? u.Id,
-                    //ActiveUserFirstName = u.ActiveUser != null ? u.ActiveUser.FirstName : u.FirstName,
-                    //ActiveUserLastName = u.ActiveUser != null ? u.ActiveUser.LastName : u.LastName,
                 }).FirstOrDefaultAsync();
 
         return profile;
