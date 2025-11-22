@@ -19,16 +19,6 @@ public static class WebAppBuilderExt
 		AppSettings.AngularUrl = urls.GetValue<string>(nameof(AppSettings.AngularUrl)) ?? "";
 		AppSettings.ApiUrl = urls.GetValue<string>(nameof(AppSettings.ApiUrl)) ?? "";
 
-		// azure ad
-		var azuread = builder.Configuration.GetSection(AzureAdB2CSettings.SectionName);
-		azuread.Bind(AppSettings.AzureAd);
-		AppSettings.AzureAd.Scopes = azuread.GetSection(nameof(AppSettings.AzureAd.Scopes)).GetChildren().ToDictionary(x => x.Value ?? "", x => x.Key);
-
-		//stripe api
-		var stripe = builder.Configuration.GetSection(StripeSettings.SectionName);
-		stripe.Bind(AppSettings.Stripe);
-		AppSettings.Stripe.SecretKey = stripe.GetSection(nameof(AppSettings.Stripe.SecretKey)).GetChildren().ToString()!;
-
 		//serviceProvider jwt settings
 		var serviceProviderJwt = builder.Configuration.GetSection(ServiceProviderJwtSettings.SectionName);
 		serviceProviderJwt.Bind(AppSettings.ServiceProviderJwt);
@@ -48,18 +38,6 @@ public static class WebAppBuilderExt
 		var urls = configuration.GetSection(AppSettings.UrlSectionName);
 		AppSettings.AngularUrl = urls.GetValue<string>(nameof(AppSettings.AngularUrl)) ?? "";
 		AppSettings.ApiUrl = urls.GetValue<string>(nameof(AppSettings.ApiUrl)) ?? "";
-
-
-		// azure ad
-		var azuread = configuration.GetSection(AzureAdB2CSettings.SectionName);
-		azuread.Bind(AppSettings.AzureAd);
-		AppSettings.AzureAd.Scopes = azuread.GetSection(nameof(AppSettings.AzureAd.Scopes)).GetChildren().ToDictionary(x => x.Value ?? "", x => x.Key);
-
-		//stripe api
-		var stripe = configuration.GetSection(StripeSettings.SectionName);
-		stripe.Bind(AppSettings.Stripe);
-		AppSettings.Stripe.SecretKey = stripe.GetSection(nameof(AppSettings.Stripe.SecretKey)).GetChildren().ToString()!;
-
 	}
 
 	public static void AddVersionSettings(this WebApplicationBuilder builder)

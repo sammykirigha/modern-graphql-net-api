@@ -38,6 +38,10 @@ public partial class User : IEntity
     /// Primary email of user
     /// </summary>
     public string Email { get; set; } = "";
+    /// <summary>
+    /// Primary Password of user
+    /// </summary>
+    public string Password { get; set; } = "";
 
     /// <summary>
     /// Id of role (foreign key)

@@ -1,4 +1,6 @@
 using System.Globalization;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace ServiceProvider.Core.Extensions;
 
@@ -217,5 +219,28 @@ public static class StringExtensions
 		if (string.IsNullOrEmpty(value))
 			return value;
 		return value.MaxLength(maxLength);
+	}
+
+	public static string HashPassword(this string password)
+	{
+		var salt = Guid.NewGuid().ToString();
+		using (var pbkdf2 = new Rfc2898DeriveBytes(password, Encoding.UTF8.GetBytes(salt), 10000, HashAlgorithmName.SHA256))
+		{
+			var hash = pbkdf2.GetBytes(32);
+			return $"{Convert.ToBase64String(hash)}:{salt}";
+		}
+	}
+
+	public static bool VerifyPassword(this string password, string hashedPassword)
+	{
+		var parts = hashedPassword.Split(':');
+		if (parts.Length != 2) return false;
+		var hash = Convert.FromBase64String(parts[0]);
+		var salt = parts[1];
+		using (var pbkdf2 = new Rfc2898DeriveBytes(password, Encoding.UTF8.GetBytes(salt), 10000, HashAlgorithmName.SHA256))
+		{
+			var computedHash = pbkdf2.GetBytes(32);
+			return hash.SequenceEqual(computedHash);
+		}
 	}
 }

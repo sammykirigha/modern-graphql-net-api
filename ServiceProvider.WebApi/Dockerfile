@@ -17,12 +17,11 @@ ENV KEYCLOAK_ADMIN=keycloak
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 WORKDIR /src
 COPY . .
-RUN dotnet restore "ServiceProvider.WebApi.csproj"
-WORKDIR "/src/ServiceProvider.WebApi"
-RUN dotnet build "ServiceProvider.WebApi.csproj" -c Release -o /app/build
+RUN dotnet restore "modern-dotnet-graphql-api.sln"
+RUN dotnet build "ServiceProvider.WebApi/ServiceProvider.WebApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "ServiceProvider.WebApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "ServiceProvider.WebApi/ServiceProvider.WebApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 

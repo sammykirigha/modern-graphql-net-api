@@ -7,5 +7,6 @@ public interface IIdentityRepository : IRepositoryBase
     Task<User> AddDevUserAsync(User user);
     Task<UserProfile> GetUserProfileAsync(Guid userId);
     Task<UserStatus> GetUserStatusAsync(Guid userId);
+    Task<User?> GetUserByEmailAsync(string email);
 }
 
