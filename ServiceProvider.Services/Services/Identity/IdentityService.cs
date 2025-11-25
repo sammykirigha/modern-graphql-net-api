@@ -79,7 +79,6 @@ public class IdentityService : IIdentityService
 			new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
 			new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
 			new Claim("role", user.Role?.Name ?? "User"),
-			new Claim("admin", "true"),
 			new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
 		};
 

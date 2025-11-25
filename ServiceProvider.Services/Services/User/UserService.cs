@@ -119,7 +119,7 @@ public class UserService : IUserService
 		// Verify the password hash
 		var passwordVerificationResult = password.VerifyPassword(user.Password);
 		if (!passwordVerificationResult)
-			throw new AppException("Invalid Credentials, try again.");
+			throw new AppException("Invalid Credentials password, try again.");
 
 		var claims = new[]
 		{
