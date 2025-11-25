@@ -36,10 +36,6 @@ public partial class Payment: IEntity
     /// </summary>
     public Currency Currency { get; set; }
     /// <summary>
-    /// User Id foreign key
-    /// </summary>
-    public Guid UserId  { get; set; }
-    /// <summary>
     /// Date/time record created
     /// </summary>
     public DateTime DateModified { get; set; }
@@ -48,7 +44,5 @@ public partial class Payment: IEntity
     /// Last date/time record changed
     /// </summary>
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
-    [JsonIgnore] public virtual User User { get; set; }
-    [JsonIgnore] public virtual SubscriptionPayments? SubscriptionPayments { get; set; }
 
 }

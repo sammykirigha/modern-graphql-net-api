@@ -3,12 +3,14 @@ using Microsoft.Extensions.Hosting;
 using ServiceProvider.Core.Enums;
 using ServiceProvider.Core.Exceptions;
 using ServiceProvider.Core.Extensions;
+using ServiceProvider.Core.Interfaces.Repositories;
 using ServiceProvider.Core.Interfaces.Services;
 using ServiceProvider.Core.Models;
 
 public class UserProfileService(
     IIdentityService _identityService,
     IClaimsUserService _claimsUserService,
+    IIdentityRepository _repository,
     IUserProfileCoreService _userProfileCoreService,
     IWebHostEnvironment _env
     
@@ -51,15 +53,12 @@ public class UserProfileService(
         var user = new User()
         {
             Id = id,
-            AccessLevel = UserAccessLevel.SuperAdmin,
-            AccessType = UserAccessType.Full,
             IsActive = true,
             FirstName = claims.GetFirstName(),
             LastName = claims.GetLastName(),
             Email = claims.GetEmail(),
-            AccessGlobalSettings = true
         };
-        await _identityService.AddDevUserAsync(user);
+        await _repository.AddDevUserAsync(user);
 
         var profile = await _identityService.GetUserProfileAsync(id)
                       ?? throw new AppException("ERROR: Dev user not created!");

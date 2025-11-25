@@ -8,7 +8,7 @@ services:
         - MSSQL_SA_PASSWORD=ServiceProvider2022@1234
         - UID=10001
         - GID=10001
-        - MSSQL_PID:Evaluation
+        - MSSQL_PID=Evaluation
     ports:
         - "14333:1433"
     container_name: service-provider-sqlserver
@@ -25,7 +25,12 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=80
-      - ASPNETCORE_HTTPS_PORTS=443
+      # Override the connection string using the internal Docker network details
+      - ConnectionStrings__SqlConnectionStringEF=Data Source=sqlserver,1433;Initial Catalog=ServiceProviderDev;Persist Security Info=False;User ID=sa;Password=ServiceProvider2022@1234;MultipleActiveResultSets=True;Connection Timeout=500;TrustServerCertificate=True;
+      - ConnectionStrings__SqlConnectionString=Data Source=sqlserver,1433;Initial Catalog=ServiceProviderDev;Persist Security Info=False;User ID=sa;Password=ServiceProvider2022@1234;MultipleActiveResultSets=True;Connection Timeout=500;TrustServerCertificate=True;
+      # - ASPNETCORE_HTTPS_PORTS=443
+      # - ASPNETCORE_Kestrel__Certificates__Default__Password=password123
+      # - ASPNETCORE_Kestrel__Certificates__Default__Path=/root/.aspnet/https/aspnetapp.pfx
     ports:
       - "5000:80"
       - "7134:443"

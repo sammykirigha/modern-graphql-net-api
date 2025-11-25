@@ -48,7 +48,7 @@ namespace ServiceProvider.Data.Migrations
                     b.ToTable("SP_Category", "sp");
                 });
 
-            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
+            modelBuilder.Entity("ServiceProvider.Core.Models.ServiceProvider", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -560,7 +560,7 @@ namespace ServiceProvider.Data.Migrations
                     b.ToTable("SP_UserPermission", "sp");
                 });
 
-            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
+            modelBuilder.Entity("ServiceProvider.Core.Models.ServiceProvider", b =>
                 {
                     b.HasOne("ServiceProvider.Core.Models.Location", "Location")
                         .WithMany("Clients")
@@ -573,7 +573,7 @@ namespace ServiceProvider.Data.Migrations
 
             modelBuilder.Entity("ServiceProvider.Core.Models.ClientsServices", b =>
                 {
-                    b.HasOne("ServiceProvider.Core.Models.Client", "Client")
+                    b.HasOne("ServiceProvider.Core.Models.ServiceProvider", "ServiceProvider")
                         .WithMany("ClientServices")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -585,7 +585,7 @@ namespace ServiceProvider.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Client");
+                    b.Navigation("ServiceProvider");
 
                     b.Navigation("Service");
                 });
@@ -707,7 +707,7 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("Services");
                 });
 
-            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
+            modelBuilder.Entity("ServiceProvider.Core.Models.ServiceProvider", b =>
                 {
                     b.Navigation("ClientServices");
                 });

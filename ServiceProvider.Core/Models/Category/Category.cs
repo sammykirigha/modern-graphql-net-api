@@ -13,6 +13,10 @@ public partial class Category : IEntity
     /// </summary>
     public string Name { get; set; } = "";
     /// <summary>
+    /// slug
+    /// </summary>
+    public string Slug { get; set; } = "";
+    /// <summary>
     /// Date/time record created
     /// </summary>
     public DateTime DateModified { get; set; }

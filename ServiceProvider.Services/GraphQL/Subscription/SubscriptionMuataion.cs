@@ -16,7 +16,7 @@ public static class SubscriptionMuatation
     {
         try
         {
-           Subscription.UserId.CheckRequired();
+           Subscription.ServiceProviderId.CheckRequired();
            Subscription.PlanId.CheckRequired();
            Subscription.Status.CheckRequired();
 
@@ -66,7 +66,7 @@ public static class SubscriptionMuatation
     [GraphQLIgnore]
     private static Subscription PopulateEntity(Subscription entity, SubscriptionMutationInput input)
     {
-        entity.UserId = input.UserId.CheckForValue(entity.UserId);
+        entity.ServiceProviderId = input.ServiceProviderId.CheckForValue(entity.ServiceProviderId);
         entity.PlanId = input.PlanId.CheckForValue(entity.PlanId);
         entity.RenewalType = input.RenewalType.CheckForValue(entity.RenewalType);
         entity.Status = input.Status.CheckForValue(entity.Status);

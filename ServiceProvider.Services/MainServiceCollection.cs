@@ -42,8 +42,7 @@ public static class MainServiceCollectionExtensions
 		services.AddScoped<ICategoryService, CategoryService>();
 		
 		//service provider client 
-		services.AddScoped<IClientService, ClientService>();
-		services.AddScoped<IClientsServicesService, ClientsServicesService>();
+		services.AddScoped<IServiceProviderEntityService, ServiceProviderEntityService>();
 
 		//plans
 		services.AddScoped<IPlanService, PlanService>();
@@ -53,9 +52,6 @@ public static class MainServiceCollectionExtensions
 
 		//subscriptions
 		services.AddScoped<ISubscriptionService, SubscriptionService>();
-
-		//subscription payments
-		services.AddScoped<ISubscriptionPaymentsService, SubscriptionPaymentsService>();
 
 		services.AddScoped<IStripeGateWayService<PaymentIntent>, StripeGateWayService>();
         
@@ -93,8 +89,7 @@ public static class MainServiceCollectionExtensions
 		builder.RegisterService<IServiceService>();
 
 		//client
-		builder.RegisterService<IClientService>();
-		builder.RegisterService<IClientsServicesService>();
+		builder.RegisterService<IServiceProviderEntityService>();
 
 		//user
 		builder.RegisterService<IPlanService>();
@@ -104,9 +99,6 @@ public static class MainServiceCollectionExtensions
 
 		//subscription
 		builder.RegisterService<ISubscriptionService>();
-
-		//
-		builder.RegisterService<ISubscriptionPaymentsService>();
 
 		//
 		builder.RegisterService<IStripeGateWayService<PaymentIntent>>();

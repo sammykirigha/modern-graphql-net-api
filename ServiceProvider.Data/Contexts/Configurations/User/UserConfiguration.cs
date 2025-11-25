@@ -14,7 +14,6 @@ public partial class UserConfiguration : IEntityTypeConfiguration<User>
         entity.Property(x => x.FirstName).HasMaxLength(50);
         entity.Property(x => x.LastName).HasMaxLength(50);
         entity.Property(x => x.Email).HasMaxLength(50);
-        entity.Property(x => x.Phone).HasMaxLength(30);
 
         entity.HasIndex(x => x.Email).IsUnique();
 

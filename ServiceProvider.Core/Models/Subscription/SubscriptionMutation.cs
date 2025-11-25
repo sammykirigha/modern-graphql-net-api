@@ -8,7 +8,7 @@ namespace ServiceProvider.Core.Models;
 public sealed record SubscriptionMutationInput(
     [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> Id,
     [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> PlanId,
-    [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> UserId,
+    [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> ServiceProviderId,
     [property: DefaultValue("")] Optional<RenewalType> RenewalType,
     [property: DefaultValue("")] Optional<SubscriptionStatus> Status,
      [property: DefaultDateValue] Optional<DateTime> StartDate,

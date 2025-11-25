@@ -11,7 +11,7 @@ public partial class SubscriptionConfiguration : IEntityTypeConfiguration<Subscr
         entity.ToTable($"SP_{nameof(Subscription)}");
         entity.HasKey(x => x.Id);
 
-        entity.HasOne(x => x.User)
+        entity.HasOne(x => x.ServiceProvider)
             .WithOne(x => x.Subscription);
         entity.HasOne(x => x.Plan)
             .WithOne(x => x.Subscription);

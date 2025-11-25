@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ServiceProvider.Core.Exceptions;
 using ServiceProvider.Core.Interfaces.Repositories;
 using ServiceProvider.Core.Models;
@@ -11,18 +10,12 @@ public class UserRepository(ServiceProviderContext context) : RepositoryBase(con
 {
     public async Task<User> AddAsync(User entity)
     {
-        var jsonString = JsonSerializer.Serialize(entity);
-        var newEntity = JsonSerializer.Deserialize<User>(jsonString) ??
-                        throw new AppException("Json conversion error for add user");
+        Context.Users.Add(entity);
 
-        newEntity.Id = Guid.NewGuid();
-        newEntity.DateCreated = DateTime.UtcNow;
-        newEntity.DateCreated = DateTime.UtcNow;
-
-        Context.Users.Add(newEntity);
         await Context.SaveChangesAsync();
+        
+        return entity;
 
-        return newEntity;
     }
 
     public async Task<int> DeleteAsync(Guid id)
@@ -36,6 +29,11 @@ public class UserRepository(ServiceProviderContext context) : RepositoryBase(con
         var entity = await Context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         return entity;
     }
+    public async Task<User?> GetByEmailAsync(string email)
+    {
+        var entity = await Context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Email == email);
+        return entity;
+    }
 
     public IQueryable<User> GetList() => from i in Context.Users select i;
 
@@ -43,7 +41,9 @@ public class UserRepository(ServiceProviderContext context) : RepositoryBase(con
     {
         if (entity.Id == Guid.Empty)
             throw new AppException("Id missing for the user to update");
+
         Context.Entry(entity).State = EntityState.Modified;
+
         entity.DateModified = DateTime.UtcNow;
 
         await Context.SaveChangesAsync();

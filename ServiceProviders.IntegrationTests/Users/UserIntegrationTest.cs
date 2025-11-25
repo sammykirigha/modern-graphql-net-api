@@ -275,7 +275,7 @@ namespace ServiceProviders.IntegrationTests.Users
 			return new PrismBenefits.Core.Models.User
 			{
 				Id = Id ?? Guid.Empty,
-				AccessLevel = UserAccessLevel.Client,
+				AccessLevel = UserAccessLevel.ServiceProvider,
 				AccessType = UserAccessType.Limited,
 				IsActive = false,
 				FirstName = firstName,

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Text.Json.Serialization;
 using ServiceProvider.Core.Interfaces.Models;
+
  
 namespace ServiceProvider.Core.Models;
 public partial class Service : IEntity
@@ -40,9 +41,10 @@ public partial class Service : IEntity
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
  
     [JsonIgnore] public virtual Category? Category { get; set; }
-    [JsonIgnore] public virtual ICollection<Client>? Clients { get; set; }
+    [JsonIgnore] public virtual ICollection<Booking>? Bookings { get; set; } = new List<Booking>();
+    [JsonIgnore] public virtual ICollection<Review>? Reviews { get; set; } = new List<Review>();
+    [JsonIgnore] public virtual ServiceProviderEntity? ServiceProvider { get; set; }
     [JsonIgnore] public virtual ICollection<ServiceLocation>? ServiceLocations { get; set; } = new List<ServiceLocation>();
-    [JsonIgnore] public virtual ICollection<ClientsServices>? ClientServices { get; set; } = new List<ClientsServices>();
 }
 
 

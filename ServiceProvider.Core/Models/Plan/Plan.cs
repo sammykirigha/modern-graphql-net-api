@@ -23,10 +23,6 @@ public partial class Plan : IEntity
     /// </summary>
     public BillingCycle BillingCycle { get; set; }
     /// <summary>
-    /// provide any applicable discount for the plan.
-    /// </summary>
-    public decimal Discount { get; set; }
-    /// <summary>
     /// To indicate whether the plan is currently active and available for new subscriptions.
     /// </summary>
     public IsActive IsActive { get; set; }

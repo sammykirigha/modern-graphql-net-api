@@ -48,7 +48,7 @@ namespace ServiceProvider.Data.Migrations
                     b.ToTable("SP_Category", "sp");
                 });
 
-            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
+            modelBuilder.Entity("ServiceProvider.Core.Models.ServiceProvider", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -561,11 +561,11 @@ namespace ServiceProvider.Data.Migrations
                     b.ToTable("SP_UserPermission", "sp");
                 });
 
-            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
+            modelBuilder.Entity("ServiceProvider.Core.Models.ServiceProvider", b =>
                 {
                     b.HasOne("ServiceProvider.Core.Models.Location", "Location")
-                        .WithOne("Client")
-                        .HasForeignKey("ServiceProvider.Core.Models.Client", "LocationId")
+                        .WithOne("ServiceProvider")
+                        .HasForeignKey("ServiceProvider.Core.Models.ServiceProvider", "LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -574,7 +574,7 @@ namespace ServiceProvider.Data.Migrations
 
             modelBuilder.Entity("ServiceProvider.Core.Models.ClientService", b =>
                 {
-                    b.HasOne("ServiceProvider.Core.Models.Client", "Client")
+                    b.HasOne("ServiceProvider.Core.Models.ServiceProvider", "ServiceProvider")
                         .WithMany("ClientServices")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -586,7 +586,7 @@ namespace ServiceProvider.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Client");
+                    b.Navigation("ServiceProvider");
 
                     b.Navigation("Service");
                 });
@@ -708,14 +708,14 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("Services");
                 });
 
-            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
+            modelBuilder.Entity("ServiceProvider.Core.Models.ServiceProvider", b =>
                 {
                     b.Navigation("ClientServices");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.Location", b =>
                 {
-                    b.Navigation("Client");
+                    b.Navigation("ServiceProvider");
 
                     b.Navigation("ServiceLocations");
                 });

@@ -1,8 +1,6 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using ServiceProvider.Core.Interfaces.Services;
-using Microsoft.Identity.Web;
-using ServiceProvider.Core.Extensions;
 
 namespace ServiceProvider.Services;
 
@@ -17,7 +15,14 @@ public class ClaimsUserService : IClaimsUserService
     
 	public Guid GetContextUserId()
 	{
-		return _accessor.HttpContext?.User.GetObjectId().ToGuid() ?? Guid.Empty;
+		var sub = _accessor.HttpContext?.User.FindFirst("sub")?.Value;
+
+        if (string.IsNullOrEmpty(sub))
+        {
+           sub = _accessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value; 
+        }
+
+		return Guid.TryParse(sub, out var id) ? id : Guid.Empty;
 	}
 
 	public ClaimsPrincipal? GetContextUser()

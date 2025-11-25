@@ -4,5 +4,6 @@ public enum BillingCycle : byte
 {
     Monthly = 0,
     SemiYearly = 1,
-    Yearly = 2,
+    Trial = 2,
+    Yearly = 3,
 }

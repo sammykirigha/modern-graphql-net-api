@@ -49,6 +49,17 @@ public class RoleService : IRoleService
     public async Task<Role> AddAsync(Role input, EntityLogInfo logInfo)
     {
         using var trans = await _repository.BeginTransactionAsync();
+        
+        //check if role with the same name exists
+        var existingRole = await _repository.GetList().Where(r => r.Name == input.Name).FirstOrDefaultAsync();
+        if (existingRole != null)
+        {
+            throw new AppException($"Role with name {input.Name} already exists.", ValidationCode.DuplicateEntity);
+        }
+
+        input.Id = Guid.NewGuid();
+        input.DateCreated = DateTime.UtcNow;
+        input.DateModified = DateTime.UtcNow;
 
         var entity = await _repository.AddAsync(input);
         await _log.LogAddAsync(logInfo, entity);
@@ -60,7 +71,7 @@ public class RoleService : IRoleService
 
     public async Task<Role> UpdateAsync(Role input, EntityLogInfo logInfo, Role? oldEntity = null)
     {
-	    using var trans = await _repository.BeginTransactionAsync();
+        using var trans = await _repository.BeginTransactionAsync();
 
         oldEntity ??= await _repository.GetByIdAsync(input.Id)
                       ?? throw new AppException($"{nameof(Role)} not found.", ValidationCode.MissingRequirementEntity);

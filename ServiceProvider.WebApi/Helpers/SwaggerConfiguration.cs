@@ -12,18 +12,14 @@ public static class SwaggerConfigurationExtensions
         services.AddSwaggerGen(options =>
         {
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "ServiceProvider Admin Api", Version = "v1" });
-            options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
-                Type = SecuritySchemeType.OAuth2,
-                Flows = new OpenApiOAuthFlows
-                {
-                    AuthorizationCode = new OpenApiOAuthFlow
-                    {
-                        AuthorizationUrl = AppSettings.AzureAd.AuthorizationUrl,
-                        TokenUrl = AppSettings.AzureAd.TokenUrl,
-                        Scopes = AppSettings.AzureAd.Scopes
-                    }
-                }
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header,
+                Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
             });
             options.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
@@ -32,7 +28,7 @@ public static class SwaggerConfigurationExtensions
                     Reference = new OpenApiReference
                     {
                         Type = ReferenceType.SecurityScheme,
-                        Id = "oauth2"
+                        Id = "Bearer"
                     }
                 }] = new List<string>()
             });
@@ -48,9 +44,6 @@ public static class SwaggerConfigurationExtensions
         {
             options.RoutePrefix = string.Empty;
             options.SwaggerEndpoint($"/swagger/v1/swagger.json", "ServiceProvider Admin Api v1");
-            options.OAuthClientId(AppSettings.AzureAd.ClientId);
-            options.OAuthScopes(AppSettings.AzureAd.Scopes.Keys.ToArray());
-            options.OAuthUsePkce();
         });
 
         return app;
