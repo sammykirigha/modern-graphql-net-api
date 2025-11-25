@@ -67,7 +67,7 @@ public static class RoleMutation
     {
         entity.Name = input.Name.CheckForValue(entity.Name);
 
-        entity.DateCreated = input.DateCreated.CheckForValue(entity.DateCreated);
+        entity.DateCreated = DateTime.UtcNow;
         entity.DateModified = DateTime.UtcNow;
 
         return entity;

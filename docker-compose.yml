@@ -19,8 +19,6 @@ services:
     
   webapi:
     image: sammykirigha/service-provider-webapi
-    depends_on:
-      - sqlserver
     build:
       context: .
       dockerfile: ServiceProvider.WebApi/Dockerfile

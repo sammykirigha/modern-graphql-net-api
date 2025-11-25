@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ServiceProvider.Core.Interfaces.Models;
 using ServiceProvider.Core.Models;
+
 using ServiceProvider.Data.Contexts.Seeding;
 using System;
 
@@ -36,16 +37,15 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
     public virtual DbSet<ServiceLocation> ServiceLocations { get; set; }
     
     //service provider client
-    public virtual DbSet<Client> Clients { get; set; }
-    public virtual DbSet<ClientsServices> ClientsServices { get; set; }
-
+    public virtual DbSet<ServiceProviderEntity> ServiceProviders { get; set; }
 	//plan
 	public virtual DbSet<Plan> Plans { get; set; }
+	public virtual DbSet<Booking> Bookings { get; set; }
+	public virtual DbSet<Review> Reviews { get; set; }
 
 	//payment
 	public virtual DbSet<Payment> Payments { get; set; }
 	public virtual DbSet<Subscription> Subscriptions { get; set; }
-	public virtual DbSet<SubscriptionPayments> SubscriptionPayments { get; set; }
     
     // ********** OnModelCreating **********
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -75,12 +75,16 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 		
 		//category
 		modelBuilder.ApplyConfiguration(new Configurations.CategoryConfiguration());
+
+		//booking
+		modelBuilder.ApplyConfiguration(new Configurations.BookingConfiguration());
+		//review
+		modelBuilder.ApplyConfiguration(new Configurations.ReviewConfiguration());
 		
 		//category
 		modelBuilder.ApplyConfiguration(new Configurations.LocationConfiguration());
 		
-		modelBuilder.ApplyConfiguration(new Configurations.ClientConfiguration());
-		modelBuilder.ApplyConfiguration(new Configurations.ClientsServicesConfiguration());
+		modelBuilder.ApplyConfiguration(new Configurations.ServiceProviderEntityConfiguration());
 		//service provider client
 
 		modelBuilder.ApplyConfiguration(new Configurations.PlanConfiguration());
@@ -90,9 +94,6 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 
 		//subscription
 		modelBuilder.ApplyConfiguration(new Configurations.SubscriptionConfiguration());
-
-		//subscription payments
-	    modelBuilder.ApplyConfiguration(new Configurations.SubscriptionPaymentsConfiguration());
 		
 		// seeding
 		DataSeeding.AddUserSeeding(modelBuilder);

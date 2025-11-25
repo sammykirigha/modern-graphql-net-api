@@ -23,6 +23,61 @@ namespace ServiceProvider.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Booking", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AcceptedAt")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<string>("CancellationReason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CancelledAt")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("CompletedAt")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<Guid>("ServiceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ServiceProviderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceId");
+
+                    b.HasIndex("ServiceProviderId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SP_Booking", "sp");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.Category", b =>
                 {
                     b.Property<Guid>("Id")
@@ -40,86 +95,13 @@ namespace ServiceProvider.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("SP_Category", "sp");
-                });
-
-            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2(3)");
-
-                    b.Property<DateTime>("DateModified")
-                        .HasColumnType("datetime2(3)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<Guid>("LocationId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<Guid?>("ServiceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("LocationId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("SP_Client", "sp");
-                });
-
-            modelBuilder.Entity("ServiceProvider.Core.Models.ClientsServices", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ClientId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2(3)");
-
-                    b.Property<DateTime>("DateModified")
-                        .HasColumnType("datetime2(3)");
-
-                    b.Property<Guid>("ServiceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("SP_ClientsServices", "sp");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.EntityLog", b =>
@@ -178,12 +160,22 @@ namespace ServiceProvider.Data.Migrations
                     b.Property<Guid?>("PrimaryKey")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("ReviewId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ReviewId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ActiveUserId");
+
+                    b.HasIndex("ReviewId");
+
+                    b.HasIndex("ReviewId1");
 
                     b.HasIndex("UserId");
 
@@ -221,6 +213,12 @@ namespace ServiceProvider.Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<Guid?>("ReviewId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ReviewId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -231,6 +229,10 @@ namespace ServiceProvider.Data.Migrations
                     b.HasIndex("ActiveUserId");
 
                     b.HasIndex("LoggedInUserId");
+
+                    b.HasIndex("ReviewId");
+
+                    b.HasIndex("ReviewId1");
 
                     b.ToTable("SP_ErrorLog", "sp");
                 });
@@ -280,6 +282,9 @@ namespace ServiceProvider.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<Guid?>("ReviewId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -292,6 +297,8 @@ namespace ServiceProvider.Data.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ReviewId");
 
                     b.HasIndex("UserId");
 
@@ -329,13 +336,7 @@ namespace ServiceProvider.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("SP_Payment", "sp");
                 });
@@ -381,9 +382,6 @@ namespace ServiceProvider.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Discount")
-                        .HasColumnType("decimal(19,4)");
-
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
@@ -404,6 +402,53 @@ namespace ServiceProvider.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SP_Plan", "sp");
+                });
+
+            modelBuilder.Entity("ServiceProvider.Core.Models.Review", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BookingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Comments")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("ServiceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("TransactionType")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("verifiedTransactionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("SP_Review", "sp");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.Role", b =>
@@ -484,9 +529,14 @@ namespace ServiceProvider.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(19,4)");
 
+                    b.Property<Guid?>("ServiceProviderId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("ServiceProviderId");
 
                     b.ToTable("SP_Service", "sp");
                 });
@@ -518,6 +568,70 @@ namespace ServiceProvider.Data.Migrations
                     b.ToTable("SP_ServiceLocation", "sp");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.ServiceProviderEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BusinessDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BusinessName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<Guid>("LocationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NationalIdentityCardImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("SP_ServiceProviderEntity", "sp");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.Subscription", b =>
                 {
                     b.Property<Guid>("Id")
@@ -539,56 +653,24 @@ namespace ServiceProvider.Data.Migrations
                     b.Property<byte>("RenewalType")
                         .HasColumnType("tinyint");
 
+                    b.Property<Guid>("ServiceProviderId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2(3)");
 
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PlanId")
                         .IsUnique();
 
-                    b.HasIndex("UserId")
+                    b.HasIndex("ServiceProviderId")
                         .IsUnique();
 
                     b.ToTable("SP_Subscription", "sp");
-                });
-
-            modelBuilder.Entity("ServiceProvider.Core.Models.SubscriptionPayments", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2(3)");
-
-                    b.Property<DateTime>("DateModified")
-                        .HasColumnType("datetime2(3)");
-
-                    b.Property<decimal?>("PaymentAmount")
-                        .HasColumnType("decimal(19,4)");
-
-                    b.Property<Guid>("PaymentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SubscriptionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PaymentId")
-                        .IsUnique();
-
-                    b.HasIndex("SubscriptionId")
-                        .IsUnique();
-
-                    b.ToTable("SP_SubscriptionPayments", "sp");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.User", b =>
@@ -596,18 +678,6 @@ namespace ServiceProvider.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("AccessGlobalSettings")
-                        .HasColumnType("bit");
-
-                    b.Property<byte>("AccessLevel")
-                        .HasColumnType("tinyint");
-
-                    b.Property<byte>("AccessType")
-                        .HasColumnType("tinyint");
-
-                    b.Property<DateTime?>("AdminLoginDate")
-                        .HasColumnType("datetime2(3)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2(3)");
@@ -637,10 +707,6 @@ namespace ServiceProvider.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
                     b.Property<Guid?>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
@@ -657,9 +723,6 @@ namespace ServiceProvider.Data.Migrations
                         new
                         {
                             Id = new Guid("dcfaff46-e2c3-4b3d-ba44-dfe86b9dfcd3"),
-                            AccessGlobalSettings = false,
-                            AccessLevel = (byte)2,
-                            AccessType = (byte)0,
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "admin@none.com",
@@ -671,9 +734,6 @@ namespace ServiceProvider.Data.Migrations
                         new
                         {
                             Id = new Guid("17ff54a6-9d9a-45dc-95ea-10b68b9e6378"),
-                            AccessGlobalSettings = false,
-                            AccessLevel = (byte)0,
-                            AccessType = (byte)0,
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "sam@none.com",
@@ -685,9 +745,6 @@ namespace ServiceProvider.Data.Migrations
                         new
                         {
                             Id = new Guid("4315515f-9932-49b7-a01d-7261047ed1c9"),
-                            AccessGlobalSettings = false,
-                            AccessLevel = (byte)1,
-                            AccessType = (byte)1,
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "dorcis@none.com",
@@ -725,38 +782,29 @@ namespace ServiceProvider.Data.Migrations
                     b.ToTable("SP_UserPermission", "sp");
                 });
 
-            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
+            modelBuilder.Entity("Booking", b =>
                 {
-                    b.HasOne("ServiceProvider.Core.Models.Location", "Location")
-                        .WithMany("Clients")
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ServiceProvider.Core.Models.Service", null)
-                        .WithMany("Clients")
-                        .HasForeignKey("ServiceId");
-
-                    b.Navigation("Location");
-                });
-
-            modelBuilder.Entity("ServiceProvider.Core.Models.ClientsServices", b =>
-                {
-                    b.HasOne("ServiceProvider.Core.Models.Client", "Client")
-                        .WithMany("ClientServices")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("ServiceProvider.Core.Models.Service", "Service")
-                        .WithMany("ClientServices")
+                        .WithMany("Bookings")
                         .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Client");
+                    b.HasOne("ServiceProvider.Core.Models.ServiceProviderEntity", "ServiceProvider")
+                        .WithMany("Bookings")
+                        .HasForeignKey("ServiceProviderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ServiceProvider.Core.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Service");
+
+                    b.Navigation("ServiceProvider");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.EntityLog", b =>
@@ -764,6 +812,14 @@ namespace ServiceProvider.Data.Migrations
                     b.HasOne("ServiceProvider.Core.Models.User", "ActiveUser")
                         .WithMany("EntityLogsActive")
                         .HasForeignKey("ActiveUserId");
+
+                    b.HasOne("ServiceProvider.Core.Models.Review", null)
+                        .WithMany("EntityLogsActive")
+                        .HasForeignKey("ReviewId");
+
+                    b.HasOne("ServiceProvider.Core.Models.Review", null)
+                        .WithMany("EntityLogsLoggedIn")
+                        .HasForeignKey("ReviewId1");
 
                     b.HasOne("ServiceProvider.Core.Models.User", null)
                         .WithMany("EntityLogsLoggedIn")
@@ -782,6 +838,14 @@ namespace ServiceProvider.Data.Migrations
                         .WithMany("ErrorLogsLoggedIn")
                         .HasForeignKey("LoggedInUserId");
 
+                    b.HasOne("ServiceProvider.Core.Models.Review", null)
+                        .WithMany("ErrorLogsActive")
+                        .HasForeignKey("ReviewId");
+
+                    b.HasOne("ServiceProvider.Core.Models.Review", null)
+                        .WithMany("ErrorLogsLoggedIn")
+                        .HasForeignKey("ReviewId1");
+
                     b.Navigation("ActiveUser");
 
                     b.Navigation("LoggedInUser");
@@ -789,6 +853,10 @@ namespace ServiceProvider.Data.Migrations
 
             modelBuilder.Entity("ServiceProvider.Core.Models.LoginLog", b =>
                 {
+                    b.HasOne("ServiceProvider.Core.Models.Review", null)
+                        .WithMany("LoginLogs")
+                        .HasForeignKey("ReviewId");
+
                     b.HasOne("ServiceProvider.Core.Models.User", "User")
                         .WithMany("LoginLogs")
                         .HasForeignKey("UserId");
@@ -796,13 +864,25 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ServiceProvider.Core.Models.Payment", b =>
+            modelBuilder.Entity("ServiceProvider.Core.Models.Review", b =>
                 {
+                    b.HasOne("Booking", "Booking")
+                        .WithMany()
+                        .HasForeignKey("BookingId");
+
                     b.HasOne("ServiceProvider.Core.Models.User", "User")
-                        .WithOne("Payment")
-                        .HasForeignKey("ServiceProvider.Core.Models.Payment", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Reviews")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ServiceProvider.Core.Models.Service", "Service")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Booking");
+
+                    b.Navigation("Service");
 
                     b.Navigation("User");
                 });
@@ -832,7 +912,13 @@ namespace ServiceProvider.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ServiceProvider.Core.Models.ServiceProviderEntity", "ServiceProvider")
+                        .WithMany("Services")
+                        .HasForeignKey("ServiceProviderId");
+
                     b.Navigation("Category");
+
+                    b.Navigation("ServiceProvider");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.ServiceLocation", b =>
@@ -854,6 +940,17 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("Service");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.ServiceProviderEntity", b =>
+                {
+                    b.HasOne("ServiceProvider.Core.Models.Location", "Location")
+                        .WithMany("ServiceProviders")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Location");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.Subscription", b =>
                 {
                     b.HasOne("ServiceProvider.Core.Models.Plan", "Plan")
@@ -862,34 +959,15 @@ namespace ServiceProvider.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ServiceProvider.Core.Models.User", "User")
+                    b.HasOne("ServiceProvider.Core.Models.ServiceProviderEntity", "ServiceProvider")
                         .WithOne("Subscription")
-                        .HasForeignKey("ServiceProvider.Core.Models.Subscription", "UserId")
+                        .HasForeignKey("ServiceProvider.Core.Models.Subscription", "ServiceProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Plan");
 
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ServiceProvider.Core.Models.SubscriptionPayments", b =>
-                {
-                    b.HasOne("ServiceProvider.Core.Models.Payment", "Payment")
-                        .WithOne("SubscriptionPayments")
-                        .HasForeignKey("ServiceProvider.Core.Models.SubscriptionPayments", "PaymentId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ServiceProvider.Core.Models.Subscription", "Subscription")
-                        .WithOne("SubscriptionPayments")
-                        .HasForeignKey("ServiceProvider.Core.Models.SubscriptionPayments", "SubscriptionId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Payment");
-
-                    b.Navigation("Subscription");
+                    b.Navigation("ServiceProvider");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.User", b =>
@@ -925,21 +1003,11 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("Services");
                 });
 
-            modelBuilder.Entity("ServiceProvider.Core.Models.Client", b =>
-                {
-                    b.Navigation("ClientServices");
-                });
-
             modelBuilder.Entity("ServiceProvider.Core.Models.Location", b =>
                 {
-                    b.Navigation("Clients");
-
                     b.Navigation("ServiceLocations");
-                });
 
-            modelBuilder.Entity("ServiceProvider.Core.Models.Payment", b =>
-                {
-                    b.Navigation("SubscriptionPayments");
+                    b.Navigation("ServiceProviders");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.Permission", b =>
@@ -954,6 +1022,19 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("Subscription");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.Review", b =>
+                {
+                    b.Navigation("EntityLogsActive");
+
+                    b.Navigation("EntityLogsLoggedIn");
+
+                    b.Navigation("ErrorLogsActive");
+
+                    b.Navigation("ErrorLogsLoggedIn");
+
+                    b.Navigation("LoginLogs");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.Role", b =>
                 {
                     b.Navigation("Permissions");
@@ -963,16 +1044,20 @@ namespace ServiceProvider.Data.Migrations
 
             modelBuilder.Entity("ServiceProvider.Core.Models.Service", b =>
                 {
-                    b.Navigation("ClientServices");
+                    b.Navigation("Bookings");
 
-                    b.Navigation("Clients");
+                    b.Navigation("Reviews");
 
                     b.Navigation("ServiceLocations");
                 });
 
-            modelBuilder.Entity("ServiceProvider.Core.Models.Subscription", b =>
+            modelBuilder.Entity("ServiceProvider.Core.Models.ServiceProviderEntity", b =>
                 {
-                    b.Navigation("SubscriptionPayments");
+                    b.Navigation("Bookings");
+
+                    b.Navigation("Services");
+
+                    b.Navigation("Subscription");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.User", b =>
@@ -987,11 +1072,9 @@ namespace ServiceProvider.Data.Migrations
 
                     b.Navigation("LoginLogs");
 
-                    b.Navigation("Payment");
-
                     b.Navigation("Permissions");
 
-                    b.Navigation("Subscription");
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

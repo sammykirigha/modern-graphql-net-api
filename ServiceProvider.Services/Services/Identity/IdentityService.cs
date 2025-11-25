@@ -6,8 +6,8 @@ using ServiceProvider.Core.Settings;
 using PrismBenefits.Core.Interfaces.Services.Identity;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Identity;
 using ServiceProvider.Core.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace ServiceProvider.Services;
 
@@ -37,7 +37,6 @@ public class IdentityService : IIdentityService
 			LastName = "User",
 			Password = "DevPassword123!",
 			RoleId = new Guid("dc8ec90f-0260-47f5-9c71-4f8cf3861d96") ,
-			AccessLevel = Core.Enums.UserAccessLevel.SuperAdmin,
 			IsActive = true
 		};
 
@@ -80,8 +79,11 @@ public class IdentityService : IIdentityService
 			new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
 			new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
 			new Claim("role", user.Role?.Name ?? "User"),
+			new Claim("admin", "true"),
 			new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
 		};
+
+		//use cookies to store token for web clients
 
 		return _jwtTokenHandler.GenerateToken(
 			claims,

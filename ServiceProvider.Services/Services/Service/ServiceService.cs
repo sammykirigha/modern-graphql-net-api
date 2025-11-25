@@ -11,24 +11,21 @@ public class ServiceService : IServiceService
 {
     private readonly IServiceRepository _repository;
      private readonly IServiceLocationRepository _serviceLocationRepository;
-	private readonly IClientsServicesRepository _clientsServicesRepository;
-	private readonly IClientRepository _clientRepository;
+	private readonly IServiceProviderEntityRepository _spRepository;
 	private readonly IEntityLogService _log;
 	private readonly ICategoryRepository _category;
 
 	public ServiceService(
         IServiceRepository repository,
         IServiceLocationRepository serviceLocationRepository,
-        IClientsServicesRepository clientsServicesRepository,
-        IClientRepository clientRepository,
+        IServiceProviderEntityRepository spRepository,
         ICategoryRepository categoryRepository,
         IEntityLogService log)
     {
         _repository = repository;
         _log = log;
         _serviceLocationRepository = serviceLocationRepository;
-        _clientsServicesRepository = clientsServicesRepository;
-        _clientRepository = clientRepository;
+        _spRepository = spRepository;
         _category = categoryRepository;
     }
 
@@ -37,17 +34,8 @@ public class ServiceService : IServiceService
     public async Task<Service?> GetByIdAsync(Guid id)
     {
         var entity = await _repository.GetByIdAsync(id);
-        var clientIds = await _clientsServicesRepository.GetList().Where(x => x.ServiceId == id).Select(x => x.ClientId).ToListAsync();
-        var clients = await _clientRepository.GetList().Where(x => clientIds.Contains(x.Id)).ToListAsync();
 
-        var result = new Service {
-            Id = entity!.Id,
-            Name = entity.Name,
-            Price = entity.Price,
-            Category = await _category.GetByIdAsync(entity.CategoryId),
-            Clients = clients
-        };
-        return result;
+        return entity;
     }
 
     public IQueryable<Service> GetList()
@@ -77,12 +65,7 @@ public class ServiceService : IServiceService
             ServiceId = entity.Id,
             LocationId = input.LocationId
         };
-        var ClientService = new ClientsServices {
-            ServiceId = entity.Id,
-            ClientId = input.ClientId
-        };
        
-        await _clientsServicesRepository.AddAsync(ClientService);
         await _serviceLocationRepository.AddAsync(serviceLocation);
         await _log.LogAddAsync(logInfo, entity);
 

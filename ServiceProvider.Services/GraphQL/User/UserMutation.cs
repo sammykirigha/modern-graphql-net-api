@@ -6,10 +6,11 @@ using ServiceProvider.Core.Interfaces.Services;
 using ServiceProvider.Core.Models;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http;
+using ServiceProvider.Core.DTOs.User;
 
 
 namespace Graphql.Services.GraphQL;
-[Authorize]
+
 [MutationType]
 public static class UserMutation
 {
@@ -20,15 +21,12 @@ public static class UserMutation
             user.Email.CheckRequired();
             user.FirstName.CheckRequired();
             user.LastName.CheckRequired();
-            user.Phone.CheckRequired();
+            user.Password.ValidatePassword();
+
             var entity = PopulateEntity(new User(), user);
+
             entity = await service.AddAsync(entity, logInfo);
-            if(httpContext.User.Identity!.IsAuthenticated)
-            {
-              entity.Email = httpContext.User.Identity.Name;
-            } else{
-                entity.Email = null;
-            }
+
             return entity;
 
         }
@@ -37,7 +35,25 @@ public static class UserMutation
             throw new GraphQLException(new Error(ex.Message, ex.ValidationCode));
         }
     }
-    
+
+    [AllowAnonymous]
+    public static async Task<LoginUserDTO> LoginUser(UserLoginMutationInput user, IUserService service)
+    {
+        try
+        {
+            user.Email.CheckRequired();
+            user.Password.CheckRequired();
+
+            var token = await service.LoginAsync(user.Email, user.Password);
+            var userToken = new LoginUserDTO { Token = token };
+            return userToken;
+        }
+        catch (AppException ex)
+        {
+            throw new GraphQLException(new Error(ex.Message, ex.ValidationCode));
+        }
+    }
+
     public static async Task<User> UpdateUser(UserMutationInput user, EntityLogInfo logInfo, IUserService service)
     {
         try
@@ -56,7 +72,7 @@ public static class UserMutation
             throw new GraphQLException(new Error(ex.Message, ex.ValidationCode));
         }
     }
-    
+
     public static async Task<bool> DeleteUser(Guid id, EntityLogInfo logInfo, IUserService service)
     {
         try
@@ -69,16 +85,16 @@ public static class UserMutation
             throw new GraphQLException(new Error(ex.Message, ex.ValidationCode));
         }
     }
-    
+
     [GraphQLIgnore]
     private static User PopulateEntity(User entity, UserMutationInput input)
     {
         entity.Email = input.Email.CheckForValue(entity.Email);
         entity.FirstName = input.FirstName.CheckForValue(entity.FirstName);
         entity.LastName = input.LastName.CheckForValue(entity.LastName);
-        entity.Phone = input.Phone.CheckForValue(entity.Phone);
-		
-        entity.DateCreated = input.DateCreated.CheckForValue(entity.DateCreated);
+        entity.LastName = input.LastName.CheckForValue(entity.LastName);
+
+        entity.DateCreated = DateTime.UtcNow;
         entity.DateModified = DateTime.UtcNow;
         return entity;
     }

@@ -1,4 +1,5 @@
 ﻿
+using ServiceProvider.Core.DTOs.User;
 using ServiceProvider.Core.Models;
 
 namespace ServiceProvider.Core.Interfaces.Services;
@@ -6,6 +7,7 @@ namespace ServiceProvider.Core.Interfaces.Services;
 public interface IUserService
 {
 	Task<User?> GetByIdAsync(Guid id);
+	Task<string> LoginAsync(string email, string password);
 	IQueryable<User> GetList();
 	IQueryable<UserPaged> GetListPaged();
 	Task<User> AddAsync(User input, EntityLogInfo logInfo);

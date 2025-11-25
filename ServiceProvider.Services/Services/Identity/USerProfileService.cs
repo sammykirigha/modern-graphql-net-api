@@ -53,13 +53,10 @@ public class UserProfileService(
         var user = new User()
         {
             Id = id,
-            AccessLevel = UserAccessLevel.SuperAdmin,
-            AccessType = UserAccessType.Full,
             IsActive = true,
             FirstName = claims.GetFirstName(),
             LastName = claims.GetLastName(),
             Email = claims.GetEmail(),
-            AccessGlobalSettings = true
         };
         await _repository.AddDevUserAsync(user);
 

@@ -15,7 +15,6 @@ namespace ServiceProvider.Services;
 public class PaymentService: IPaymentService
 {
   private readonly IPaymentRepository _repository;
-  private readonly ISubscriptionPaymentsRepository _subPaymentRepository;
   private readonly IPlanRepository _planRepository;
   private ISubscriptionRepository _subrepository;
   public readonly IUserProfileService _userProfileService;
@@ -25,7 +24,6 @@ public class PaymentService: IPaymentService
     public PaymentService(
         IPaymentRepository repository,
         IStripeGateWayService<PaymentIntent> stripeGateWay,
-        ISubscriptionPaymentsRepository subPaymentRepository,
         IPlanRepository planRepository,
         ISubscriptionRepository subrepository,
         IUserProfileService userProfileService,
@@ -36,7 +34,6 @@ public class PaymentService: IPaymentService
         _log = log;
         _stripe = stripeGateWay;
         _planRepository = planRepository;
-        _subPaymentRepository = subPaymentRepository;
         _userProfileService = userProfileService ?? throw new ArgumentNullException(nameof(IUserProfileService));
     }
 
@@ -87,13 +84,12 @@ public class PaymentService: IPaymentService
 	        DateCreated = DateTime.UtcNow,
 	        PaymentMethod = (paymentMethod)Enum.Parse(typeof(paymentMethod), charge.PaymentMethodTypes[0].ToUpper(), ignoreCase: false),
 	        Status = (PaymentStatus)Enum.Parse(typeof(PaymentStatus), charge.Status.ToUpper(), ignoreCase: false),
-	        UserId = new Guid("dcfaff46-e2c3-4b3d-ba44-dfe86b9dfcd3")
         };
         
         var newSubscripton = new Subscription 
         {
 	        PlanId = planId,
-	        UserId = new Guid("dcfaff46-e2c3-4b3d-ba44-dfe86b9dfcd3"),
+	        ServiceProviderId = new Guid("dcfaff46-e2c3-4b3d-ba44-dfe86b9dfcd3"),
 	        StartDate = DateTime.UtcNow,
 	        EndDate = DateTime.UtcNow.AddMonths(plan!.Duration),
 	        Status = charge.Status == "succeded" ? SubscriptionStatus.Active  :  SubscriptionStatus.Failed,
@@ -106,14 +102,6 @@ public class PaymentService: IPaymentService
         await _log.LogAddAsync(logInfo, subEntity);
 
 
-        var newSubPayment = new SubscriptionPayments
-        {
-	        SubscriptionId = subEntity.Id, 
-	        PaymentId = paymentEntity.Id,
-	        PaymentAmount = paymentEntity.Amount
-        };
-        var subPaymentEntity = await _subPaymentRepository.AddAsync(newSubPayment);
-        await _log.LogAddAsync(logInfo, subPaymentEntity);
         await trans.CommitAsync();
 
         return paymentEntity;

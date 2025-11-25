@@ -1,6 +1,7 @@
 ﻿using ServiceProvider.Core.Interfaces.Models;
 using System.Text.Json.Serialization;
 
+
 namespace ServiceProvider.Core.Models;
 
 public class Location : IEntity
@@ -25,6 +26,6 @@ public class Location : IEntity
     public DateTime DateModified { get; set; }
 
     [JsonIgnore] public virtual ICollection<ServiceLocation> ServiceLocations { get; set; } = new List<ServiceLocation>();
-    [JsonIgnore] public virtual ICollection<Client>?  Clients{ get; set; } = new List<Client>();
+    [JsonIgnore] public virtual ICollection<ServiceProviderEntity>?  ServiceProviders{ get; set; } = new List<ServiceProviderEntity>();
 }
 

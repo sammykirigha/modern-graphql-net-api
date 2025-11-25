@@ -21,7 +21,8 @@ public static class IdentityConfigurationExtensions
 		services.AddScoped<IUserProfileService, UserProfileService>();
 		services.AddScoped<IJwtTokenHandlerService, JwtTokenHandlerService>();
 
-		services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+		services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+		.AddJwtBearer(options =>
 		{
 			options.TokenValidationParameters = new TokenValidationParameters
 			{
@@ -34,6 +35,13 @@ public static class IdentityConfigurationExtensions
 				ValidateLifetime = true,
 				ClockSkew = TimeSpan.Zero
 			};
+		});
+
+		services.AddAuthorization(options =>
+		{
+			options.AddPolicy("Admin", policy => policy.RequireClaim("role", "Admin"));
+			options.AddPolicy("User", policy => policy.RequireClaim("role", "User"));
+			//options.AddPolicy("Manager", policy => policy.RequireClaim("department", "Accounts"));
 		});
 
 		return services;
