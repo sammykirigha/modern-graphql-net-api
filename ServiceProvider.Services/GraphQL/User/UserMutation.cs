@@ -14,6 +14,7 @@ namespace Graphql.Services.GraphQL;
 [MutationType]
 public static class UserMutation
 {
+    [AllowAnonymous]
     public static async Task<User> AddUser(UserMutationInput user, EntityLogInfo logInfo, IUserService service, HttpContext httpContext)
     {
         try

@@ -31,8 +31,9 @@ public class UserRepository(ServiceProviderContext context) : RepositoryBase(con
     }
     public async Task<User?> GetByEmailAsync(string email)
     {
-        var entity = await Context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Email == email);
-        return entity;
+        return await Context.Users
+            .Include(u => u.Role)
+            .FirstOrDefaultAsync(u => u.Email == email);
     }
 
     public IQueryable<User> GetList() => from i in Context.Users select i;
