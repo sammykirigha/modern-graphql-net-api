@@ -9,8 +9,11 @@
      <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="12.0.1" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
         <PackageReference Include="Azure.Identity" Version="1.10.4" />
         <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
         <PackageReference Include="HotChocolate.Abstractions" Version="13.9.0" />
         <PackageReference Include="HotChocolate.Data" Version="13.9.0" />
         <PackageReference Include="HotChocolate.Types" Version="13.9.0" />

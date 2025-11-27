@@ -1,28 +1,12 @@
 
+using ServiceProvider.Core.Interfaces.Services.Users;
+
 namespace ServiceProvider.Core.DTOs.User;
-public partial class CreateUserDTO
+public partial class CreateUserDto : IUserInput
 {
-    /// <summary>
-	/// First name of user
-	/// </summary>
-	public string FirstName { get; set; } = "";
-    /// <summary>
-    /// Last name of user
-    /// </summary>
-    public string LastName { get; set; } = "";
-    /// <summary>
-    /// Primary email of user
-    /// </summary>
-    public string Email { get; set; } = "";
-    /// <summary>
-    /// Primary Password of user
-    /// </summary>
-    public string Password { get; set; } = "";
-    /// <summary>
-    /// Primary phone number of user
-    /// </summary>
-    public string? Phone { get; set; }
-    /// <summary>
-    /// Date/time record created
-    /// </summary>
+	public Guid Id { get; set; }
+	public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
 }

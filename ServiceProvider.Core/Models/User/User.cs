@@ -1,10 +1,11 @@
 using System.Text.Json.Serialization;
 using ServiceProvider.Core.Enums;
 using ServiceProvider.Core.Interfaces.Models;
+using ServiceProvider.Core.Interfaces.Services.Users;
 
 namespace ServiceProvider.Core.Models;
 
-public partial class User : IEntity
+public partial class User : IEntity, IUserInput
 {
     /// <summary>
     /// Primary key

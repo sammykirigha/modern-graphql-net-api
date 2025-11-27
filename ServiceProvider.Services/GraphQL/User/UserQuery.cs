@@ -1,6 +1,7 @@
 ﻿
 using HotChocolate.Authorization;
 using ServiceProvider.Core.Interfaces.Services;
+using ServiceProvider.Core.Interfaces.Services.Users;
 using ServiceProvider.Core.Models;
 
 namespace ServiceProvider.Services.GraphQL;
