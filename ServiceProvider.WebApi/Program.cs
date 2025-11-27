@@ -11,8 +11,11 @@ using ServiceProvider.Data;
 using ServiceProvider.Data.Contexts;
 using ServiceProvider.Helpers;
 using ServiceProvider.Services.Helpers;
-using System.Configuration;
 using Microsoft.Extensions.Options;
+using ServiceProvider.Core.Interfaces.EmailService;
+using ServiceProvider.Core.Interfaces.Passwords;
+using ServiceProvider.Services.Mapping;
+using ServiceProvider.Services.Services.EmailService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,9 +40,20 @@ builder.AddAppSettings();
 builder.AddVersionSettings();
 
 builder.Host.UseSerilog((context, services, configuration) => configuration.ReadFrom.Configuration(context.Configuration).ReadFrom.Services(services));
+
+//automapper
+services.AddAutoMapper(typeof(Program), typeof(UserProfile));
 //stripe gat way
 services.Configure<StripeSettings>(builder.Configuration!.GetSection("StripeSettings"));
 services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<StripeSettings>>().Value);
+
+//email
+services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+services.AddScoped<IEmailService, SmtpEmailService>();
+services.AddScoped<IPasswordResetTokenService, PasswordResetTokenService>();
+
+//tokens
+services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 
 //add services
 services.AddSingleton<ITelemetryInitializer, AppVersionTelemetryInitializer>();
@@ -98,3 +112,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
+
+// "email": "dkirigha18+1@gmail.com",
+
+// "password": "AdminPa55word!"

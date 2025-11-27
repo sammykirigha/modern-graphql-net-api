@@ -2,7 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using ServiceProvider.Core.Interfaces;
 using ServiceProvider.Core.Interfaces.Services;
+using ServiceProvider.Core.Interfaces.Services.Users;
 using ServiceProvider.Services;
+using ServiceProvider.Services.Services;
 using Stripe;
 using PlanService = ServiceProvider.Services.PlanService;
 using SubscriptionService = ServiceProvider.Services.SubscriptionService;
@@ -99,8 +101,7 @@ public static class MainServiceCollectionExtensions
 
 		//subscription
 		builder.RegisterService<ISubscriptionService>();
-
-		//
+		
 		builder.RegisterService<IStripeGateWayService<PaymentIntent>>();
         
 		return builder;

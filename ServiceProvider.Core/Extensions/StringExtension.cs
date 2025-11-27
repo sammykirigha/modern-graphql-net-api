@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
+using BCrypt.Net;
 
 namespace ServiceProvider.Core.Extensions;
 
@@ -221,26 +222,24 @@ public static class StringExtensions
 		return value.MaxLength(maxLength);
 	}
 
-	public static string HashPassword(this string password)
+	public static string HashPassword(this string inputPassword)
 	{
-		var salt = Guid.NewGuid().ToString();
-		using (var pbkdf2 = new Rfc2898DeriveBytes(password, Encoding.UTF8.GetBytes(salt), 10000, HashAlgorithmName.SHA256))
-		{
-			var hash = pbkdf2.GetBytes(32);
-			return $"{Convert.ToBase64String(hash)}:{salt}";
-		}
+
+		var hashedPassword = BCrypt.Net.BCrypt.HashPassword(inputPassword);
+
+		return hashedPassword;
+		
 	}
 
-	public static bool VerifyPassword(this string password, string hashedPassword)
+	public static bool VerifyPassword(this string inputPassword, string hashedPassword)
 	{
-		var parts = hashedPassword.Split(':');
-		if (parts.Length != 2) return false;
-		var hash = Convert.FromBase64String(parts[0]);
-		var salt = parts[1];
-		using (var pbkdf2 = new Rfc2898DeriveBytes(password, Encoding.UTF8.GetBytes(salt), 10000, HashAlgorithmName.SHA256))
-		{
-			var computedHash = pbkdf2.GetBytes(32);
-			return hash.SequenceEqual(computedHash);
-		}
+		if (string.IsNullOrEmpty(inputPassword) || string.IsNullOrEmpty(hashedPassword))
+			return false;
+
+
+		bool isVerified = BCrypt.Net.BCrypt.Verify(inputPassword, hashedPassword);
+
+		return isVerified;
+		
 	}
 }

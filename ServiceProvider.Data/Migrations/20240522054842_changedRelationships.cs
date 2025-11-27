@@ -21,10 +21,6 @@ namespace ServiceProvider.Data.Migrations
                 schema: "sp",
                 table: "ClientServices");
 
-            migrationBuilder.DropTable(
-                name: "SP_Plan",
-                schema: "sp");
-
             migrationBuilder.DropPrimaryKey(
                 name: "PK_ClientServices",
                 schema: "sp",
@@ -153,23 +149,6 @@ namespace ServiceProvider.Data.Migrations
                 schema: "sp",
                 table: "ClientServices",
                 column: "Id");
-
-            migrationBuilder.CreateTable(
-                name: "SP_Plan",
-                schema: "sp",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2(3)", nullable: false),
-                    DateModified = table.Column<DateTime>(type: "datetime2(3)", nullable: false),
-                    Duration = table.Column<TimeSpan>(type: "time", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(19,4)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SP_Plan", x => x.Id);
-                });
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ClientServices_SP_Client_ClientId",
