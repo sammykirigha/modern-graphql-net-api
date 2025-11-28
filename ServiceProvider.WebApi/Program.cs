@@ -1,3 +1,4 @@
+using Amazon.S3;
 using Microsoft.ApplicationInsights.Extensibility;
 using Serilog;
 using Serilog.Events;
@@ -14,6 +15,8 @@ using ServiceProvider.Services.Helpers;
 using Microsoft.Extensions.Options;
 using ServiceProvider.Core.Interfaces.EmailService;
 using ServiceProvider.Core.Interfaces.Passwords;
+using ServiceProvider.Core.Interfaces.Storage;
+using ServiceProvider.Services.Infrastructure;
 using ServiceProvider.Services.Mapping;
 using ServiceProvider.Services.Services.EmailService;
 
@@ -51,6 +54,10 @@ services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<StripeSet
 services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 services.AddScoped<IEmailService, SmtpEmailService>();
 services.AddScoped<IPasswordResetTokenService, PasswordResetTokenService>();
+
+//aws
+services.AddScoped<IStorageService, StorageService>();
+services.Configure<AwsSettings>(builder.Configuration.GetSection("AwsSettings"));
 
 //tokens
 services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));

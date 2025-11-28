@@ -6,6 +6,7 @@ namespace ServiceProvider.Core.Interfaces.Repositories;
 public interface IRoleRepository : IRepositoryBase
 {
     Task<Role?> GetByIdAsync(Guid id);
+    Task<Role?> GetByNameAsync(string name);
     IQueryable<Role> GetList();
     Task<Role> AddAsync(Role entity);
     Task<Role> UpdateAsync(Role entity);

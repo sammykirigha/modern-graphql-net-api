@@ -305,6 +305,33 @@ namespace ServiceProvider.Data.Migrations
                     b.ToTable("SP_LoginLog", "sp");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.Medias.Media", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<Guid>("ServiceProviderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SP_Media", "sp");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.Payment", b =>
                 {
                     b.Property<Guid>("Id")
@@ -598,10 +625,6 @@ namespace ServiceProvider.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -610,17 +633,16 @@ namespace ServiceProvider.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid>("LocationId")
+                    b.Property<Guid?>("LocationId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("NationalIdentityCardImage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -942,13 +964,9 @@ namespace ServiceProvider.Data.Migrations
 
             modelBuilder.Entity("ServiceProvider.Core.Models.ServiceProviderEntity", b =>
                 {
-                    b.HasOne("ServiceProvider.Core.Models.Location", "Location")
+                    b.HasOne("ServiceProvider.Core.Models.Location", null)
                         .WithMany("ServiceProviders")
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Location");
+                        .HasForeignKey("LocationId");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.Subscription", b =>

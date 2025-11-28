@@ -18,9 +18,7 @@ public class ServiceProviderEntityConfiguration : IEntityTypeConfiguration<Servi
 		entity.Property(x => x.Phone).HasMaxLength(30);
 
 		entity.HasIndex(x => x.Email).IsUnique();
-
-		entity.HasOne(x => x.Location).WithMany(x => x.ServiceProviders).HasForeignKey(x => x.LocationId).OnDelete(DeleteBehavior.Restrict);
-
+		
 	}
 }
 

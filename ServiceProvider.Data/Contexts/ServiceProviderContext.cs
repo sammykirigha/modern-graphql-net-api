@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ServiceProvider.Core.Interfaces.Models;
 using ServiceProvider.Core.Models;
-
+using ServiceProvider.Core.Models.Medias;
 using ServiceProvider.Data.Contexts.Seeding;
 using System;
 
@@ -17,6 +17,9 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 
     // user
 	public virtual DbSet<User> Users { get; set; }
+	
+	//media
+	public virtual DbSet<Media> Media { get; set; }
 	public virtual DbSet<UserPermission> UserPermissions { get; set; }
 
     // Role
@@ -55,6 +58,8 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 		// user
 		modelBuilder.ApplyConfiguration(new Configurations.UserConfiguration());
 		modelBuilder.ApplyConfiguration(new Configurations.UserPermissionConfiguration());
+		
+		modelBuilder.ApplyConfiguration(new Configurations.MediasConfiguration());
 		
 		// role
 		modelBuilder.ApplyConfiguration(new Configurations.RoleConfiguration());
