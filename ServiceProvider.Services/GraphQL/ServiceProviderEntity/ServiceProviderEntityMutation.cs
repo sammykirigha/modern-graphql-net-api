@@ -9,10 +9,10 @@ using System.Text.Json;
 
 
 namespace Graphql.Services.GraphQL;
-[Authorize]
 [MutationType]
 public static class ServiceProoviderEntityMutation
 {
+	[AllowAnonymous]
     public static async Task<ServiceProviderEntity> AddServiceProviderEntity(ServiceProviderMutationInput ServiceProvider, EntityLogInfo logInfo, IServiceProviderEntityService service)
     {
         try
@@ -21,8 +21,10 @@ public static class ServiceProoviderEntityMutation
 	        ServiceProvider.FirstName.CheckRequired();
 	        ServiceProvider.LastName.CheckRequired();
 	        ServiceProvider.Phone.CheckRequired();
-            ServiceProvider.LocationId.CheckRequired();
+	        ServiceProvider.BusinessName.CheckRequired();
+	        ServiceProvider.BusinessDescription.CheckRequired();
             var entity = PopulateEntity(new ServiceProviderEntity(), ServiceProvider);
+            
             entity = await service.AddAsync(entity, logInfo);
             return entity;
 
@@ -71,13 +73,13 @@ public static class ServiceProoviderEntityMutation
         entity.Email = input.Email.CheckForValue(entity.Email);
         entity.FirstName = input.FirstName.CheckForValue(entity.FirstName);
         entity.LastName = input.LastName.CheckForValue(entity.LastName);
+        entity.BusinessName = input.BusinessName.CheckForValue(entity.BusinessName);
+        entity.BusinessDescription = input.BusinessDescription.CheckForValue(entity.BusinessDescription);
         entity.Phone = input.Phone.CheckForValue(entity.Phone);
-        entity.LocationId = input.LocationId.CheckForValue(entity.LocationId);
 		
         entity.DateCreated = input.DateCreated.CheckForValue(entity.DateCreated);
         entity.DateModified = DateTime.UtcNow;
         return entity;
     }
-
 }
 

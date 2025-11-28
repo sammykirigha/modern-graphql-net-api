@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceProvider.Core.Interfaces.Repositories;
-using ServiceProvider.Core.Interfaces.Services;
+using ServiceProvider.Core.Interfaces.Repository.Medias;
 using ServiceProvider.Core.Settings;
 using ServiceProvider.Data.Contexts;
 using ServiceProvider.Data.Repositories;
+using ServiceProvider.Data.Repositories.Medias;
 
 namespace ServiceProvider.Data;
 
@@ -27,6 +28,9 @@ public static class DataServiceCollectionExtensions
         
 		// Permission
 		services.AddScoped<IPermissionRepository, PermissionRepository>();
+		
+		//media
+		services.AddScoped<IMediaRepository, MediaRepository>();
         
 		//Role
 		services.AddScoped<IRoleRepository, RoleRepository>();

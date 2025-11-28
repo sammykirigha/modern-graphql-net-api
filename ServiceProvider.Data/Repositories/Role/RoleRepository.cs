@@ -11,12 +11,19 @@ namespace ServiceProvider.Data.Repositories;
 public class RoleRepository(ServiceProviderContext context) 
     : RepositoryBase(context), IRoleRepository
 {
-    //
     public async Task<Role?> GetByIdAsync(Guid id)
     {
         var entity = await Context.Roles.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         return entity;
     }
+    
+    public async Task<Role> GetByNameAsync(string name)
+	{
+		var entity = await Context.Roles.AsNoTracking().FirstOrDefaultAsync(x => x.Name == name);
+		if (entity == null)
+			throw new AppException($"Role with name '{name}' not found");
+		return entity;
+	}
 
     public IQueryable<Role> GetList() => from i in Context.Roles select i;
 

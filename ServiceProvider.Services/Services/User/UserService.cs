@@ -31,9 +31,9 @@ public class UserService : IUserService
         IUserRepository user_repository, 
         IRoleRepository role_repository,
         IJwtTokenHandlerService jwtTokenHandler,
+        IEmailService smtpEmailService,
         IMapper mapper,
         IPasswordResetTokenService tokenService, 
-        IEmailService smtpEmailService,
         IEntityLogService log)
     {
         _user_repository = user_repository;

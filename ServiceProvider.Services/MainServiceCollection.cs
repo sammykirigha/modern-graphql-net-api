@@ -2,9 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using ServiceProvider.Core.Interfaces;
 using ServiceProvider.Core.Interfaces.Services;
+using ServiceProvider.Core.Interfaces.Services.Medias;
 using ServiceProvider.Core.Interfaces.Services.Users;
 using ServiceProvider.Services;
 using ServiceProvider.Services.Services;
+using ServiceProvider.Services.Services.MediaStorage;
 using Stripe;
 using PlanService = ServiceProvider.Services.PlanService;
 using SubscriptionService = ServiceProvider.Services.SubscriptionService;
@@ -51,6 +53,9 @@ public static class MainServiceCollectionExtensions
 
 		//payments
 		services.AddScoped<IPaymentService, PaymentService>();
+		
+		//media
+		services.AddScoped<IMediaStorageService, MediaStorageService>();  
 
 		//subscriptions
 		services.AddScoped<ISubscriptionService, SubscriptionService>();
@@ -68,6 +73,9 @@ public static class MainServiceCollectionExtensions
 
 		//claims
 		builder.RegisterService<IClaimsUserService>();
+		
+		//media
+		builder.RegisterService<IMediaStorageService>();
         
 		//users
 		builder.RegisterService<IUserService>();

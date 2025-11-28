@@ -11,12 +11,10 @@ public partial class User : IEntity, IUserInput
     /// Primary key
     /// </summary>
     public Guid Id { get; set; }
-
     /// <summary>
     /// Enabled/Disabled
     /// </summary>
     public bool IsActive { get; set; } = false;
-
     /// <summary>
 	/// First name of user
 	/// </summary>
@@ -33,7 +31,6 @@ public partial class User : IEntity, IUserInput
     /// Primary Password of user
     /// </summary>
     public string Password { get; set; } = "";
-
     /// <summary>
     /// Id of role (foreign key)
     /// </summary>

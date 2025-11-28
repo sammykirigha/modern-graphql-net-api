@@ -1,7 +1,5 @@
 using ServiceProvider.Core.Enums;
 using ServiceProvider.Core.Interfaces.Models;
-using System.Text.Json.Serialization;
-using System.Transactions;
 
 namespace ServiceProvider.Core.Models;
 
