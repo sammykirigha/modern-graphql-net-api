@@ -13,4 +13,5 @@ public interface IUserService
 	Task<bool> DeleteAsync(Guid id, EntityLogInfo logInfo);
 	Task<string> ForgetPassword(string email);
 	Task<bool> ResetPassword(string token, string  newpassword, string confirmPassword);
+	Task<bool> ActivateAccount(string token);
 }

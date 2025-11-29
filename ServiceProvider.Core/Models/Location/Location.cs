@@ -6,26 +6,10 @@ namespace ServiceProvider.Core.Models;
 
 public class Location : IEntity
 {
-    /// <summary>
-    /// Primary key
-    /// </summary>
     public Guid Id { get; set; }
-    /// <summary>
-    /// County located eg Nyeri county
-    /// </summary>
-    public string County { get; set; } = "";
-    /// <summary>
-    /// Town eg Nyeri town
-    /// </summary>
-    public string Town {get; set;} = "";
-    /// <summary>
-    /// Area skuta
-    /// </summary>
-    public string Area {get; set;} = "";
+    public string LocationName {get; set;}
+    public string ConstituencyId {get; set;}
     public DateTime DateCreated { get; set; }
     public DateTime DateModified { get; set; }
-
-    [JsonIgnore] public virtual ICollection<ServiceLocation> ServiceLocations { get; set; } = new List<ServiceLocation>();
-    [JsonIgnore] public virtual ICollection<ServiceProviderEntity>?  ServiceProviders{ get; set; } = new List<ServiceProviderEntity>();
 }
 

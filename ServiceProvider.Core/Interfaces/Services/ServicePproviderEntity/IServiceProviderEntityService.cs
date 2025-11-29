@@ -11,4 +11,5 @@ public interface IServiceProviderEntityService
 	Task<ServiceProviderEntity> AddAsync(ServiceProviderEntity entity, EntityLogInfo logInfo);
 	Task<ServiceProviderEntity> UpdateAsync(ServiceProviderEntity entity, EntityLogInfo logInfo, ServiceProviderEntity? oldEntity = null);
 	Task<bool> DeleteAsync(Guid id, EntityLogInfo logInfo);
+	Task<string> ActivateAccountAndResetPassword(string token, string newPassword, string confirmPassword);
 }

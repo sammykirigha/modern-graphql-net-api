@@ -10,23 +10,16 @@ namespace ServiceProvider.Services;
 public class ServiceService : IServiceService
 {
     private readonly IServiceRepository _repository;
-     private readonly IServiceLocationRepository _serviceLocationRepository;
-	private readonly IServiceProviderEntityRepository _spRepository;
 	private readonly IEntityLogService _log;
-	private readonly ICategoryRepository _category;
 
 	public ServiceService(
         IServiceRepository repository,
-        IServiceLocationRepository serviceLocationRepository,
         IServiceProviderEntityRepository spRepository,
         ICategoryRepository categoryRepository,
         IEntityLogService log)
     {
         _repository = repository;
         _log = log;
-        _serviceLocationRepository = serviceLocationRepository;
-        _spRepository = spRepository;
-        _category = categoryRepository;
     }
 
 
@@ -61,12 +54,7 @@ public class ServiceService : IServiceService
         using var trans = await _repository.BeginTransactionAsync();
 
         var entity = await _repository.AddAsync(input);
-        var serviceLocation = new ServiceLocation {
-            ServiceId = entity.Id,
-            LocationId = input.LocationId
-        };
        
-        await _serviceLocationRepository.AddAsync(serviceLocation);
         await _log.LogAddAsync(logInfo, entity);
 
         await trans.CommitAsync();

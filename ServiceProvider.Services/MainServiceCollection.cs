@@ -36,7 +36,6 @@ public static class MainServiceCollectionExtensions
 		services.AddScoped<IRolePermissionService, RolePermissionService>();
 
 		//service
-		services.AddScoped<IServiceLocationService, ServiceLocationService>();
 		services.AddScoped<IServiceService, ServiceService>();
 
 		//location
@@ -95,7 +94,6 @@ public static class MainServiceCollectionExtensions
 		builder.RegisterService<ICategoryService>();
 
 		//service
-		builder.RegisterService<IServiceLocationService>();
 		builder.RegisterService<IServiceService>();
 
 		//client

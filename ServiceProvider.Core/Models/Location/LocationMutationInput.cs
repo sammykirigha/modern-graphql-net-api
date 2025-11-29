@@ -7,9 +7,8 @@ namespace ServiceProvider.Core.Models;
 public record LocationMutationInput(
     [property: DefaultValue("00000000-0000-0000-0000-000000000000")] Optional<Guid> Id, 
 
-    [property: DefaultValue("")] Optional<string> County,
-    [property: DefaultValue("")] Optional<string> Town,
-    [property: DefaultValue("")] Optional<string> Area,
+    [property: DefaultValue("")] Optional<string> LocationName,
+	[property: DefaultValue("")] Optional<string> ConstituencyId,
     
     [property: DefaultDateValue] Optional<DateTime> DateCreated,
     [property: DefaultDateValue] Optional<DateTime> DateModified

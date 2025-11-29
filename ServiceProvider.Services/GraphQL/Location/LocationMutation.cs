@@ -17,10 +17,6 @@ public static class LocationMutation
     {
         try
         {
-           Location.County.CheckRequired();
-           Location.Town.CheckRequired();
-           Location.Area.CheckRequired();
-
            var entity = PopulateEntity(new Location(), Location);
            entity = await service.AddAsync(entity, logInfo);
 
@@ -67,10 +63,6 @@ public static class LocationMutation
     [GraphQLIgnore]
     private static Location PopulateEntity(Location entity, LocationMutationInput input)
     {
-        entity.County = input.County.CheckForValue(entity.County);
-        entity.Town = input.Town.CheckForValue(entity.Town);
-        entity.Area = input.Area.CheckForValue(entity.Area);
-
         entity.DateCreated = input.DateCreated.CheckForValue(entity.DateCreated);
         entity.DateModified = DateTime.UtcNow;
 

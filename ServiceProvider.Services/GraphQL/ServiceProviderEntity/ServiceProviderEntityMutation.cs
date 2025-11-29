@@ -1,5 +1,6 @@
 ﻿using ServiceProvider.Core.Classes;
 using HotChocolate.Authorization;
+using ServiceProvider.Core.DTOs.User;
 using ServiceProvider.Core.Exceptions;
 using ServiceProvider.Core.Extensions;
 using ServiceProvider.Core.Interfaces.Services;
@@ -13,20 +14,24 @@ namespace Graphql.Services.GraphQL;
 public static class ServiceProoviderEntityMutation
 {
 	[AllowAnonymous]
-    public static async Task<ServiceProviderEntity> AddServiceProviderEntity(ServiceProviderMutationInput ServiceProvider, EntityLogInfo logInfo, IServiceProviderEntityService service)
+    public static async Task<ServiceProviderCreatedDto> AddServiceProviderEntity(ServiceProviderMutationInput serviceProvider, EntityLogInfo logInfo, IServiceProviderEntityService service)
     {
         try
         {
-	        ServiceProvider.Email.CheckRequired();
-	        ServiceProvider.FirstName.CheckRequired();
-	        ServiceProvider.LastName.CheckRequired();
-	        ServiceProvider.Phone.CheckRequired();
-	        ServiceProvider.BusinessName.CheckRequired();
-	        ServiceProvider.BusinessDescription.CheckRequired();
-            var entity = PopulateEntity(new ServiceProviderEntity(), ServiceProvider);
+	        serviceProvider.Email.CheckRequired();
+	        serviceProvider.FirstName.CheckRequired();
+	        serviceProvider.LastName.CheckRequired();
+	        serviceProvider.Phone.CheckRequired();
+	        serviceProvider.BusinessName.CheckRequired();
+	        serviceProvider.BusinessDescription.CheckRequired();
+            var entity = PopulateEntity(new ServiceProviderEntity(), serviceProvider);
             
-            entity = await service.AddAsync(entity, logInfo);
-            return entity;
+            await service.AddAsync(entity, logInfo);
+            
+            return new ServiceProviderCreatedDto()
+            {
+	            Message = "Service Provider created successfully. Please check your email to activate your account and set your password."
+            };
 
         }
         catch (AppException ex)
@@ -34,7 +39,7 @@ public static class ServiceProoviderEntityMutation
             throw new GraphQLException(new Error(ex.Message, ex.ValidationCode));
         }
     }
-    
+	[AllowAnonymous]
     public static async Task<ServiceProviderEntity> UpdateServiceProvider(ServiceProviderMutationInput input, EntityLogInfo logInfo, IServiceProviderEntityService service)
     {
         try
@@ -52,6 +57,26 @@ public static class ServiceProoviderEntityMutation
         {
             throw new GraphQLException(new Error(ex.Message, ex.ValidationCode));
         }
+    }
+	[AllowAnonymous]
+    public static async Task<LoginUserDTO> ActivateAccountAndResetPassword(ResetPasswordInputDto input, IServiceProviderEntityService service)
+    {
+	    try
+	    {
+		    if (string.IsNullOrEmpty(input.Token))
+			    throw new AppException("Email can not be null");
+
+		    var result = await service.ActivateAccountAndResetPassword(input.Token, input.NewPassword, input.ConfirmPassword);
+		    return  new LoginUserDTO()
+		    {
+			    Token = result
+		    };
+	    }
+	    catch (Exception e)
+	    {
+		    Console.WriteLine(e);
+		    throw;
+	    }
     }
     
     public static async Task<bool> DeleteServiceProvider(Guid id, EntityLogInfo logInfo, IServiceProviderEntityService service)

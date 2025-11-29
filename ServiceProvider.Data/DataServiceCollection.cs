@@ -44,7 +44,6 @@ public static class DataServiceCollectionExtensions
 
 		//service
 		services.AddScoped<IServiceRepository, ServiceRepository>();
-		services.AddScoped<IServiceLocationRepository, ServiceLocationRepository>();
 		
 		//serviceProviderclient
 		services.AddScoped<IServiceProviderEntityRepository, ServiceProviderEntityRepository>();
@@ -58,6 +57,8 @@ public static class DataServiceCollectionExtensions
 		//susbscription
 		services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
         
+		//providerLocations
+		services.AddScoped<IProviderLocationsRepository, ProviderLocationsRepository>();
 		return services;
 	}
     
