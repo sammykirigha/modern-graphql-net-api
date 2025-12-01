@@ -89,14 +89,17 @@ public async Task<CreateUserDto> AddAsync(CreateUserDto input, EntityLogInfo log
     userObj.Id = Guid.NewGuid();
     userObj.Password = hashedPassword;
     userObj.RoleId = roleId;
-    userObj.IsActive = true;
     userObj.DateCreated = DateTime.UtcNow;
 
     // Save the user to the database
     var entity = await _user_repository.AddAsync(userObj);
-
-    // Log the creation event
     await _log.LogAddAsync(logInfo, entity);
+    
+    //send email for the user confirm their account
+    var token = _tokenService.GenerateResetToken(entity.Email);
+    var url = $"http://localhost:3000/reset-password?token={token}";
+    await _smtpEmailService.SendEmailAsync(entity.Email, "Account Creation Successful",
+		$"Your account has been successfully created. Click the link to activate your account. {url}");
 
     // Map the saved entity back to DTO
     var returnObj = _mapper.Map<CreateUserDto>(entity);
@@ -206,6 +209,26 @@ public async Task<CreateUserDto> AddAsync(CreateUserDto input, EntityLogInfo log
 		
 	    await _user_repository.UpdateAsync(user);
 	    //return true when updated
+	    return true;
+    }
+    
+    //activate account
+    public async Task<bool> ActivateAccount(string token)
+    {
+	    using var trans = await _user_repository.BeginTransactionAsync();
+	    //decode the token to get the email
+	    var email = _tokenService.DecodeResetToken(token);
+
+	    //get the user with the email
+	    var user = await _user_repository.GetByEmailAsync(email);
+	    if (user == null)
+		    throw new AppException("No registered user with the email provided");
+
+	    //activate the user account
+	    user.IsActive = true;
+	    await _user_repository.UpdateAsync(user);
+	    await trans.CommitAsync();
+	    
 	    return true;
     }
 }

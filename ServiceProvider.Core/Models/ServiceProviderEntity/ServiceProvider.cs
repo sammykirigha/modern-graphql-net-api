@@ -18,6 +18,7 @@ public partial class ServiceProviderEntity: IEntity
 	public DateTime DateModified { get; set; }
 	[JsonIgnore] public virtual ICollection<Service>? Services { get; set; } = new List<Service>();
 	[JsonIgnore] public virtual ICollection<Booking>? Bookings { get; set; } = new List<Booking>();
+	[JsonIgnore] public virtual ICollection<ServiceListing>? ServiceListings { get; set; } = new List<ServiceListing>();
 
 	[JsonIgnore] public virtual Subscription? Subscription { get; set; }
 }

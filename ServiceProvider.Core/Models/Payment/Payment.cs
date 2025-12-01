@@ -28,7 +28,15 @@ public partial class Payment: IEntity
     /// <summary>
     /// PaymentMethod
     /// </summary>
-    public PaymentStatus Status { get; set; }
+    public PaymentStatus Status { get; set; }    
+    /// <summary>
+    /// PaymentMethod
+    /// </summary>
+    public Guid PlanId { get; set; }
+    /// <summary>
+    /// PaymentMethod
+    /// </summary>
+    public Guid ServiceProviderId { get; set; }
     /// <summary>
     /// Currency
     /// </summary>

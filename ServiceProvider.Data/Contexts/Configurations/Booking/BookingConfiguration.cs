@@ -11,7 +11,6 @@ public partial class BookingConfiguration : IEntityTypeConfiguration<Booking>
         entity.ToTable($"SP_{nameof(Booking)}");
         entity.HasKey(x => x.Id);
 
-        entity.HasOne(x => x.Service).WithMany(x => x.Bookings).HasForeignKey(x => x.ServiceId).OnDelete(DeleteBehavior.Restrict);
         entity.HasOne(x => x.ServiceProvider).WithMany(x => x.Bookings).HasForeignKey(x => x.ServiceProviderId).OnDelete(DeleteBehavior.Restrict);
     }
 }

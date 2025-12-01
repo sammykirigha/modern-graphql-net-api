@@ -129,6 +129,18 @@ public static class UserMutation
         }
     }
 
+    public static async Task<bool> ActivateAccount(string token, IUserService service)
+	{
+		try
+		{
+			var result = await service.ActivateAccount(token);
+			return result;
+		}
+		catch (AppException ex)
+		{
+			throw new GraphQLException(new Error(ex.Message, ex.ValidationCode));
+		}
+	}
     [GraphQLIgnore]
     private static T PopulateEntity<T>(T entity, UserMutationInput input) where T : class, IUserInput
     {

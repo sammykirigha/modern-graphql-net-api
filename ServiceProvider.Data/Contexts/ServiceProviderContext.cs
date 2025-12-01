@@ -18,6 +18,23 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
     // user
 	public virtual DbSet<User> Users { get; set; }
 	
+	//serviceListing
+	public virtual DbSet<ServiceListing> ServiceListings { get; set; }
+	
+	//customServices
+	public virtual DbSet<CustomService> CustomServices { get; set; }
+	
+	//county
+	public virtual DbSet<County> Counties { get; set; }
+	//constituency
+	public virtual DbSet<Constituency> Constituencies { get; set; }
+	
+	//providerLocations
+	public virtual DbSet<ProviderLocations> ProviderLocations { get; set; }
+	
+	//providerServices
+	public virtual DbSet<ProviderServices> ProviderServices { get; set; }
+	
 	//media
 	public virtual DbSet<Media> Media { get; set; }
 	public virtual DbSet<UserPermission> UserPermissions { get; set; }
@@ -37,8 +54,6 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
     
     //services
     public virtual DbSet<Service> Services { get; set; }
-    public virtual DbSet<ServiceLocation> ServiceLocations { get; set; }
-    
     //service provider client
     public virtual DbSet<ServiceProviderEntity> ServiceProviders { get; set; }
 	//plan
@@ -76,8 +91,8 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 		
 		//service
 		modelBuilder.ApplyConfiguration(new Configurations.ServiceConfiguration());
-		modelBuilder.ApplyConfiguration(new Configurations.ServiceLocationConfiguration());
-		
+		//serviceListing
+		modelBuilder.ApplyConfiguration(new Configurations.ServiceListingConfiguration());
 		//category
 		modelBuilder.ApplyConfiguration(new Configurations.CategoryConfiguration());
 
@@ -100,8 +115,23 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 		//subscription
 		modelBuilder.ApplyConfiguration(new Configurations.SubscriptionConfiguration());
 		
+		//providerLocations
+		modelBuilder.ApplyConfiguration(new Configurations.ProviderLocationsConfiguration());
+		//providerServices
+		modelBuilder.ApplyConfiguration(new Configurations.ProviderServicesConfiguration());
+		
+		//customServices
+		modelBuilder.ApplyConfiguration(new Configurations.CustomServiceConfiguration());
+		
+		//county
+		modelBuilder.ApplyConfiguration(new Configurations.CountyConfiguration());
+		//constituency
+		modelBuilder.ApplyConfiguration(new Configurations.ConstituencyConfiguration());
 		// seeding
 		DataSeeding.AddUserSeeding(modelBuilder);
+		CountySeeding.AddCountySeeding(modelBuilder);
+		ConstituencySeeding.AddConstituencySeeding(modelBuilder);
+		LocationSeeding.AddLocationSeeding(modelBuilder);
 	}
     
 	protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

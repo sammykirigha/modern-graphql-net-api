@@ -20,7 +20,6 @@ public partial class Category : IEntity
     /// Date/time record created
     /// </summary>
     public DateTime DateModified { get; set; }
-
     /// <summary>
     /// Last date/time record changed
     /// </summary>
