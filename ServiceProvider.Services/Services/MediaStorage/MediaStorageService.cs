@@ -44,7 +44,7 @@ public class MediaStorageService : IMediaStorageService
 		
 		var folder = uploadingReason == MediaCategory.BusinessImages ? "business-images" : "personal-documents";
 
-		var s3Key = $"{folder}/{DateTime.UtcNow.Ticks}_{Guid.NewGuid()}_{originalFileName}"; 
+		var s3Key = $"/{folder}/{DateTime.UtcNow.Ticks}_{Guid.NewGuid()}_{originalFileName}"; 
 		
 		var fileUrl = await _storageService.UploadFileAsync(fileStream, s3Key, contentType);
 		

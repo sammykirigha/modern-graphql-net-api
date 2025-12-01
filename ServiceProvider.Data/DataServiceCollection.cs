@@ -44,6 +44,8 @@ public static class DataServiceCollectionExtensions
 
 		//service
 		services.AddScoped<IServiceRepository, ServiceRepository>();
+		//serviceListing
+		services.AddScoped<IServiceListingRepository, ServiceListingRepository>();
 		
 		//serviceProviderclient
 		services.AddScoped<IServiceProviderEntityRepository, ServiceProviderEntityRepository>();

@@ -18,6 +18,9 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
     // user
 	public virtual DbSet<User> Users { get; set; }
 	
+	//serviceListing
+	public virtual DbSet<ServiceListing> ServiceListings { get; set; }
+	
 	//customServices
 	public virtual DbSet<CustomService> CustomServices { get; set; }
 	
@@ -88,6 +91,8 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 		
 		//service
 		modelBuilder.ApplyConfiguration(new Configurations.ServiceConfiguration());
+		//serviceListing
+		modelBuilder.ApplyConfiguration(new Configurations.ServiceListingConfiguration());
 		//category
 		modelBuilder.ApplyConfiguration(new Configurations.CategoryConfiguration());
 
@@ -124,6 +129,9 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 		modelBuilder.ApplyConfiguration(new Configurations.ConstituencyConfiguration());
 		// seeding
 		DataSeeding.AddUserSeeding(modelBuilder);
+		CountySeeding.AddCountySeeding(modelBuilder);
+		ConstituencySeeding.AddConstituencySeeding(modelBuilder);
+		LocationSeeding.AddLocationSeeding(modelBuilder);
 	}
     
 	protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

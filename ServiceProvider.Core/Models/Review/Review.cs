@@ -1,30 +1,21 @@
 using ServiceProvider.Core.Interfaces.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace ServiceProvider.Core.Models
 {
     public class Review: IEntity
-    {
-          /// <summary>
+    { /// <summary>
     /// Primary key
     /// </summary>
     public Guid Id { get; set; }
     /// <summary>
-    /// Id of booking (foreign key)
-    /// </summary>
-    public Guid? BookingId { get; set; }
-    /// <summary>
-    /// Id of user (foreign key)
+    /// ct of user (foreign key)
     /// </summary>
     public Guid? CustomerId { get; set; }
     /// <summary>
-    /// Id of service (foreign key)
+    /// sp of service (foreign key)
     /// </summary>
-    public Guid? ServiceId { get; set; }
+    public Guid? ServiceListingId { get; set; }
     /// <summary>
     /// Date/time record created
     /// </summary>
@@ -41,17 +32,8 @@ namespace ServiceProvider.Core.Models
     /// Rating out of 5
     /// </summary>
     public int Rating { get; set; }
-    /// <summary>
-    /// Is verifiedTransactionId approved
-    /// </summary>
-    public string verifiedTransactionId { get; set; } = "";
-    /// <summary>
-    /// Is review active
-    /// </summary>
-    public TransactionType TransactionType { get; set; }
-    [JsonIgnore] public virtual Booking? Booking { get; set; }
     [JsonIgnore] public virtual User? User { get; set; }
-    [JsonIgnore] public virtual Service? Service { get; set; }
+    [JsonIgnore] public virtual ServiceListing? ServiceListing { get; set; }
 
     [JsonIgnore] public virtual ICollection<ErrorLog> ErrorLogsActive { get; set; } = new List<ErrorLog>();
     [JsonIgnore] public virtual ICollection<ErrorLog> ErrorLogsLoggedIn { get; set; } = new List<ErrorLog>();
