@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ServiceProvider.Core.Classes;
+using ServiceProvider.Core.DTOs.User;
 using ServiceProvider.Core.Exceptions;
 using ServiceProvider.Core.Extensions;
 using ServiceProvider.Core.Interfaces.EmailService;
@@ -112,7 +113,7 @@ public class ServiceProviderEntityService :  IServiceProviderEntityService
         return serviceProvider;
     }
     
-    public async Task<string> ActivateAccountAndResetPassword(string token, string newPassword, string confirmPassword)
+    public async Task<LoginResponseDto> ActivateAccountAndResetPassword(string token, string newPassword, string confirmPassword)
 	{
 		using var trans = await _spRepository.BeginTransactionAsync();
 		var email = _tokenService.DecodeResetToken(token);

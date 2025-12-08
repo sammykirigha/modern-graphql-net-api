@@ -22,7 +22,6 @@ public static class WebAppBuilderExt
 		//serviceProvider jwt settings
 		var serviceProviderJwt = builder.Configuration.GetSection(ServiceProviderJwtSettings.SectionName);
 		serviceProviderJwt.Bind(AppSettings.ServiceProviderJwt);
-
 	}
 
 	public static void AddTestAppSettings(this IConfiguration configuration)

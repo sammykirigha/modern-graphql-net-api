@@ -7,6 +7,8 @@
         <UserSecretsId>e3eccd19-3774-42ad-aba5-7c2d7c9a9289</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
+        <GenerateDependencyFile>true</GenerateDependencyFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -50,9 +52,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ServiceProvider.Core\ServiceProvider.Core.csproj" />
-        <ProjectReference Include="..\ServiceProvider.Data\ServiceProvider.Data.csproj" />
         <ProjectReference Include="..\ServiceProvider.Services\ServiceProvider.Services.csproj" />
+        <ProjectReference Include="..\ServiceProvider.Data\ServiceProvider.Data.csproj" />
+        <ProjectReference Include="..\ServiceProvider.Core\ServiceProvider.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="..\ServiceProvider.IntegrationTests" />
     </ItemGroup>
 
     <ItemGroup>

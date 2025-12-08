@@ -32,6 +32,14 @@ public partial class User : IEntity, IUserInput
     /// </summary>
     public string Password { get; set; } = "";
     /// <summary>
+    /// Primary Password of user
+    /// </summary>
+    public string ResetPasswordToken { get; set; } = "";
+    /// <summary>
+    /// Primary Password of user
+    /// </summary>
+    public DateTime ResetPasswordExpires { get; set; }
+    /// <summary>
     /// Id of role (foreign key)
     /// </summary>
     public Guid? RoleId { get; set; }

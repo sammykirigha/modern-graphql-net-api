@@ -1,4 +1,3 @@
-using Amazon.S3;
 using Microsoft.ApplicationInsights.Extensibility;
 using Serilog;
 using Serilog.Events;
@@ -15,15 +14,15 @@ using ServiceProvider.Services.Helpers;
 using Microsoft.Extensions.Options;
 using ServiceProvider.Core.Interfaces.EmailService;
 using ServiceProvider.Core.Interfaces.Passwords;
+using ServiceProvider.Core.Interfaces.Services.PaymentStrategy;
 using ServiceProvider.Core.Interfaces.Storage;
 using ServiceProvider.Services.Infrastructure;
 using ServiceProvider.Services.Mapping;
 using ServiceProvider.Services.Services.EmailService;
 
 var builder = WebApplication.CreateBuilder(args);
+var isTestEnvironment = builder.Environment.IsEnvironment("IntegrationTests");
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 builder.Configuration.AddJsonFile("appversion.json", optional: false, reloadOnChange: true);
 builder.Configuration.AddJsonFile($"appversion.{environment}.json", optional: true, reloadOnChange: true);
@@ -39,10 +38,21 @@ Log.Logger = new LoggerConfiguration()
 //add settings
 AppSettings.Data.IsEFMigration = Environment.GetCommandLineArgs().Contains("migrations") ||
                                   Environment.GetCommandLineArgs().Contains("database");
-builder.AddAppSettings();
-builder.AddVersionSettings();
+// Only add app settings if not in test environment
+if (!isTestEnvironment)
+{
+	builder.AddAppSettings();
+	builder.Host.UseSerilog((context, services, configuration) => configuration
+		.ReadFrom.Configuration(context.Configuration)
+		.ReadFrom.Services(services)
+		.Enrich.FromLogContext());
+}
+else
+{
+	builder.Configuration.AddTestAppSettings();
 
-builder.Host.UseSerilog((context, services, configuration) => configuration.ReadFrom.Configuration(context.Configuration).ReadFrom.Services(services));
+}
+builder.AddVersionSettings();
 
 //automapper
 services.AddAutoMapper(typeof(Program), typeof(UserProfile));
@@ -61,13 +71,18 @@ services.Configure<AwsSettings>(builder.Configuration.GetSection("AwsSettings"))
 
 //tokens
 services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+services.Configure<MPesaSettings>(builder.Configuration.GetSection("MPesaSettings"));
+
+//payment
+services.AddKeyedScoped<IPaymentStrategy, MpesaDarajaGateway>("mpesa");
+services.AddKeyedScoped<IPaymentStrategy, StripeGateway>("stripe");
 
 //add services
 services.AddSingleton<ITelemetryInitializer, AppVersionTelemetryInitializer>();
 services.AddScoped<IUserProfileCoreService, UserProfileCoreService>();
 services.AddHttpContextAccessor();
 services.AddHttpClient();
-services.AddDataServices();
+services.AddDataServices(builder.Environment);
 services.AddMainServices();
 services.AddCorsConfig();
 services.AddIdentityConfig();
@@ -81,14 +96,28 @@ System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Inst
 
 // *** APP ***
 var app = builder.Build();
-app.UseSerilogRequestLogging();
 
-// Configure the HTTP request pipeline.
-app.UseSwaggerConfig();
 
 if (app.Environment.IsDevelopment())
 {
+	app.UseSerilogRequestLogging();
+	app.UseSwaggerConfig();
     app.UseDeveloperExceptionPage();
+    
+    using (var scope = app.Services.CreateScope())
+    {
+	    var dbContext = scope.ServiceProvider.GetRequiredService<ServiceProviderContext>();
+        
+	    if (dbContext.Database.IsRelational())
+	    {
+		    
+		    var pendingMigrations = dbContext.Database.GetPendingMigrations();
+		    if (pendingMigrations.Any())
+		    {
+			    dbContext.Database.Migrate();
+		    }
+	    }
+    }
 }
 
 app.UseHttpsRedirection();
@@ -119,6 +148,8 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
+
+public partial class Program { }
 
 // "email": "dkirigha18+1@gmail.com",
 

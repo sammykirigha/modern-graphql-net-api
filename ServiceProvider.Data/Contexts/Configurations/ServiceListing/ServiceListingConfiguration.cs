@@ -10,9 +10,10 @@ public class ServiceListingConfiguration: IEntityTypeConfiguration<ServiceListin
 	{
 		entity.ToTable($"SP_{nameof(ServiceListing)}");
 		entity.HasKey(x => x.Id);
-		entity.HasMany(x => x.Reviews).WithOne(x => x.ServiceListing).HasForeignKey(x => x.ServiceListingId);
-		entity.HasMany(x => x.Bookings).WithOne(x => x.ServiceListing).HasForeignKey(x => x.ServiceListingId);
-		entity.HasOne(x => x.ServiceProvider).WithMany(x => x.ServiceListings).HasForeignKey(x => x.ServiceProviderId);
+		entity.HasMany(x => x.Reviews).WithOne(x => x.ServiceListing);
+		entity.HasMany(x => x.Bookings).WithOne(x => x.ServiceListing);
+		entity.HasOne(x => x.ServiceProvider).WithMany(x => x.ServiceListings);
+		entity.HasMany(x => x.ServiceListingsServices);	
 
 	}
 
