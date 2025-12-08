@@ -10,8 +10,6 @@ public partial class ServiceProviderEntity: IEntity
 	public string LastName { get; set; } = string.Empty;
 	public string Email { get; set; } = string.Empty;
 	public string Phone { get; set; } = string.Empty;
-	public string BusinessName { get; set; } = string.Empty;
-	public string BusinessDescription { get; set; } = string.Empty;
 	public  Guid UserId { get; set; }
 	public bool IsActive { get; set; }
 	public DateTime DateCreated { get; set; }

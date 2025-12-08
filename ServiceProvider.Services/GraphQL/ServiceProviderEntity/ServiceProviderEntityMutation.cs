@@ -22,8 +22,6 @@ public static class ServiceProoviderEntityMutation
 	        serviceProvider.FirstName.CheckRequired();
 	        serviceProvider.LastName.CheckRequired();
 	        serviceProvider.Phone.CheckRequired();
-	        serviceProvider.BusinessName.CheckRequired();
-	        serviceProvider.BusinessDescription.CheckRequired();
             var entity = PopulateEntity(new ServiceProviderEntity(), serviceProvider);
             
             await service.AddAsync(entity, logInfo);
@@ -59,7 +57,7 @@ public static class ServiceProoviderEntityMutation
         }
     }
 	[AllowAnonymous]
-    public static async Task<LoginUserDTO> ActivateAccountAndResetPassword(ResetPasswordInputDto input, IServiceProviderEntityService service)
+    public static async Task<LoginResponseDto> ActivateAccountAndResetPassword(ResetPasswordInputDto input, IServiceProviderEntityService service)
     {
 	    try
 	    {
@@ -67,10 +65,7 @@ public static class ServiceProoviderEntityMutation
 			    throw new AppException("Email can not be null");
 
 		    var result = await service.ActivateAccountAndResetPassword(input.Token, input.NewPassword, input.ConfirmPassword);
-		    return  new LoginUserDTO()
-		    {
-			    Token = result
-		    };
+		    return result;
 	    }
 	    catch (Exception e)
 	    {
@@ -98,8 +93,6 @@ public static class ServiceProoviderEntityMutation
         entity.Email = input.Email.CheckForValue(entity.Email);
         entity.FirstName = input.FirstName.CheckForValue(entity.FirstName);
         entity.LastName = input.LastName.CheckForValue(entity.LastName);
-        entity.BusinessName = input.BusinessName.CheckForValue(entity.BusinessName);
-        entity.BusinessDescription = input.BusinessDescription.CheckForValue(entity.BusinessDescription);
         entity.Phone = input.Phone.CheckForValue(entity.Phone);
 		
         entity.DateCreated = input.DateCreated.CheckForValue(entity.DateCreated);

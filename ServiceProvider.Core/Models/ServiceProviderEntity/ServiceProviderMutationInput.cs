@@ -11,8 +11,6 @@ public record ServiceProviderMutationInput(
 	[property: DefaultValue("")] Optional<string> FirstName,
 	[property: DefaultValue("")] Optional<string> LastName,
 	[property: DefaultValue("")] Optional<string> Email,
-	[property: DefaultValue("")] Optional<string> BusinessName,
-	[property: DefaultValue("")] Optional<string> BusinessDescription,
 	Optional<string> Phone,
 	[property: DefaultDateValue] Optional<DateTime> DateCreated,
 	[property: DefaultDateValue] Optional<DateTime> DateModified

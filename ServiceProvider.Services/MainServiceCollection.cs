@@ -2,9 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using ServiceProvider.Core.Interfaces;
 using ServiceProvider.Core.Interfaces.Services;
+using ServiceProvider.Core.Interfaces.Services.Auth;
 using ServiceProvider.Core.Interfaces.Services.Medias;
 using ServiceProvider.Core.Interfaces.Services.Users;
 using ServiceProvider.Services;
+using ServiceProvider.Services.Auth;
 using ServiceProvider.Services.Services;
 using ServiceProvider.Services.Services.MediaStorage;
 using Stripe;
@@ -27,6 +29,9 @@ public static class MainServiceCollectionExtensions
 		//users
 		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<IUserPermissionService, UserPermissionService>();
+		
+		//refresh token
+		services.AddScoped<IRefreshTokenService, RefreshTokenService>();
         
 		// Permission
 		services.AddScoped<IPermissionService, PermissionService>();
@@ -37,6 +42,9 @@ public static class MainServiceCollectionExtensions
 
 		//service
 		services.AddScoped<IServiceService, ServiceService>();
+		
+		//serviceListing
+		services.AddScoped<IServiceListingService, ServiceListingService>();
 
 		//location
 		services.AddScoped<ILocationService, LocationService>();
@@ -49,17 +57,12 @@ public static class MainServiceCollectionExtensions
 
 		//plans
 		services.AddScoped<IPlanService, PlanService>();
-
-		//payments
-		services.AddScoped<IPaymentService, PaymentService>();
 		
 		//media
 		services.AddScoped<IMediaStorageService, MediaStorageService>();  
 
 		//subscriptions
 		services.AddScoped<ISubscriptionService, SubscriptionService>();
-
-		services.AddScoped<IStripeGateWayService<PaymentIntent>, StripeGateWayService>();
         
 		return services;
 	}
@@ -79,6 +82,9 @@ public static class MainServiceCollectionExtensions
 		//users
 		builder.RegisterService<IUserService>();
 		builder.RegisterService<IUserPermissionService>();
+		
+		//refresh token
+		builder.RegisterService<IRefreshTokenService>();
         
 		// permission
 		builder.RegisterService<IPermissionService>();
@@ -95,6 +101,9 @@ public static class MainServiceCollectionExtensions
 
 		//service
 		builder.RegisterService<IServiceService>();
+		
+		//serviceListing
+		builder.RegisterService<IServiceListingService>();
 
 		//client
 		builder.RegisterService<IServiceProviderEntityService>();
@@ -107,9 +116,6 @@ public static class MainServiceCollectionExtensions
 
 		//subscription
 		builder.RegisterService<ISubscriptionService>();
-		
-		builder.RegisterService<IStripeGateWayService<PaymentIntent>>();
-        
 		return builder;
 	}
 }

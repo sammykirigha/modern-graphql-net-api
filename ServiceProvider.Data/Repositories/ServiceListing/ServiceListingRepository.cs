@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ServiceProvider.Core.DTOs.ServiceListing;
 using ServiceProvider.Core.Exceptions;
 using ServiceProvider.Core.Interfaces.Repositories;
 using ServiceProvider.Core.Models;
@@ -9,7 +10,7 @@ namespace ServiceProvider.Data.Repositories;
 
 public class ServiceListingRepository(ServiceProviderContext Context) : RepositoryBase(Context) , IServiceListingRepository
 {
-public async Task<ServiceListing> AddAsync(ServiceListing entity)
+public async Task<ServiceListing> AddAsync(CreateServiceListingDto entity)
 {
 	var jsonString = JsonSerializer.Serialize(entity);
 	var newEntity = JsonSerializer.Deserialize<ServiceListing>(jsonString) ??
@@ -23,6 +24,14 @@ public async Task<ServiceListing> AddAsync(ServiceListing entity)
 	await Context.SaveChangesAsync();
 
 	return newEntity;
+}
+
+public async Task<ServiceListing> GetByIdWithServicesAsync(Guid id)
+{
+	var entity = await Context.ServiceListings
+		.Where(sl => sl.Id == id).Include(sl => sl.ServiceListingsServices)
+		.FirstOrDefaultAsync();
+	return entity ?? throw new AppException($"ServiceListing with Id {id} not found");
 }
 
 public async Task<int> DeleteAsync(Guid id)

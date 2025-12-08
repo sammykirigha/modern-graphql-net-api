@@ -5,7 +5,7 @@ namespace ServiceProvider.Core.Interfaces.Services.Users;
 public interface IUserService
 {
 	Task<User?> GetByIdAsync(Guid id);
-	Task<string> LoginAsync(string email, string password);
+	Task<LoginResponseDto> LoginAsync(string email, string password);
 	IQueryable<User> GetList();
 	IQueryable<UserPaged> GetListPaged();
 	Task<CreateUserDto> AddAsync(CreateUserDto input, EntityLogInfo logInfo);
@@ -14,4 +14,5 @@ public interface IUserService
 	Task<string> ForgetPassword(string email);
 	Task<bool> ResetPassword(string token, string  newpassword, string confirmPassword);
 	Task<bool> ActivateAccount(string token);
+	Task<LoginResponseDto> RefreshTokenAsync();
 }

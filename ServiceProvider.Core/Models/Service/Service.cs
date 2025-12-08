@@ -13,7 +13,11 @@ public partial class Service : IEntity
     /// <summary>
     /// Name of role
     /// </summary>
-    public string Name { get; set; } = "";
+    public string Name { get; set; } = "";    
+    /// <summary>
+    /// Description of role
+    /// </summary>
+    public string Description { get; set; } = "";
     /// <summary>
     /// foreign key
     /// </summary>
@@ -27,6 +31,7 @@ public partial class Service : IEntity
     /// </summary>
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     [JsonIgnore] public virtual Category? Category { get; set; }
+    [JsonIgnore] public virtual ICollection<ServiceListingsServices>? ServiceListingsServices { get; set; } =  new List<ServiceListingsServices>();
 }
 
 

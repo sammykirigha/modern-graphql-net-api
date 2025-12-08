@@ -1,3 +1,4 @@
+using ServiceProvider.Core.DTOs.User;
 using ServiceProvider.Core.Models;
 using ServiceProvider.Core.Models.ServiceProvider;
 
@@ -11,5 +12,5 @@ public interface IServiceProviderEntityService
 	Task<ServiceProviderEntity> AddAsync(ServiceProviderEntity entity, EntityLogInfo logInfo);
 	Task<ServiceProviderEntity> UpdateAsync(ServiceProviderEntity entity, EntityLogInfo logInfo, ServiceProviderEntity? oldEntity = null);
 	Task<bool> DeleteAsync(Guid id, EntityLogInfo logInfo);
-	Task<string> ActivateAccountAndResetPassword(string token, string newPassword, string confirmPassword);
+	Task<LoginResponseDto> ActivateAccountAndResetPassword(string token, string newPassword, string confirmPassword);
 }

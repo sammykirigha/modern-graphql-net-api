@@ -4,6 +4,7 @@ using ServiceProvider.Core.Exceptions;
 using ServiceProvider.Core.Interfaces.Repositories;
 using ServiceProvider.Core.Models;
 using ServiceProvider.Data.Contexts;
+using System.Text.Json.Serialization;
 
 namespace ServiceProvider.Data.Repositories;
 

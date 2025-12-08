@@ -14,8 +14,6 @@ public class ServiceService : IServiceService
 
 	public ServiceService(
         IServiceRepository repository,
-        IServiceProviderEntityRepository spRepository,
-        ICategoryRepository categoryRepository,
         IEntityLogService log)
     {
         _repository = repository;

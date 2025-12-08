@@ -1,5 +1,6 @@
 ﻿using ServiceProvider.Core.Classes;
 using HotChocolate.Authorization;
+using Microsoft.AspNetCore.Http;
 using ServiceProvider.Core.Exceptions;
 using ServiceProvider.Core.Extensions;
 using ServiceProvider.Core.Models;
@@ -9,7 +10,6 @@ using ServiceProvider.Core.Interfaces.Services.Users;
 
 
 namespace Graphql.Services.GraphQL;
-
 [MutationType]
 public static class UserMutation
 {
@@ -36,7 +36,7 @@ public static class UserMutation
     }
 
     [AllowAnonymous]
-    public static async Task<LoginUserDTO> LoginUser(UserLoginMutationInput user, IUserService service)
+    public static async Task<LoginResponseDto> LoginUser(UserLoginMutationInput user, [Service]  IUserService service)
     {
         try
         {
@@ -44,14 +44,27 @@ public static class UserMutation
             user.Password.CheckRequired();
 
             var token = await service.LoginAsync(user.Email, user.Password);
-            var userToken = new LoginUserDTO { Token = token };
-            return userToken;
+            
+            return token;
         }
         catch (AppException ex)
         {
             throw new GraphQLException(new Error(ex.Message, ex.ValidationCode));
         }
     }
+    
+    public static async Task<LoginResponseDto> RefreshToken(IUserService service)
+	{
+		try
+		{
+			var token = await service.RefreshTokenAsync();
+			return token;
+		}
+		catch (AppException ex)
+		{
+			throw new GraphQLException(new Error(ex.Message, ex.ValidationCode));
+		}
+	}
     
     [AllowAnonymous]
     public static async Task<ForgetPasswordResponseDto> ForgetPassword(ForgetPasswordInputDto input, IUserService service)

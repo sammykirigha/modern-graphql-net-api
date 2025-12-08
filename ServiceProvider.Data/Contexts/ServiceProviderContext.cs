@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ServiceProvider.Core.Interfaces.Models;
 using ServiceProvider.Core.Models;
+using ServiceProvider.Core.Models.Auth;
 using ServiceProvider.Core.Models.Medias;
 using ServiceProvider.Data.Contexts.Seeding;
 using System;
@@ -17,6 +18,9 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 
     // user
 	public virtual DbSet<User> Users { get; set; }
+	
+	//refreshToken
+	public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
 	
 	//serviceListing
 	public virtual DbSet<ServiceListing> ServiceListings { get; set; }
@@ -51,6 +55,7 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
     
     //locations
     public virtual DbSet<Location> Locations { get; set; }
+    public virtual DbSet<ServiceListingsServices> ServiceListingsServices { get; set; }
     
     //services
     public virtual DbSet<Service> Services { get; set; }
@@ -73,6 +78,9 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 		// user
 		modelBuilder.ApplyConfiguration(new Configurations.UserConfiguration());
 		modelBuilder.ApplyConfiguration(new Configurations.UserPermissionConfiguration());
+		
+		//refreshtoken
+		modelBuilder.ApplyConfiguration(new Configurations.RefreshTokenConfiguration());
 		
 		modelBuilder.ApplyConfiguration(new Configurations.MediasConfiguration());
 		
@@ -116,7 +124,9 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 		modelBuilder.ApplyConfiguration(new Configurations.SubscriptionConfiguration());
 		
 		//providerLocations
-		modelBuilder.ApplyConfiguration(new Configurations.ProviderLocationsConfiguration());
+		modelBuilder.ApplyConfiguration(new Configurations.ProviderLocationsConfiguration());		
+		//providerLocations
+		modelBuilder.ApplyConfiguration(new Configurations.ServiceListingsServicesConfiguration());
 		//providerServices
 		modelBuilder.ApplyConfiguration(new Configurations.ProviderServicesConfiguration());
 		
@@ -132,6 +142,8 @@ public partial class ServiceProviderContext(DbContextOptions<ServiceProviderCont
 		CountySeeding.AddCountySeeding(modelBuilder);
 		ConstituencySeeding.AddConstituencySeeding(modelBuilder);
 		LocationSeeding.AddLocationSeeding(modelBuilder);
+		CategorySeeding.AddCategorySeeding(modelBuilder);
+		ServicesSeeding.AddServicesSeeding(modelBuilder);
 	}
     
 	protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

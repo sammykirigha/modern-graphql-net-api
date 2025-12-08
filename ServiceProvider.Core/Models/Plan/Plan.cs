@@ -30,10 +30,6 @@ public partial class Plan : IEntity
     /// Time duration for the plan
     /// </summary>
     public int Duration { get; set; }
-    /// <summary>
-    /// Time time for the plan
-    /// </summary>
-    public PlanTime Time { get; set; }
         /// <summary>
     /// Time duration
     /// </summary>

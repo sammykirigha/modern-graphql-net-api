@@ -77,6 +77,42 @@ namespace ServiceProvider.Data.Migrations
                     b.ToTable("SP_Booking", "sp");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.Auth.RefreshToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("Expires")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime?>("Revoked")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Token")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SP_RefreshToken", "sp");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.Category", b =>
                 {
                     b.Property<Guid>("Id")
@@ -101,6 +137,88 @@ namespace ServiceProvider.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SP_Category", "sp");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("66c36b11-7162-48fb-b50e-dd57c6e039aa"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6827),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6826),
+                            Name = "Cleaning & Housekeeping",
+                            Slug = ""
+                        },
+                        new
+                        {
+                            Id = new Guid("79620773-1881-438e-8c5b-1ece0ed52083"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6829),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6829),
+                            Name = "Landscaping & Gardening",
+                            Slug = ""
+                        },
+                        new
+                        {
+                            Id = new Guid("ed80a81c-7ef5-40cf-8dfa-a398b6713288"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6831),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6831),
+                            Name = "Jua Kali & General Repairs",
+                            Slug = ""
+                        },
+                        new
+                        {
+                            Id = new Guid("610bdd35-889a-41c1-b096-07fb689283c7"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6833),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6833),
+                            Name = "Ride Hailing & Delivery Services",
+                            Slug = ""
+                        },
+                        new
+                        {
+                            Id = new Guid("ed08e5e4-cc4b-437e-bbc5-362a2f7dcd77"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6835),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6834),
+                            Name = "Catering & Event Services",
+                            Slug = ""
+                        },
+                        new
+                        {
+                            Id = new Guid("0827a10c-440d-49e4-a911-77f0b9320012"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6836),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6836),
+                            Name = "Tutoring & Educational Services",
+                            Slug = ""
+                        },
+                        new
+                        {
+                            Id = new Guid("2789b6f2-bde5-4ed6-9b62-42c713c8eb59"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6838),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6838),
+                            Name = "Fitness & Wellness Services",
+                            Slug = ""
+                        },
+                        new
+                        {
+                            Id = new Guid("7ab0fbf8-0421-4cc0-a7b8-6bf485133f8f"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6840),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6839),
+                            Name = "Beauty, SPA & Personal Care Services",
+                            Slug = ""
+                        },
+                        new
+                        {
+                            Id = new Guid("1051b2fe-dd10-43cc-b4a7-f5beeb324184"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6841),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6841),
+                            Name = "Web & IT Support Services",
+                            Slug = ""
+                        },
+                        new
+                        {
+                            Id = new Guid("6243531c-0fb4-4e7b-ac51-6f15fcf8f813"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6843),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6843),
+                            Name = "Professional & Digital Services",
+                            Slug = ""
+                        });
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.Constituency", b =>
@@ -131,1481 +249,1481 @@ namespace ServiceProvider.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7b8ac724-0e45-4f50-ab00-5a161eae2dd0"),
+                            Id = new Guid("f7376713-cda0-42d6-bfd0-07863a7167f2"),
                             ConstituencyName = "Changamwe",
-                            CountyId = new Guid("544b04f2-801c-4b16-bace-6d7c66076732"),
+                            CountyId = new Guid("0a57bbec-6af3-48d6-987d-d3b40ee59ecc"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("c47d4f4a-349d-487e-a2d1-8040729bb38e"),
+                            Id = new Guid("c8887778-f26c-488f-910f-a3b559a6aaca"),
                             ConstituencyName = "Jomvu",
-                            CountyId = new Guid("544b04f2-801c-4b16-bace-6d7c66076732"),
+                            CountyId = new Guid("0a57bbec-6af3-48d6-987d-d3b40ee59ecc"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("aa63d1d6-be95-439d-b7e7-bfd5487f2df0"),
+                            Id = new Guid("d9a4010f-2ac5-4100-8973-0d6aad5f26dc"),
                             ConstituencyName = "Kisauni",
-                            CountyId = new Guid("544b04f2-801c-4b16-bace-6d7c66076732"),
+                            CountyId = new Guid("0a57bbec-6af3-48d6-987d-d3b40ee59ecc"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("7bb4908d-e429-4e61-b68b-6e5adbc84acf"),
+                            Id = new Guid("0dcb198d-8d64-4822-bff0-384ad92293aa"),
                             ConstituencyName = "Nyali",
-                            CountyId = new Guid("544b04f2-801c-4b16-bace-6d7c66076732"),
+                            CountyId = new Guid("0a57bbec-6af3-48d6-987d-d3b40ee59ecc"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("0b8280f0-a23f-4d87-b35b-38aae52fc5e4"),
+                            Id = new Guid("974e3eba-3062-4d27-8176-70b7c9380265"),
                             ConstituencyName = "Likoni",
-                            CountyId = new Guid("544b04f2-801c-4b16-bace-6d7c66076732"),
+                            CountyId = new Guid("0a57bbec-6af3-48d6-987d-d3b40ee59ecc"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("5070d1f7-da63-4498-9efe-fb0d092c23b2"),
+                            Id = new Guid("1746af8f-21f9-4654-8682-22a428ebea1c"),
                             ConstituencyName = "Mvita",
-                            CountyId = new Guid("544b04f2-801c-4b16-bace-6d7c66076732"),
+                            CountyId = new Guid("0a57bbec-6af3-48d6-987d-d3b40ee59ecc"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("e9e9024a-193d-4c53-9052-51e3d3901b82"),
+                            Id = new Guid("ed90b43e-0d40-4230-b843-e27eb9fb9b0f"),
                             ConstituencyName = "Msambweni",
-                            CountyId = new Guid("58c4c9b7-10a3-4884-8cd4-2120870e2e24"),
+                            CountyId = new Guid("c42ee8ba-0c97-4caa-b03d-3de0c74da9de"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("584c30bc-8c83-40b5-b0ee-7f75c67fe9f8"),
+                            Id = new Guid("abc8c1d8-67fe-49e0-b24e-af5a96f0cd51"),
                             ConstituencyName = "Lungalunga",
-                            CountyId = new Guid("58c4c9b7-10a3-4884-8cd4-2120870e2e24"),
+                            CountyId = new Guid("c42ee8ba-0c97-4caa-b03d-3de0c74da9de"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("7abf6623-1e55-455c-bf2e-21d9ea7a9a95"),
+                            Id = new Guid("975655e3-c847-4576-a80e-6c082a4c22c3"),
                             ConstituencyName = "Matuga",
-                            CountyId = new Guid("58c4c9b7-10a3-4884-8cd4-2120870e2e24"),
+                            CountyId = new Guid("c42ee8ba-0c97-4caa-b03d-3de0c74da9de"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("accace33-c6bb-4126-bfb4-529d6d0f5de5"),
+                            Id = new Guid("114aace5-4bb7-42a2-bb26-907e1408e514"),
                             ConstituencyName = "Kinango",
-                            CountyId = new Guid("58c4c9b7-10a3-4884-8cd4-2120870e2e24"),
+                            CountyId = new Guid("c42ee8ba-0c97-4caa-b03d-3de0c74da9de"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b5aca803-05b3-4491-bf27-df263f978761"),
+                            Id = new Guid("2cac8c49-d744-4ce2-ae9a-b2c8ea330f4b"),
                             ConstituencyName = "Kilifi North",
-                            CountyId = new Guid("d115b8ad-9f10-4399-ad95-701cd1c69a33"),
+                            CountyId = new Guid("9d40d70f-eadf-496a-8340-32c123a71a50"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("cdd6fafc-7f39-44b3-bee1-6b99ff4d81ea"),
+                            Id = new Guid("39fc0f69-e69f-4e50-a499-caac6fd8f6c6"),
                             ConstituencyName = "Kilifi South",
-                            CountyId = new Guid("d115b8ad-9f10-4399-ad95-701cd1c69a33"),
+                            CountyId = new Guid("9d40d70f-eadf-496a-8340-32c123a71a50"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d95abe3a-0946-407f-ac14-4bec8e07c350"),
+                            Id = new Guid("eb0b0d78-5fd0-4d08-94b3-95d2014faac3"),
                             ConstituencyName = "Ganze",
-                            CountyId = new Guid("d115b8ad-9f10-4399-ad95-701cd1c69a33"),
+                            CountyId = new Guid("9d40d70f-eadf-496a-8340-32c123a71a50"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("df259280-59ac-47af-812a-311469c85d7c"),
+                            Id = new Guid("68eb782f-4a5e-48b5-ac77-5424a42c7f46"),
                             ConstituencyName = "Malindi",
-                            CountyId = new Guid("d115b8ad-9f10-4399-ad95-701cd1c69a33"),
+                            CountyId = new Guid("9d40d70f-eadf-496a-8340-32c123a71a50"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("7f3467dd-c6c1-4852-be74-3f7f8db45580"),
+                            Id = new Guid("6a546c94-57b1-40bb-8b42-2ec947fb3564"),
                             ConstituencyName = "Magarini",
-                            CountyId = new Guid("d115b8ad-9f10-4399-ad95-701cd1c69a33"),
+                            CountyId = new Guid("9d40d70f-eadf-496a-8340-32c123a71a50"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("7c8a76e5-277e-4cc3-87bc-2eac5bb6fbde"),
+                            Id = new Guid("ec8fb432-97ba-44e5-9cbb-b1de5bd327a5"),
                             ConstituencyName = "Rabai",
-                            CountyId = new Guid("d115b8ad-9f10-4399-ad95-701cd1c69a33"),
+                            CountyId = new Guid("9d40d70f-eadf-496a-8340-32c123a71a50"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("18e1c541-5743-4797-a9c9-0c053dd0497f"),
+                            Id = new Guid("5d6270f6-a4d0-4d37-93d4-0e55d362837b"),
                             ConstituencyName = "Garsen",
-                            CountyId = new Guid("27d6b05e-4275-426c-96ac-6712a6d20670"),
+                            CountyId = new Guid("713c3d6f-d256-4efc-a98d-3a8c222fdc0d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("e846129f-152b-49ac-b5d4-7a86c84113b0"),
+                            Id = new Guid("fd5ae020-876c-4b60-b0cb-c9b11b63105f"),
                             ConstituencyName = "Galole",
-                            CountyId = new Guid("27d6b05e-4275-426c-96ac-6712a6d20670"),
+                            CountyId = new Guid("713c3d6f-d256-4efc-a98d-3a8c222fdc0d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("39c15a99-e373-43fb-983c-f57f8bbf09a8"),
+                            Id = new Guid("c89449b4-d671-48be-848a-87c6fbf7eec8"),
                             ConstituencyName = "Bura",
-                            CountyId = new Guid("27d6b05e-4275-426c-96ac-6712a6d20670"),
+                            CountyId = new Guid("713c3d6f-d256-4efc-a98d-3a8c222fdc0d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("dcd0269e-5409-40bc-a993-c91480cba40e"),
+                            Id = new Guid("101b61d8-2387-45fe-bc01-4f26115a73f6"),
                             ConstituencyName = "Lamu East",
-                            CountyId = new Guid("ba96440e-1695-45ed-b1d6-1d0bda31972a"),
+                            CountyId = new Guid("47c20647-a58b-44f4-aea5-43b64725727d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("7765e588-dfee-4b0a-83f6-9b15389841b8"),
+                            Id = new Guid("b349a239-00c1-4aee-969d-735465b51b20"),
                             ConstituencyName = "Lamu West",
-                            CountyId = new Guid("ba96440e-1695-45ed-b1d6-1d0bda31972a"),
+                            CountyId = new Guid("47c20647-a58b-44f4-aea5-43b64725727d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("95f352b9-e574-42dd-9242-23b3a87f2b00"),
+                            Id = new Guid("5cf84f1c-6d5b-4465-bb60-522ffc8c981a"),
                             ConstituencyName = "Taveta",
-                            CountyId = new Guid("d6a89ede-ddbe-4ea0-ae39-cb04cfde9319"),
+                            CountyId = new Guid("eba33a62-b431-41cc-8da8-f4d021e5dece"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d0cea0dc-9ca0-4aea-9351-69c60ab096fa"),
+                            Id = new Guid("00af451a-eb87-4cdc-99a5-d531ac59837a"),
                             ConstituencyName = "Wundanyi",
-                            CountyId = new Guid("d6a89ede-ddbe-4ea0-ae39-cb04cfde9319"),
+                            CountyId = new Guid("eba33a62-b431-41cc-8da8-f4d021e5dece"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("cb52e0d6-3c84-4f47-a699-35c9b877cba8"),
+                            Id = new Guid("d4030161-64ea-4573-b11b-8bf282c32a4a"),
                             ConstituencyName = "Mwatate",
-                            CountyId = new Guid("d6a89ede-ddbe-4ea0-ae39-cb04cfde9319"),
+                            CountyId = new Guid("eba33a62-b431-41cc-8da8-f4d021e5dece"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("0f284c16-06a9-4e3d-b49a-c55be1a7c5ae"),
+                            Id = new Guid("bb4a8bdf-85d9-4ee9-95fa-7fd997575360"),
                             ConstituencyName = "Voi",
-                            CountyId = new Guid("d6a89ede-ddbe-4ea0-ae39-cb04cfde9319"),
+                            CountyId = new Guid("eba33a62-b431-41cc-8da8-f4d021e5dece"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("60614337-5b24-4d5d-97e8-7c1b0a44fcac"),
+                            Id = new Guid("ba4a6a1a-84d8-446d-ab1c-498915f19931"),
                             ConstituencyName = "Daadab",
-                            CountyId = new Guid("6e45ce37-6b4a-4ee8-81ad-a8088e417f5b"),
+                            CountyId = new Guid("cf5a137f-a7a6-489e-8e79-001361d113dd"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("617ef97a-ebb7-4083-9229-c6bc9978efeb"),
+                            Id = new Guid("5d1dcc18-c237-488e-b8e9-7681742b8973"),
                             ConstituencyName = "Garissa Township",
-                            CountyId = new Guid("6e45ce37-6b4a-4ee8-81ad-a8088e417f5b"),
+                            CountyId = new Guid("cf5a137f-a7a6-489e-8e79-001361d113dd"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("5190db52-d654-402a-b065-548c896140b0"),
+                            Id = new Guid("b85a0870-dbb5-40b7-8456-0474c0655f79"),
                             ConstituencyName = "Balambala",
-                            CountyId = new Guid("6e45ce37-6b4a-4ee8-81ad-a8088e417f5b"),
+                            CountyId = new Guid("cf5a137f-a7a6-489e-8e79-001361d113dd"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("a285e687-5563-46a9-be54-47fe40cd06da"),
+                            Id = new Guid("28f060ed-37b2-4010-9524-698c4ef0be53"),
                             ConstituencyName = "Lagdera",
-                            CountyId = new Guid("6e45ce37-6b4a-4ee8-81ad-a8088e417f5b"),
+                            CountyId = new Guid("cf5a137f-a7a6-489e-8e79-001361d113dd"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("221b62f8-9c39-4d98-8c6a-b5f85e444ea1"),
+                            Id = new Guid("d389349c-28b3-4201-a591-b3656972e010"),
                             ConstituencyName = "Fafi",
-                            CountyId = new Guid("6e45ce37-6b4a-4ee8-81ad-a8088e417f5b"),
+                            CountyId = new Guid("cf5a137f-a7a6-489e-8e79-001361d113dd"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("2fb55d6c-7612-47b1-8fad-c7653b43f022"),
+                            Id = new Guid("57b6254a-2a9b-4f5a-8f34-56c4a3901130"),
                             ConstituencyName = "Ijara",
-                            CountyId = new Guid("6e45ce37-6b4a-4ee8-81ad-a8088e417f5b"),
+                            CountyId = new Guid("cf5a137f-a7a6-489e-8e79-001361d113dd"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("180b47a9-4192-4b2c-84f0-d7ec23a0619c"),
+                            Id = new Guid("4e4bbaee-d514-4e9a-bbc6-65fe2cbf5830"),
                             ConstituencyName = "Wajir North",
-                            CountyId = new Guid("9745c8f4-e8f8-459c-88fa-b99e4bb6af77"),
+                            CountyId = new Guid("267a0889-1756-4fa4-96ba-3c301a6bb999"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d30e7806-8be3-4171-aeea-3decb10aec87"),
+                            Id = new Guid("1a79c3be-a7eb-44ec-a0d4-5c43bc6d6dc0"),
                             ConstituencyName = "Wajir East",
-                            CountyId = new Guid("9745c8f4-e8f8-459c-88fa-b99e4bb6af77"),
+                            CountyId = new Guid("267a0889-1756-4fa4-96ba-3c301a6bb999"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("eeb88182-eb9f-4e7d-a082-c961b873c4be"),
+                            Id = new Guid("93b87ea3-8727-4023-b43a-3fbb0424e1d0"),
                             ConstituencyName = "Tarbaj",
-                            CountyId = new Guid("9745c8f4-e8f8-459c-88fa-b99e4bb6af77"),
+                            CountyId = new Guid("267a0889-1756-4fa4-96ba-3c301a6bb999"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b88783f3-473e-4ebf-8eff-7a69923c14e5"),
+                            Id = new Guid("6ec3b5ed-dc58-4479-b065-45e07ed37635"),
                             ConstituencyName = "Wajir West",
-                            CountyId = new Guid("9745c8f4-e8f8-459c-88fa-b99e4bb6af77"),
+                            CountyId = new Guid("267a0889-1756-4fa4-96ba-3c301a6bb999"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("1a82de59-afb0-4453-b4e5-504be310847c"),
+                            Id = new Guid("a73f247c-39a5-4860-95f5-8b0f7b1fb7e3"),
                             ConstituencyName = "Eldas",
-                            CountyId = new Guid("9745c8f4-e8f8-459c-88fa-b99e4bb6af77"),
+                            CountyId = new Guid("267a0889-1756-4fa4-96ba-3c301a6bb999"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("ce5d7d13-7fe3-428f-81ef-967cf819c98f"),
+                            Id = new Guid("b6539e6b-38ab-4148-a589-df598c319d22"),
                             ConstituencyName = "Wajir South",
-                            CountyId = new Guid("9745c8f4-e8f8-459c-88fa-b99e4bb6af77"),
+                            CountyId = new Guid("267a0889-1756-4fa4-96ba-3c301a6bb999"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("ae1361df-c5d5-4962-883c-b67f51cb44ce"),
+                            Id = new Guid("9d24c005-a8b5-43eb-bfde-c68ef2f4d512"),
                             ConstituencyName = "Mandera West",
-                            CountyId = new Guid("9f406995-7d97-4563-a3b9-288d10e30105"),
+                            CountyId = new Guid("912b8d2b-3dd6-4e70-8cd2-2f93029afa52"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("3386d0a4-2449-4d53-99cf-aefb51134e52"),
+                            Id = new Guid("c4cccecd-4950-4390-b60e-ff282ba2ca63"),
                             ConstituencyName = "Banissa",
-                            CountyId = new Guid("9f406995-7d97-4563-a3b9-288d10e30105"),
+                            CountyId = new Guid("912b8d2b-3dd6-4e70-8cd2-2f93029afa52"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("2ee61a0f-2aa3-41e5-89ba-0d37968eae94"),
+                            Id = new Guid("d6fe21ab-ce62-4563-b414-9328dfd95c0b"),
                             ConstituencyName = "Mandera North",
-                            CountyId = new Guid("9f406995-7d97-4563-a3b9-288d10e30105"),
+                            CountyId = new Guid("912b8d2b-3dd6-4e70-8cd2-2f93029afa52"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("2eecf323-121d-4a10-9d1f-5c296a36b512"),
+                            Id = new Guid("9ad1d810-1e0a-4cd4-84ca-727123a49aba"),
                             ConstituencyName = "Mandera South",
-                            CountyId = new Guid("9f406995-7d97-4563-a3b9-288d10e30105"),
+                            CountyId = new Guid("912b8d2b-3dd6-4e70-8cd2-2f93029afa52"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("fe56be9d-a218-432b-be5e-1cb7b11515d7"),
+                            Id = new Guid("b15ec5f4-84dd-4fd2-b7e9-0f9e63131551"),
                             ConstituencyName = "Mandera East",
-                            CountyId = new Guid("9f406995-7d97-4563-a3b9-288d10e30105"),
+                            CountyId = new Guid("912b8d2b-3dd6-4e70-8cd2-2f93029afa52"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("647e0890-a3da-483b-8270-e551e1c5ad3f"),
+                            Id = new Guid("c38cbcb2-e169-417a-9b83-ce67ef9db72c"),
                             ConstituencyName = "Lafey",
-                            CountyId = new Guid("9f406995-7d97-4563-a3b9-288d10e30105"),
+                            CountyId = new Guid("912b8d2b-3dd6-4e70-8cd2-2f93029afa52"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b7d3e455-ed47-4836-8078-9893f22e171e"),
+                            Id = new Guid("fe4fb7a6-ecc1-4dd2-b281-7a4402abdd42"),
                             ConstituencyName = "Moyale",
-                            CountyId = new Guid("291c45b8-8316-48a5-8ae2-71c1ac2e8d31"),
+                            CountyId = new Guid("50397348-1601-4d03-930c-d1c844476647"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b7dbeef6-456e-4616-ac55-d6033a91e763"),
+                            Id = new Guid("e363b064-85e8-4963-b685-91572657db8f"),
                             ConstituencyName = "North Horr",
-                            CountyId = new Guid("291c45b8-8316-48a5-8ae2-71c1ac2e8d31"),
+                            CountyId = new Guid("50397348-1601-4d03-930c-d1c844476647"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("4b4fb9b8-cba4-4b9c-8213-999f5f622ba8"),
+                            Id = new Guid("38f29c72-1f0a-4f56-a535-e06e4168fb51"),
                             ConstituencyName = "Saku",
-                            CountyId = new Guid("291c45b8-8316-48a5-8ae2-71c1ac2e8d31"),
+                            CountyId = new Guid("50397348-1601-4d03-930c-d1c844476647"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("eb9b9d00-a9e3-435b-aa42-0caceb57b282"),
+                            Id = new Guid("a6162448-b34e-4d22-81d6-ece984dc2c28"),
                             ConstituencyName = "Laisamis",
-                            CountyId = new Guid("291c45b8-8316-48a5-8ae2-71c1ac2e8d31"),
+                            CountyId = new Guid("50397348-1601-4d03-930c-d1c844476647"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("6f1458fd-882a-4fc4-a29a-855ebcedad7f"),
+                            Id = new Guid("1252da41-e474-47dc-8b9d-a25e14e73498"),
                             ConstituencyName = "Isiolo North",
-                            CountyId = new Guid("d26f1185-b099-40b5-b814-407e71679c7f"),
+                            CountyId = new Guid("e13b0d89-8cfc-433a-a54f-220617ecad8c"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("216710d3-bc8a-4b9a-93a0-f0838bee52c0"),
+                            Id = new Guid("c0db103c-5b37-4f1a-b7c8-5e6e7d34313d"),
                             ConstituencyName = "Isiolo South",
-                            CountyId = new Guid("d26f1185-b099-40b5-b814-407e71679c7f"),
+                            CountyId = new Guid("e13b0d89-8cfc-433a-a54f-220617ecad8c"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d5fe679c-07e6-4cd3-b476-22e58c5e53e3"),
+                            Id = new Guid("84e24a4d-d5c4-49be-a34f-7d9236a85013"),
                             ConstituencyName = "Igembe South",
-                            CountyId = new Guid("89bf0ed8-8494-45ac-af36-1c50c40d83b0"),
+                            CountyId = new Guid("dbdbb4fd-5228-4509-859b-fb48ee2e48c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("44dcc84a-c516-4330-b4bf-e6d4b4c98030"),
+                            Id = new Guid("c4923035-55c7-4f71-ad37-d542ae128450"),
                             ConstituencyName = "Igembe Central",
-                            CountyId = new Guid("89bf0ed8-8494-45ac-af36-1c50c40d83b0"),
+                            CountyId = new Guid("dbdbb4fd-5228-4509-859b-fb48ee2e48c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("e8ca7dfa-b44a-4921-b3c8-20b0715f4516"),
+                            Id = new Guid("65eb5ccb-059f-478e-b264-33e467f9cfaf"),
                             ConstituencyName = "Igembe North",
-                            CountyId = new Guid("89bf0ed8-8494-45ac-af36-1c50c40d83b0"),
+                            CountyId = new Guid("dbdbb4fd-5228-4509-859b-fb48ee2e48c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("3fd61264-3aa4-42b1-aa5d-28787c020d83"),
+                            Id = new Guid("2e00bcaf-c14b-4994-88bb-723aeea6f16c"),
                             ConstituencyName = "Tigania West",
-                            CountyId = new Guid("89bf0ed8-8494-45ac-af36-1c50c40d83b0"),
+                            CountyId = new Guid("dbdbb4fd-5228-4509-859b-fb48ee2e48c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("60550a5a-6b4a-406b-bdb5-61232bae1710"),
+                            Id = new Guid("3561df4a-fefb-48f3-be7a-a8c84276987d"),
                             ConstituencyName = "Tigania East",
-                            CountyId = new Guid("89bf0ed8-8494-45ac-af36-1c50c40d83b0"),
+                            CountyId = new Guid("dbdbb4fd-5228-4509-859b-fb48ee2e48c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("276314ae-d3ca-4d59-9c96-3d71e5cf3332"),
+                            Id = new Guid("7a57f253-7af4-4eb5-adce-d3f2c7649af6"),
                             ConstituencyName = "North Imenti",
-                            CountyId = new Guid("89bf0ed8-8494-45ac-af36-1c50c40d83b0"),
+                            CountyId = new Guid("dbdbb4fd-5228-4509-859b-fb48ee2e48c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("93ca8c9a-0323-4034-9d01-f45cb5d013de"),
+                            Id = new Guid("d53b46fe-f8b5-4704-bc5e-ff317773220a"),
                             ConstituencyName = "Buuri",
-                            CountyId = new Guid("89bf0ed8-8494-45ac-af36-1c50c40d83b0"),
+                            CountyId = new Guid("dbdbb4fd-5228-4509-859b-fb48ee2e48c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("a99cc4b3-7c57-4fb1-aace-d74933dbe23f"),
+                            Id = new Guid("aa1cfa6d-e285-41e8-b525-97614da358c6"),
                             ConstituencyName = "Central Imenti",
-                            CountyId = new Guid("89bf0ed8-8494-45ac-af36-1c50c40d83b0"),
+                            CountyId = new Guid("dbdbb4fd-5228-4509-859b-fb48ee2e48c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("2b12d915-1e1e-4fc1-88e2-0d4a46316da6"),
+                            Id = new Guid("f5381ecf-bc22-49da-8103-774cb0776497"),
                             ConstituencyName = "South Imenti",
-                            CountyId = new Guid("89bf0ed8-8494-45ac-af36-1c50c40d83b0"),
+                            CountyId = new Guid("dbdbb4fd-5228-4509-859b-fb48ee2e48c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("feeb7db1-9755-4ce9-87d8-72d6b43d210f"),
+                            Id = new Guid("bad20d95-9fc0-4d83-8c85-cf820976fc02"),
                             ConstituencyName = "Maara",
-                            CountyId = new Guid("3473352c-dc23-403c-9796-92fc05bfb691"),
+                            CountyId = new Guid("9d13d25f-fd78-4f0a-a25c-c9b7fae46d33"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("daef2819-fd04-400a-a770-5dbc6e5a15f9"),
+                            Id = new Guid("5c2ef11b-a371-40a8-bc71-67a9844eb06d"),
                             ConstituencyName = "Chuka/Igambang'ombe",
-                            CountyId = new Guid("3473352c-dc23-403c-9796-92fc05bfb691"),
+                            CountyId = new Guid("9d13d25f-fd78-4f0a-a25c-c9b7fae46d33"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("abad7460-aa28-4b98-823d-10b395346a41"),
+                            Id = new Guid("d7039e3f-eb99-4352-b7fe-d162a50574de"),
                             ConstituencyName = "Tharaka",
-                            CountyId = new Guid("3473352c-dc23-403c-9796-92fc05bfb691"),
+                            CountyId = new Guid("9d13d25f-fd78-4f0a-a25c-c9b7fae46d33"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("8457bc28-6430-4c75-8a7f-462438bd5e9f"),
+                            Id = new Guid("fcfaa988-da0b-4972-afeb-c23f53f9862e"),
                             ConstituencyName = "Manyatta",
-                            CountyId = new Guid("9f789411-cd97-4684-a01e-89f03e1a16bd"),
+                            CountyId = new Guid("0d964c48-0230-40b6-b562-41642fde5ccf"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("f6e84492-4038-4bb8-bb76-db2089866f46"),
+                            Id = new Guid("22f84909-d0f9-4544-b2ce-83748a057c78"),
                             ConstituencyName = "Runyenjes",
-                            CountyId = new Guid("9f789411-cd97-4684-a01e-89f03e1a16bd"),
+                            CountyId = new Guid("0d964c48-0230-40b6-b562-41642fde5ccf"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("cd3d9830-e17f-4480-8158-63fcefbe1edf"),
+                            Id = new Guid("2e16a782-fcc8-4ad3-83f9-d22f637a5d24"),
                             ConstituencyName = "Mbeere South",
-                            CountyId = new Guid("9f789411-cd97-4684-a01e-89f03e1a16bd"),
+                            CountyId = new Guid("0d964c48-0230-40b6-b562-41642fde5ccf"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("54b94659-15a2-40d4-a190-c8014d45b878"),
+                            Id = new Guid("397785da-8be3-4c8d-b98b-2a2268d3b88b"),
                             ConstituencyName = "Mbeere North",
-                            CountyId = new Guid("9f789411-cd97-4684-a01e-89f03e1a16bd"),
+                            CountyId = new Guid("0d964c48-0230-40b6-b562-41642fde5ccf"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("dd42a803-2cf9-474b-867d-687c9e441543"),
+                            Id = new Guid("08481cd6-ad53-4857-b373-aff04915a495"),
                             ConstituencyName = "Mwingi North",
-                            CountyId = new Guid("f9043f35-ada7-4f54-b3a1-6cb5dc59c812"),
+                            CountyId = new Guid("772c4251-641d-4cd7-b5eb-f66b26d3cea2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("0445366e-c349-41b9-b70a-ae4ab5c5c7ef"),
+                            Id = new Guid("bc127e00-7a9c-4824-86dc-4e64d03d5d3b"),
                             ConstituencyName = "Mwingi Central",
-                            CountyId = new Guid("f9043f35-ada7-4f54-b3a1-6cb5dc59c812"),
+                            CountyId = new Guid("772c4251-641d-4cd7-b5eb-f66b26d3cea2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("e970898e-2a37-46b1-b298-b91d066f20b1"),
+                            Id = new Guid("8abc7fab-db23-4cd7-b769-b17ce6a61b63"),
                             ConstituencyName = "Mwingi West",
-                            CountyId = new Guid("f9043f35-ada7-4f54-b3a1-6cb5dc59c812"),
+                            CountyId = new Guid("772c4251-641d-4cd7-b5eb-f66b26d3cea2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("5f3a8970-7e0c-406e-8b5c-044cafd40652"),
+                            Id = new Guid("cd897b54-29ec-49f6-8822-114282881343"),
                             ConstituencyName = "Kitui West",
-                            CountyId = new Guid("f9043f35-ada7-4f54-b3a1-6cb5dc59c812"),
+                            CountyId = new Guid("772c4251-641d-4cd7-b5eb-f66b26d3cea2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("dc1c3de6-0703-4c3d-862f-16015735b302"),
+                            Id = new Guid("08357c70-61c5-4510-b152-47e38e103f66"),
                             ConstituencyName = "Kitui Rural",
-                            CountyId = new Guid("f9043f35-ada7-4f54-b3a1-6cb5dc59c812"),
+                            CountyId = new Guid("772c4251-641d-4cd7-b5eb-f66b26d3cea2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d67d7578-04a1-4dd4-9b28-e0a6cef91275"),
+                            Id = new Guid("c61b82b9-5d8a-4733-a943-6d0f5d600b09"),
                             ConstituencyName = "Kitui Central",
-                            CountyId = new Guid("f9043f35-ada7-4f54-b3a1-6cb5dc59c812"),
+                            CountyId = new Guid("772c4251-641d-4cd7-b5eb-f66b26d3cea2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("16e55781-d2dc-4383-b219-8d52dce559cc"),
+                            Id = new Guid("208bd768-8323-453b-a783-e160faf3ca0e"),
                             ConstituencyName = "Kitui East",
-                            CountyId = new Guid("f9043f35-ada7-4f54-b3a1-6cb5dc59c812"),
+                            CountyId = new Guid("772c4251-641d-4cd7-b5eb-f66b26d3cea2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b8766920-13a3-46d8-b6ff-67a25864aa8a"),
+                            Id = new Guid("781c3f38-c4cb-4ec9-8ad8-f9d44bf07743"),
                             ConstituencyName = "Kitui South",
-                            CountyId = new Guid("f9043f35-ada7-4f54-b3a1-6cb5dc59c812"),
+                            CountyId = new Guid("772c4251-641d-4cd7-b5eb-f66b26d3cea2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("7c7f4cd2-0ad1-4935-ab9f-448361b5288c"),
+                            Id = new Guid("a7e086ad-7e8f-4a55-9dae-0761317785b8"),
                             ConstituencyName = "Kathiani",
-                            CountyId = new Guid("b0259609-8ee4-4dc2-b46a-d023fb2a3f5f"),
+                            CountyId = new Guid("315a7923-f16d-4a1c-a40a-7e5af60ae3ba"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("97fba763-0861-42d1-8412-fa7683eb75a2"),
+                            Id = new Guid("4555ce15-1aab-48e6-a2e0-76052d76d063"),
                             ConstituencyName = "Mavoko",
-                            CountyId = new Guid("b0259609-8ee4-4dc2-b46a-d023fb2a3f5f"),
+                            CountyId = new Guid("315a7923-f16d-4a1c-a40a-7e5af60ae3ba"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("40982de9-9e78-4604-8279-6329b2eed50b"),
+                            Id = new Guid("7f1511a4-10bc-489b-97bf-5be1392b93e7"),
                             ConstituencyName = "Machakos Town",
-                            CountyId = new Guid("b0259609-8ee4-4dc2-b46a-d023fb2a3f5f"),
+                            CountyId = new Guid("315a7923-f16d-4a1c-a40a-7e5af60ae3ba"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b1458345-3eb9-4dd7-bc01-af94ab4bc780"),
+                            Id = new Guid("81134184-d18e-400a-ad63-1116f3f450c3"),
                             ConstituencyName = "Masinga",
-                            CountyId = new Guid("b0259609-8ee4-4dc2-b46a-d023fb2a3f5f"),
+                            CountyId = new Guid("315a7923-f16d-4a1c-a40a-7e5af60ae3ba"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("0994794c-caf1-49ef-887b-6056ed9a3d1f"),
+                            Id = new Guid("7e5ae11a-4862-41ad-b95c-dd934c395fcb"),
                             ConstituencyName = "Yatta",
-                            CountyId = new Guid("b0259609-8ee4-4dc2-b46a-d023fb2a3f5f"),
+                            CountyId = new Guid("315a7923-f16d-4a1c-a40a-7e5af60ae3ba"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("7a6a1deb-a5ba-4780-8510-85a2f9f11eb1"),
+                            Id = new Guid("8e607c9d-31a6-4d1f-8458-d347f3856933"),
                             ConstituencyName = "Kangundo",
-                            CountyId = new Guid("b0259609-8ee4-4dc2-b46a-d023fb2a3f5f"),
+                            CountyId = new Guid("315a7923-f16d-4a1c-a40a-7e5af60ae3ba"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d4fa0357-fcd5-4568-ac9d-60482c24df4a"),
+                            Id = new Guid("b85bd234-6ec9-4866-b6f9-0031027691dd"),
                             ConstituencyName = "Matungulu",
-                            CountyId = new Guid("b0259609-8ee4-4dc2-b46a-d023fb2a3f5f"),
+                            CountyId = new Guid("315a7923-f16d-4a1c-a40a-7e5af60ae3ba"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("1f513091-6f0f-4d36-b90e-3a62f36a3e30"),
+                            Id = new Guid("37f7ab72-75cc-49f4-8472-80724e60bd7f"),
                             ConstituencyName = "Mwala",
-                            CountyId = new Guid("b0259609-8ee4-4dc2-b46a-d023fb2a3f5f"),
+                            CountyId = new Guid("315a7923-f16d-4a1c-a40a-7e5af60ae3ba"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("e1c1157e-1f4f-4d9e-b773-cbd4118a0bae"),
+                            Id = new Guid("f848a733-74d6-4efa-a171-0e3f0f68149e"),
                             ConstituencyName = "Kibwezi West",
-                            CountyId = new Guid("1f1882eb-c8cb-4962-b4c5-c9f88e0eb069"),
+                            CountyId = new Guid("03224e88-9db0-4c63-86ce-e178c4596248"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d9ba5631-9be2-49f3-8312-37d416d57402"),
+                            Id = new Guid("05e476d5-21c7-4a62-8c09-c1874c56f89d"),
                             ConstituencyName = "Kibwezi East",
-                            CountyId = new Guid("1f1882eb-c8cb-4962-b4c5-c9f88e0eb069"),
+                            CountyId = new Guid("03224e88-9db0-4c63-86ce-e178c4596248"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("21800ef3-ebc8-445d-aa85-7d91526ac9af"),
+                            Id = new Guid("a9160f95-2cd9-4ae6-aff3-5c1fbbfde3e2"),
                             ConstituencyName = "Kaiti",
-                            CountyId = new Guid("1f1882eb-c8cb-4962-b4c5-c9f88e0eb069"),
+                            CountyId = new Guid("03224e88-9db0-4c63-86ce-e178c4596248"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("122bd03d-0771-4e2c-9f60-950bdee684c2"),
+                            Id = new Guid("a9b7c40b-719e-47a2-9765-e9ef42567ec7"),
                             ConstituencyName = "Makueni",
-                            CountyId = new Guid("1f1882eb-c8cb-4962-b4c5-c9f88e0eb069"),
+                            CountyId = new Guid("03224e88-9db0-4c63-86ce-e178c4596248"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("a3111bbc-3ce8-476d-acf6-5f839fdacf81"),
+                            Id = new Guid("cb9bf420-1ce8-4286-a1ef-0273be036407"),
                             ConstituencyName = "Kilome",
-                            CountyId = new Guid("1f1882eb-c8cb-4962-b4c5-c9f88e0eb069"),
+                            CountyId = new Guid("03224e88-9db0-4c63-86ce-e178c4596248"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("0b38aabd-e007-4c7b-914f-07b534e946d4"),
+                            Id = new Guid("14b2b1f5-dd1b-4bd5-9c24-b4be86b1f861"),
                             ConstituencyName = "Mbooni",
-                            CountyId = new Guid("1f1882eb-c8cb-4962-b4c5-c9f88e0eb069"),
+                            CountyId = new Guid("03224e88-9db0-4c63-86ce-e178c4596248"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("8867a524-692d-43f5-9744-bbfe43dc8174"),
+                            Id = new Guid("534551e9-a21a-48dd-90a3-be6029695714"),
                             ConstituencyName = "Kipipiri",
-                            CountyId = new Guid("20aee06f-e2a1-4a1b-b3fe-ab0a33b1688b"),
+                            CountyId = new Guid("c0c4343f-3e9e-4afb-b26a-20af12bcfd3b"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("6b2fa1fe-35b2-40fe-9ba1-c056e223535e"),
+                            Id = new Guid("c5c4bc9e-b0d6-43d3-8ff4-22a19bb43b90"),
                             ConstituencyName = "Ol Kalou",
-                            CountyId = new Guid("20aee06f-e2a1-4a1b-b3fe-ab0a33b1688b"),
+                            CountyId = new Guid("c0c4343f-3e9e-4afb-b26a-20af12bcfd3b"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("e4a4dbbf-6754-4078-9380-2d5de1acdc3c"),
+                            Id = new Guid("4b976bc4-34cb-4a50-abac-5a45d327293f"),
                             ConstituencyName = "Ol Jorok",
-                            CountyId = new Guid("20aee06f-e2a1-4a1b-b3fe-ab0a33b1688b"),
+                            CountyId = new Guid("c0c4343f-3e9e-4afb-b26a-20af12bcfd3b"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("be1b482b-f151-4751-8637-f9174baea236"),
+                            Id = new Guid("d27f7403-6ee0-471d-9289-581b2ff7edfb"),
                             ConstituencyName = "Ndaragwa",
-                            CountyId = new Guid("20aee06f-e2a1-4a1b-b3fe-ab0a33b1688b"),
+                            CountyId = new Guid("c0c4343f-3e9e-4afb-b26a-20af12bcfd3b"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("241cdefa-0bee-4c3a-aedb-6951e7acb8f5"),
+                            Id = new Guid("e25572bf-5649-4a41-995d-6a1bc7aa2f15"),
                             ConstituencyName = "Tetu",
-                            CountyId = new Guid("495a615a-75c9-45ac-a982-7a0d53dd685f"),
+                            CountyId = new Guid("b018d6d5-da0a-49ea-8fd4-ee79b9ff9c4e"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("2d0bfb70-8552-40e9-a136-bf6fe07071bf"),
+                            Id = new Guid("adf03d08-616f-436e-9c19-1347edf8b66a"),
                             ConstituencyName = "Kieni",
-                            CountyId = new Guid("495a615a-75c9-45ac-a982-7a0d53dd685f"),
+                            CountyId = new Guid("b018d6d5-da0a-49ea-8fd4-ee79b9ff9c4e"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("063e8fac-967a-4dd4-84bd-f91ff49fb2e5"),
+                            Id = new Guid("481ddeaf-5d46-49f4-908f-b7afe4b50edd"),
                             ConstituencyName = "Mathira",
-                            CountyId = new Guid("495a615a-75c9-45ac-a982-7a0d53dd685f"),
+                            CountyId = new Guid("b018d6d5-da0a-49ea-8fd4-ee79b9ff9c4e"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("87d965bd-f77f-4c11-a40b-effc8d01c28e"),
+                            Id = new Guid("79ea1ad2-21f0-4037-b502-fd5c1eb17fcd"),
                             ConstituencyName = "Othaya",
-                            CountyId = new Guid("495a615a-75c9-45ac-a982-7a0d53dd685f"),
+                            CountyId = new Guid("b018d6d5-da0a-49ea-8fd4-ee79b9ff9c4e"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("a4dc3546-50fc-48f9-a6f1-afe1726a1fdc"),
+                            Id = new Guid("a3bb2117-f037-4472-b44b-d49feccd8c14"),
                             ConstituencyName = "Mukurweini",
-                            CountyId = new Guid("495a615a-75c9-45ac-a982-7a0d53dd685f"),
+                            CountyId = new Guid("b018d6d5-da0a-49ea-8fd4-ee79b9ff9c4e"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("259ee2c8-ed31-4d33-93ac-a7a6a80b3ad7"),
+                            Id = new Guid("c7666cbd-2923-4255-a092-2149bf0be848"),
                             ConstituencyName = "Nyeri Town",
-                            CountyId = new Guid("495a615a-75c9-45ac-a982-7a0d53dd685f"),
+                            CountyId = new Guid("b018d6d5-da0a-49ea-8fd4-ee79b9ff9c4e"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("3ee0f908-4874-462c-bc0f-d2d3ac1f4102"),
+                            Id = new Guid("d779af71-cb67-4861-996b-618e13ac90b8"),
                             ConstituencyName = "Mwea",
-                            CountyId = new Guid("24a3ce83-e820-48b2-aec2-ccceb7a54355"),
+                            CountyId = new Guid("b9e32c75-bc74-4b0c-8a00-361f24764e7d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d9435a3f-0082-4a53-9567-f34149015ea3"),
+                            Id = new Guid("66c54b2c-ec8f-49f9-b1b3-749bfec74e7a"),
                             ConstituencyName = "Gichugu",
-                            CountyId = new Guid("24a3ce83-e820-48b2-aec2-ccceb7a54355"),
+                            CountyId = new Guid("b9e32c75-bc74-4b0c-8a00-361f24764e7d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("012bf330-1797-423f-8dd6-9d4d7ff7a70d"),
+                            Id = new Guid("c7eb761e-d520-4988-83a3-b48068820357"),
                             ConstituencyName = "Ndia",
-                            CountyId = new Guid("24a3ce83-e820-48b2-aec2-ccceb7a54355"),
+                            CountyId = new Guid("b9e32c75-bc74-4b0c-8a00-361f24764e7d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("38e69304-f94d-493e-9a77-a0bce44e9c16"),
+                            Id = new Guid("0a86bd32-d1c1-48f4-9952-29b0484868f7"),
                             ConstituencyName = "Kirinyaga Central",
-                            CountyId = new Guid("24a3ce83-e820-48b2-aec2-ccceb7a54355"),
+                            CountyId = new Guid("b9e32c75-bc74-4b0c-8a00-361f24764e7d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("fd2567f2-ba11-4844-acf4-15bdee28b961"),
+                            Id = new Guid("f48eac8b-9fed-4dd1-a52a-01e7f6cb8a19"),
                             ConstituencyName = "Kangema",
-                            CountyId = new Guid("1e45a87c-11ae-47fe-ae98-5c018f7f35db"),
+                            CountyId = new Guid("f336d5ba-e212-4a08-b4af-6b3ef4317424"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("f8a055ac-b08e-44cb-bc77-423c94d4cf2a"),
+                            Id = new Guid("19372813-af9c-4876-9616-96605c646710"),
                             ConstituencyName = "Mathioya",
-                            CountyId = new Guid("1e45a87c-11ae-47fe-ae98-5c018f7f35db"),
+                            CountyId = new Guid("f336d5ba-e212-4a08-b4af-6b3ef4317424"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("a022443c-6f39-479f-a918-8d880b64148b"),
+                            Id = new Guid("a2e846a2-7a07-4e8c-8c90-16f7d31f0861"),
                             ConstituencyName = "Kiharu",
-                            CountyId = new Guid("1e45a87c-11ae-47fe-ae98-5c018f7f35db"),
+                            CountyId = new Guid("f336d5ba-e212-4a08-b4af-6b3ef4317424"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d737d8d6-748e-4aa8-94fa-7db2aba5a3c5"),
+                            Id = new Guid("8f7d7545-ac3e-4969-b6c6-4047f3388bdb"),
                             ConstituencyName = "Kigumo",
-                            CountyId = new Guid("1e45a87c-11ae-47fe-ae98-5c018f7f35db"),
+                            CountyId = new Guid("f336d5ba-e212-4a08-b4af-6b3ef4317424"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("17cb222c-74f6-4091-8faf-a78a3210dc9a"),
+                            Id = new Guid("2eb97796-6f39-47e3-8b3b-056e72c5bada"),
                             ConstituencyName = "Maragwa",
-                            CountyId = new Guid("1e45a87c-11ae-47fe-ae98-5c018f7f35db"),
+                            CountyId = new Guid("f336d5ba-e212-4a08-b4af-6b3ef4317424"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("bff89775-6cb0-4e0f-850e-6d10be30f204"),
+                            Id = new Guid("b9550092-26b4-48d7-bd3f-6fc76af15785"),
                             ConstituencyName = "Kandara",
-                            CountyId = new Guid("1e45a87c-11ae-47fe-ae98-5c018f7f35db"),
+                            CountyId = new Guid("f336d5ba-e212-4a08-b4af-6b3ef4317424"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("fe459e75-545a-482b-896f-2c429519204d"),
+                            Id = new Guid("6c001d8d-4b99-465b-a7b2-ee5ea2ae77d5"),
                             ConstituencyName = "Gatanga",
-                            CountyId = new Guid("1e45a87c-11ae-47fe-ae98-5c018f7f35db"),
+                            CountyId = new Guid("f336d5ba-e212-4a08-b4af-6b3ef4317424"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("baf655d1-9f76-46e3-978d-2e72ef263c72"),
+                            Id = new Guid("17f58f67-2182-43fe-ba28-eb7f8794691f"),
                             ConstituencyName = "Gatundu South",
-                            CountyId = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            CountyId = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("57d42322-7f24-47e4-9140-f4ea6fc1cb77"),
+                            Id = new Guid("b4269859-b743-4071-893d-e8b9c1159d6c"),
                             ConstituencyName = "Gatundu North",
-                            CountyId = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            CountyId = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("02a2ccdd-d24e-4097-8c8a-da9f24f186fd"),
+                            Id = new Guid("5b5bce55-010f-44c2-b36b-7c1378cd35b5"),
                             ConstituencyName = "Juja",
-                            CountyId = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            CountyId = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("6d8fcc8c-66d8-4137-b321-dd361b8a5815"),
+                            Id = new Guid("d6ef5480-14bb-49e0-b3f2-444d7a0163b8"),
                             ConstituencyName = "Thika Town",
-                            CountyId = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            CountyId = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("8fad8344-37e6-4c46-9362-2d47b6a81d9b"),
+                            Id = new Guid("53fa6ac8-7671-4d49-996b-b72ed2f9dba1"),
                             ConstituencyName = "Ruiru",
-                            CountyId = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            CountyId = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("11e1f587-dc5c-46e6-a3de-59caaf8ed696"),
+                            Id = new Guid("dec5d607-b4ab-4786-9b24-16e629a3d89c"),
                             ConstituencyName = "Githunguri",
-                            CountyId = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            CountyId = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d4c6fa59-d98b-4ff6-966c-9c0be45c7b5a"),
+                            Id = new Guid("09260097-c854-40e7-bce1-d97b5931c234"),
                             ConstituencyName = "Kiambaa",
-                            CountyId = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            CountyId = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("4bce698e-dc2c-4ac1-9fd2-a01fb156d264"),
+                            Id = new Guid("9735c30a-9a9e-4dd7-95a5-6a32a90afc90"),
                             ConstituencyName = "Kabete",
-                            CountyId = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            CountyId = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d5a5ec04-f167-44bf-8776-909d5dad8dda"),
+                            Id = new Guid("0af3f220-a1b6-4854-9f59-75fe497615b4"),
                             ConstituencyName = "Kikuyu",
-                            CountyId = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            CountyId = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("2a9b0eca-0d3e-46a0-a80f-14eebb8f78d1"),
+                            Id = new Guid("16d18a95-1cbe-412c-a071-e770ae542935"),
                             ConstituencyName = "Limuru",
-                            CountyId = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            CountyId = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("c40e8a95-d488-4b0c-ae1a-bfc37f2f9e4e"),
+                            Id = new Guid("d8993ecd-cf35-457a-8be9-7ad7fc9b5d53"),
                             ConstituencyName = "Lari",
-                            CountyId = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            CountyId = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("5cd63b9c-368b-481a-bd1d-2529690adc27"),
+                            Id = new Guid("872ef74c-1d0d-43fb-b797-16114a803182"),
                             ConstituencyName = "Kiambu",
-                            CountyId = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            CountyId = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("451d0eac-5b4e-47c4-8f00-0add602a7fe1"),
+                            Id = new Guid("8f1d5946-3ce4-4164-bed4-a00888d852fb"),
                             ConstituencyName = "Turkana North",
-                            CountyId = new Guid("dc15b51e-d069-4570-acbe-088c7d89d157"),
+                            CountyId = new Guid("96d7ac15-8a59-419f-9f50-56b56a03598a"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("60cd782e-c704-4c38-a243-fd631ecd0a93"),
+                            Id = new Guid("4d6f57eb-0dc5-4a78-aed6-cce6e749cc59"),
                             ConstituencyName = "Turkana West",
-                            CountyId = new Guid("dc15b51e-d069-4570-acbe-088c7d89d157"),
+                            CountyId = new Guid("96d7ac15-8a59-419f-9f50-56b56a03598a"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("336cf36c-f697-4d48-9cfd-711b3abacd55"),
+                            Id = new Guid("d5cb87fe-181f-4dbf-b1eb-1028f601f360"),
                             ConstituencyName = "Turkana Central",
-                            CountyId = new Guid("dc15b51e-d069-4570-acbe-088c7d89d157"),
+                            CountyId = new Guid("96d7ac15-8a59-419f-9f50-56b56a03598a"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("124184d5-6695-4cbf-9d82-4656aac973da"),
+                            Id = new Guid("5e20fc2b-db24-4963-8a74-a43e2da6142d"),
                             ConstituencyName = "Loima",
-                            CountyId = new Guid("dc15b51e-d069-4570-acbe-088c7d89d157"),
+                            CountyId = new Guid("96d7ac15-8a59-419f-9f50-56b56a03598a"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("9fffe0f2-bc58-4af3-b50b-99a652676923"),
+                            Id = new Guid("c489e5c7-dd2f-43db-b113-fc34ef0e9957"),
                             ConstituencyName = "Turkana South",
-                            CountyId = new Guid("dc15b51e-d069-4570-acbe-088c7d89d157"),
+                            CountyId = new Guid("96d7ac15-8a59-419f-9f50-56b56a03598a"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("5142b3a3-5057-4aa8-bfd4-50046678adff"),
+                            Id = new Guid("ae255f7d-fb2e-4c2c-b5cb-38494238ca67"),
                             ConstituencyName = "Turkana East",
-                            CountyId = new Guid("dc15b51e-d069-4570-acbe-088c7d89d157"),
+                            CountyId = new Guid("96d7ac15-8a59-419f-9f50-56b56a03598a"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("cd65283e-1690-4135-a4ce-2b89ad70680a"),
+                            Id = new Guid("63f903a9-0781-4efa-b455-19f5fa7e9fd9"),
                             ConstituencyName = "Kapenguria",
-                            CountyId = new Guid("493fac85-1291-4b3d-9f13-c0c5580def71"),
+                            CountyId = new Guid("bff8235c-5792-42fa-851b-fd882860a1c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("4bf71edc-af49-440b-af51-498377d150b0"),
+                            Id = new Guid("af542911-3e94-4bd1-b4f4-c6fdad86e9e7"),
                             ConstituencyName = "Sigor",
-                            CountyId = new Guid("493fac85-1291-4b3d-9f13-c0c5580def71"),
+                            CountyId = new Guid("bff8235c-5792-42fa-851b-fd882860a1c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("41f3f993-02b9-46d4-8c50-88f0b98d294d"),
+                            Id = new Guid("7472a56a-afd3-4680-b27d-54e22fa4dbb5"),
                             ConstituencyName = "Kacheliba",
-                            CountyId = new Guid("493fac85-1291-4b3d-9f13-c0c5580def71"),
+                            CountyId = new Guid("bff8235c-5792-42fa-851b-fd882860a1c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("7ca4b511-4576-45fc-90b9-f6b2efdede3b"),
+                            Id = new Guid("4a1129c5-6a40-494f-a243-36254425fa44"),
                             ConstituencyName = "Pokot South",
-                            CountyId = new Guid("493fac85-1291-4b3d-9f13-c0c5580def71"),
+                            CountyId = new Guid("bff8235c-5792-42fa-851b-fd882860a1c7"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("262ee3c7-a22b-4467-8510-f877ec2e3a1b"),
+                            Id = new Guid("42421861-e6e5-423d-9564-51066f6aa329"),
                             ConstituencyName = "Samburu West",
-                            CountyId = new Guid("93ad2355-2197-43dd-a9a4-a0d14b314fea"),
+                            CountyId = new Guid("5dac54ac-8317-46f1-b53a-c63498e7017c"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("2ce06557-9521-4c96-aa62-a53175a42ebe"),
+                            Id = new Guid("a14d1b96-6fe1-4772-9dc6-da2142a1e49a"),
                             ConstituencyName = "Samburu North",
-                            CountyId = new Guid("93ad2355-2197-43dd-a9a4-a0d14b314fea"),
+                            CountyId = new Guid("5dac54ac-8317-46f1-b53a-c63498e7017c"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("5e7ca918-664d-439f-91b0-e5eca0d012aa"),
+                            Id = new Guid("9d3ee9bf-2e75-4a83-9922-1534c76d0091"),
                             ConstituencyName = "Samburu East",
-                            CountyId = new Guid("93ad2355-2197-43dd-a9a4-a0d14b314fea"),
+                            CountyId = new Guid("5dac54ac-8317-46f1-b53a-c63498e7017c"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("2ddfdabe-9470-4251-8f7b-d659419c78c3"),
+                            Id = new Guid("1cffd85a-6545-426f-a79c-a4d3a86a949c"),
                             ConstituencyName = "Kwanza",
-                            CountyId = new Guid("74570364-1ed7-4d8c-aa40-f17133442a7d"),
+                            CountyId = new Guid("ca5438b6-ef94-4e51-a073-c1e106548b7a"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b74fc65e-0526-48ea-b3ac-8d12064a2385"),
+                            Id = new Guid("c0426c7e-dfc7-479a-88a6-f52188445498"),
                             ConstituencyName = "Endebess",
-                            CountyId = new Guid("74570364-1ed7-4d8c-aa40-f17133442a7d"),
+                            CountyId = new Guid("ca5438b6-ef94-4e51-a073-c1e106548b7a"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("4a8dd59d-8533-4ca3-bd27-6acb720927ef"),
+                            Id = new Guid("fcae6384-b839-4696-8a98-930ca4a60792"),
                             ConstituencyName = "Saboti",
-                            CountyId = new Guid("74570364-1ed7-4d8c-aa40-f17133442a7d"),
+                            CountyId = new Guid("ca5438b6-ef94-4e51-a073-c1e106548b7a"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("1d1dbd95-c431-4ede-9547-dff1234ca20a"),
+                            Id = new Guid("dc060e98-52d0-465c-a8af-6b278daebee5"),
                             ConstituencyName = "Kiminini",
-                            CountyId = new Guid("74570364-1ed7-4d8c-aa40-f17133442a7d"),
+                            CountyId = new Guid("ca5438b6-ef94-4e51-a073-c1e106548b7a"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("246bb219-b27f-4e76-af2f-34bf49e2db40"),
+                            Id = new Guid("21f19976-bd1a-4f0c-be7e-80503f44b5e5"),
                             ConstituencyName = "Cherangany",
-                            CountyId = new Guid("74570364-1ed7-4d8c-aa40-f17133442a7d"),
+                            CountyId = new Guid("ca5438b6-ef94-4e51-a073-c1e106548b7a"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("1b39e127-35dc-4353-bab4-851b223276e7"),
+                            Id = new Guid("f90c9f19-8603-4895-9a69-1d0d7c1a8449"),
                             ConstituencyName = "Soy",
-                            CountyId = new Guid("683509e2-6e90-40ea-ad72-85ad47421563"),
+                            CountyId = new Guid("96dabc23-fc02-4a37-b81e-b278e73f6bd1"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("877c1cba-9440-4e79-a3be-7e69f8f6f302"),
+                            Id = new Guid("268ad8f7-23b6-49f3-b5a1-793d3aaeff45"),
                             ConstituencyName = "Turbo",
-                            CountyId = new Guid("683509e2-6e90-40ea-ad72-85ad47421563"),
+                            CountyId = new Guid("96dabc23-fc02-4a37-b81e-b278e73f6bd1"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("ef1594fa-7f9a-4f64-930b-1d6b7b76f694"),
+                            Id = new Guid("2363cbee-f86c-40f6-a08e-0f2c8c804993"),
                             ConstituencyName = "Moiben",
-                            CountyId = new Guid("683509e2-6e90-40ea-ad72-85ad47421563"),
+                            CountyId = new Guid("96dabc23-fc02-4a37-b81e-b278e73f6bd1"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("97a27349-c420-4d48-97a0-ca6df870fed3"),
+                            Id = new Guid("99dd6838-317f-4ac1-b820-3f373745aec7"),
                             ConstituencyName = "Ainabkoi",
-                            CountyId = new Guid("683509e2-6e90-40ea-ad72-85ad47421563"),
+                            CountyId = new Guid("96dabc23-fc02-4a37-b81e-b278e73f6bd1"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("cd0d32d6-3321-407c-b4cc-7299d855f45b"),
+                            Id = new Guid("484910e2-eaa6-4891-b932-b920bd76ee49"),
                             ConstituencyName = "Kapseret",
-                            CountyId = new Guid("683509e2-6e90-40ea-ad72-85ad47421563"),
+                            CountyId = new Guid("96dabc23-fc02-4a37-b81e-b278e73f6bd1"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b26b8d9c-457f-4772-b797-ad853b43ae19"),
+                            Id = new Guid("6bfcd888-7a1f-43e7-8703-d0d80b2bdaaf"),
                             ConstituencyName = "Kesses",
-                            CountyId = new Guid("683509e2-6e90-40ea-ad72-85ad47421563"),
+                            CountyId = new Guid("96dabc23-fc02-4a37-b81e-b278e73f6bd1"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("066b4888-9f77-4f7d-bee1-86ddf0c08285"),
+                            Id = new Guid("95a1f16b-092f-49af-89ff-841b7c05cbff"),
                             ConstituencyName = "Marakwet East",
-                            CountyId = new Guid("90630145-de92-4bd7-92e9-dfeacb5c9dde"),
+                            CountyId = new Guid("393581ea-6b94-4eef-813b-b77f805caa60"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("9e29fe32-80f1-41c5-9457-00241735902a"),
+                            Id = new Guid("4bc7427f-4111-435a-b362-9638d8a40e4b"),
                             ConstituencyName = "Marakwet West",
-                            CountyId = new Guid("90630145-de92-4bd7-92e9-dfeacb5c9dde"),
+                            CountyId = new Guid("393581ea-6b94-4eef-813b-b77f805caa60"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("428a5bf5-e950-47a9-983b-9d554f13d675"),
+                            Id = new Guid("51f00c5a-79ba-470d-afcd-33a2cb46a825"),
                             ConstituencyName = "Keiyo North",
-                            CountyId = new Guid("90630145-de92-4bd7-92e9-dfeacb5c9dde"),
+                            CountyId = new Guid("393581ea-6b94-4eef-813b-b77f805caa60"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("04bffc75-9b00-4e28-912d-19938c6182b9"),
+                            Id = new Guid("b504e20c-1e00-49fa-aca0-104824284211"),
                             ConstituencyName = "Keiyo South",
-                            CountyId = new Guid("90630145-de92-4bd7-92e9-dfeacb5c9dde"),
+                            CountyId = new Guid("393581ea-6b94-4eef-813b-b77f805caa60"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("0d20639e-f4c6-4902-bb99-736803c259ef"),
+                            Id = new Guid("04dfc080-542a-408e-857b-c14c569514d0"),
                             ConstituencyName = "Tinderet",
-                            CountyId = new Guid("876e513d-e1f9-40ff-a661-26c8af88f21a"),
+                            CountyId = new Guid("1e193740-1fb7-4c09-ae08-f6a053bd229d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d2b0ac26-79bf-4c38-a04e-ed4936e73fc8"),
+                            Id = new Guid("fe97e646-28eb-411d-a587-610f8e7bd7a4"),
                             ConstituencyName = "Nandi Hills",
-                            CountyId = new Guid("876e513d-e1f9-40ff-a661-26c8af88f21a"),
+                            CountyId = new Guid("1e193740-1fb7-4c09-ae08-f6a053bd229d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("715a9936-e2e2-40e5-891a-085e99fd534e"),
+                            Id = new Guid("44321f74-98fb-46a2-9e72-bcdf05efe017"),
                             ConstituencyName = "Chesumei",
-                            CountyId = new Guid("876e513d-e1f9-40ff-a661-26c8af88f21a"),
+                            CountyId = new Guid("1e193740-1fb7-4c09-ae08-f6a053bd229d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("47b7d23f-02db-47f6-8e81-59e16cecdfdc"),
+                            Id = new Guid("bcf72927-e34b-4c4c-a61d-a3df2247b55f"),
                             ConstituencyName = "Emgwen",
-                            CountyId = new Guid("876e513d-e1f9-40ff-a661-26c8af88f21a"),
+                            CountyId = new Guid("1e193740-1fb7-4c09-ae08-f6a053bd229d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("03b9e8b4-6f39-414d-87bd-2cbfd21e73cf"),
+                            Id = new Guid("1914ee0d-b4e1-4188-8df6-af182ad8dab9"),
                             ConstituencyName = "Aldai",
-                            CountyId = new Guid("876e513d-e1f9-40ff-a661-26c8af88f21a"),
+                            CountyId = new Guid("1e193740-1fb7-4c09-ae08-f6a053bd229d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("5ebecd17-773a-4173-893a-79621b9c511d"),
+                            Id = new Guid("6dff0a60-14f4-4557-81f2-7591e85bd186"),
                             ConstituencyName = "Mosop",
-                            CountyId = new Guid("876e513d-e1f9-40ff-a661-26c8af88f21a"),
+                            CountyId = new Guid("1e193740-1fb7-4c09-ae08-f6a053bd229d"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b7dd488b-d5c0-4777-a26c-08db2a1dda3a"),
+                            Id = new Guid("655ba6fe-cd36-4815-a71f-d6aab433bd7a"),
                             ConstituencyName = "Baringo North",
-                            CountyId = new Guid("364044dc-48fc-485f-9348-bc419f25e307"),
+                            CountyId = new Guid("2320e02a-81b3-4912-9209-8fb0fa4c07c2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("63c24409-c441-41b3-92e4-557be5cd28dc"),
+                            Id = new Guid("d90b6677-504f-44ee-9194-81a76a3bb11b"),
                             ConstituencyName = "Baringo Central",
-                            CountyId = new Guid("364044dc-48fc-485f-9348-bc419f25e307"),
+                            CountyId = new Guid("2320e02a-81b3-4912-9209-8fb0fa4c07c2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("2dee4255-a2c7-4645-889c-3286aab67213"),
+                            Id = new Guid("1495dfa2-d3c0-4172-b428-ac29d88d1cbf"),
                             ConstituencyName = "Baringo South",
-                            CountyId = new Guid("364044dc-48fc-485f-9348-bc419f25e307"),
+                            CountyId = new Guid("2320e02a-81b3-4912-9209-8fb0fa4c07c2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("18be47de-c54b-4577-b80b-62d2f41068ac"),
+                            Id = new Guid("f5a7c0b6-816c-4d50-8d0d-b332f21c6974"),
                             ConstituencyName = "Mogotio",
-                            CountyId = new Guid("364044dc-48fc-485f-9348-bc419f25e307"),
+                            CountyId = new Guid("2320e02a-81b3-4912-9209-8fb0fa4c07c2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("3ddc277a-48d1-4f2d-ba7b-54405125aa1f"),
+                            Id = new Guid("b154603a-3ea6-4eec-b5dd-677b232c984d"),
                             ConstituencyName = "Eldama Ravine",
-                            CountyId = new Guid("364044dc-48fc-485f-9348-bc419f25e307"),
+                            CountyId = new Guid("2320e02a-81b3-4912-9209-8fb0fa4c07c2"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("93539600-2972-4823-80a6-8260c862f013"),
+                            Id = new Guid("5bdcecb7-e2ae-4173-8a9e-8213b16c2341"),
                             ConstituencyName = "Laikipia West",
-                            CountyId = new Guid("575ab87d-0265-436e-ad2b-dd7c8a53e65b"),
+                            CountyId = new Guid("2d24813a-69b2-4e9c-8924-1f05b176375b"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("31e7351b-2783-4fb2-919f-e51f9af449b7"),
+                            Id = new Guid("1ad7a0c2-252b-4f0f-ad2c-a9946febbfa3"),
                             ConstituencyName = "Laikipia East",
-                            CountyId = new Guid("575ab87d-0265-436e-ad2b-dd7c8a53e65b"),
+                            CountyId = new Guid("2d24813a-69b2-4e9c-8924-1f05b176375b"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("2e27927d-f1fc-4f84-84cd-ae2d9f5b8d1e"),
+                            Id = new Guid("ea8e323e-fdad-481d-b1fa-104859c982cc"),
                             ConstituencyName = "Laikipia North",
-                            CountyId = new Guid("575ab87d-0265-436e-ad2b-dd7c8a53e65b"),
+                            CountyId = new Guid("2d24813a-69b2-4e9c-8924-1f05b176375b"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("425c906d-ca68-4940-b929-ef7548f124a8"),
+                            Id = new Guid("5ceab749-ce4f-47f7-9aa4-702afe12deeb"),
                             ConstituencyName = "Molo",
-                            CountyId = new Guid("07baec7b-0047-4fa5-97fd-1148721caee6"),
+                            CountyId = new Guid("572c919a-093b-4eec-a7d9-a3e522308128"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("6e49f0e3-9601-4ac1-aa60-332fce303923"),
+                            Id = new Guid("de62e6b6-1546-4920-b6b5-351ead2b4d09"),
                             ConstituencyName = "Njoro",
-                            CountyId = new Guid("07baec7b-0047-4fa5-97fd-1148721caee6"),
+                            CountyId = new Guid("572c919a-093b-4eec-a7d9-a3e522308128"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("dd3899fb-fb01-4980-b03d-0573d6db2b6c"),
+                            Id = new Guid("165903c7-748f-4e9c-a6ee-cbe9b33705c7"),
                             ConstituencyName = "Naivasha",
-                            CountyId = new Guid("07baec7b-0047-4fa5-97fd-1148721caee6"),
+                            CountyId = new Guid("572c919a-093b-4eec-a7d9-a3e522308128"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("75e9dbc5-e101-41ff-bc9a-6a1e76509fde"),
+                            Id = new Guid("7891b6c0-ca8b-4104-964f-c40f2d0649df"),
                             ConstituencyName = "Gilgil",
-                            CountyId = new Guid("07baec7b-0047-4fa5-97fd-1148721caee6"),
+                            CountyId = new Guid("572c919a-093b-4eec-a7d9-a3e522308128"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("2cf55502-0f9d-4142-80e8-fe4449fa0a95"),
+                            Id = new Guid("40e17faa-6b01-449a-924a-88763a93fdd2"),
                             ConstituencyName = "Kuresoi South",
-                            CountyId = new Guid("07baec7b-0047-4fa5-97fd-1148721caee6"),
+                            CountyId = new Guid("572c919a-093b-4eec-a7d9-a3e522308128"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("f42b08ff-47c1-48a0-8dda-b0c4279f8da3"),
+                            Id = new Guid("7f7ff1e0-fa57-4fda-8be8-d159412276d9"),
                             ConstituencyName = "Kuresoi North",
-                            CountyId = new Guid("07baec7b-0047-4fa5-97fd-1148721caee6"),
+                            CountyId = new Guid("572c919a-093b-4eec-a7d9-a3e522308128"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("441ddb42-520e-4157-981a-9e8a432e4a23"),
+                            Id = new Guid("4baffab3-2146-4438-bc5f-b284c68d2e5f"),
                             ConstituencyName = "Westlands",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("c54dfad0-361e-43cf-9bad-78f0c3b91811"),
+                            Id = new Guid("94230e8b-ba2d-4fb2-9742-739137ec8c9d"),
                             ConstituencyName = "Dagoretti North",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b6252ac4-378b-49a5-9d7b-66276a3a0e48"),
+                            Id = new Guid("e1a68b30-0c09-4c9f-bad3-f8e37a34f170"),
                             ConstituencyName = "Dagoretti South",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("fa6bc53a-015a-420c-828f-7b13bb47703f"),
+                            Id = new Guid("fd2b950a-2b9e-463e-9c0b-09bd593a88e6"),
                             ConstituencyName = "Langata",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b952855a-0520-446b-b0c1-8355ae714114"),
+                            Id = new Guid("95018cc8-a687-42b7-9a3a-9d43cd47f314"),
                             ConstituencyName = "Kibra",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("6c8dde01-24be-46cf-a913-8a56384aa946"),
+                            Id = new Guid("9a5e341d-e35f-43f8-b3b0-a0972685ed80"),
                             ConstituencyName = "Roysambu",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("0196a3e4-052b-46e5-beca-d0aba1f162d8"),
+                            Id = new Guid("82163cc9-0277-4299-80a6-eb9492628dfa"),
                             ConstituencyName = "Kasarani",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d43ba28f-ef9c-4801-bc03-7cbd0ce61ca1"),
+                            Id = new Guid("6878024e-aade-4f50-b368-bed1991075aa"),
                             ConstituencyName = "Ruaraka",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("fc636326-3c9f-4b21-84cf-daaaa2363078"),
+                            Id = new Guid("e7009504-4d90-4ecc-8fc2-d5f90c7371c4"),
                             ConstituencyName = "Embakasi North",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("fe43396e-fb88-455d-af3c-d85df3c01f3e"),
+                            Id = new Guid("931e50d9-a509-4ab1-b989-bd8bbb156f50"),
                             ConstituencyName = "Embakasi South",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("ddf90185-5904-4732-8c36-bf45aa4616c3"),
+                            Id = new Guid("ab06e34c-872b-451d-9079-af7d9f13edcf"),
                             ConstituencyName = "Embakasi Central",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b768024e-b13a-4a41-83c2-cbbfc5a3de80"),
+                            Id = new Guid("efaaa398-649b-4abf-a8e6-0d2f5166c055"),
                             ConstituencyName = "Embakasi East",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("6aa1bc32-de94-4b37-997b-697cf9b2e2bc"),
+                            Id = new Guid("da953ce8-d55c-452d-9193-5c67b914ba64"),
                             ConstituencyName = "Embakasi West",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("4250feaf-8ec7-4d1b-b1d1-986b63e737f8"),
+                            Id = new Guid("83084551-af78-48a8-b0b7-4dbd8db8673f"),
                             ConstituencyName = "Makadara",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("6e1b7b75-3dfa-4dd6-934f-f7ee9fc960c0"),
+                            Id = new Guid("0bddeb28-d9d8-4c24-a20c-75758fa1bea2"),
                             ConstituencyName = "Starehe",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("39477296-7255-4b05-8685-b4da678201d3"),
+                            Id = new Guid("4e89bfc8-2474-4960-b1b6-1952871e275d"),
                             ConstituencyName = "Kamukunji",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("e28259ce-b211-43a4-8b89-bb71f2608fcc"),
+                            Id = new Guid("f34ddf13-8167-457e-af2e-c21b6038b49a"),
                             ConstituencyName = "Mathare",
-                            CountyId = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            CountyId = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         });
@@ -1634,329 +1752,329 @@ namespace ServiceProvider.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("544b04f2-801c-4b16-bace-6d7c66076732"),
+                            Id = new Guid("0a57bbec-6af3-48d6-987d-d3b40ee59ecc"),
                             CountyName = "MOMBASA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("58c4c9b7-10a3-4884-8cd4-2120870e2e24"),
+                            Id = new Guid("c42ee8ba-0c97-4caa-b03d-3de0c74da9de"),
                             CountyName = "KWALE",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d115b8ad-9f10-4399-ad95-701cd1c69a33"),
+                            Id = new Guid("9d40d70f-eadf-496a-8340-32c123a71a50"),
                             CountyName = "KILIFI",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("27d6b05e-4275-426c-96ac-6712a6d20670"),
+                            Id = new Guid("713c3d6f-d256-4efc-a98d-3a8c222fdc0d"),
                             CountyName = "TANA RIVER",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("ba96440e-1695-45ed-b1d6-1d0bda31972a"),
+                            Id = new Guid("47c20647-a58b-44f4-aea5-43b64725727d"),
                             CountyName = "LAMU",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d6a89ede-ddbe-4ea0-ae39-cb04cfde9319"),
+                            Id = new Guid("eba33a62-b431-41cc-8da8-f4d021e5dece"),
                             CountyName = "TAITA TAVETA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("6e45ce37-6b4a-4ee8-81ad-a8088e417f5b"),
+                            Id = new Guid("cf5a137f-a7a6-489e-8e79-001361d113dd"),
                             CountyName = "GARISSA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("9745c8f4-e8f8-459c-88fa-b99e4bb6af77"),
+                            Id = new Guid("267a0889-1756-4fa4-96ba-3c301a6bb999"),
                             CountyName = "WAJIR",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("9f406995-7d97-4563-a3b9-288d10e30105"),
+                            Id = new Guid("912b8d2b-3dd6-4e70-8cd2-2f93029afa52"),
                             CountyName = "MANDERA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("291c45b8-8316-48a5-8ae2-71c1ac2e8d31"),
+                            Id = new Guid("50397348-1601-4d03-930c-d1c844476647"),
                             CountyName = "MARSABIT",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("d26f1185-b099-40b5-b814-407e71679c7f"),
+                            Id = new Guid("e13b0d89-8cfc-433a-a54f-220617ecad8c"),
                             CountyName = "ISIOLO",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("89bf0ed8-8494-45ac-af36-1c50c40d83b0"),
+                            Id = new Guid("dbdbb4fd-5228-4509-859b-fb48ee2e48c7"),
                             CountyName = "MERU",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("3473352c-dc23-403c-9796-92fc05bfb691"),
+                            Id = new Guid("9d13d25f-fd78-4f0a-a25c-c9b7fae46d33"),
                             CountyName = "THARAKA-NITHI",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("9f789411-cd97-4684-a01e-89f03e1a16bd"),
+                            Id = new Guid("0d964c48-0230-40b6-b562-41642fde5ccf"),
                             CountyName = "EMBU",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("f9043f35-ada7-4f54-b3a1-6cb5dc59c812"),
+                            Id = new Guid("772c4251-641d-4cd7-b5eb-f66b26d3cea2"),
                             CountyName = "KITUI",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b0259609-8ee4-4dc2-b46a-d023fb2a3f5f"),
+                            Id = new Guid("315a7923-f16d-4a1c-a40a-7e5af60ae3ba"),
                             CountyName = "MACHAKOS",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("1f1882eb-c8cb-4962-b4c5-c9f88e0eb069"),
+                            Id = new Guid("03224e88-9db0-4c63-86ce-e178c4596248"),
                             CountyName = "MAKUENI",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("20aee06f-e2a1-4a1b-b3fe-ab0a33b1688b"),
+                            Id = new Guid("c0c4343f-3e9e-4afb-b26a-20af12bcfd3b"),
                             CountyName = "NYANDARUA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("495a615a-75c9-45ac-a982-7a0d53dd685f"),
+                            Id = new Guid("b018d6d5-da0a-49ea-8fd4-ee79b9ff9c4e"),
                             CountyName = "NYERI",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("24a3ce83-e820-48b2-aec2-ccceb7a54355"),
+                            Id = new Guid("b9e32c75-bc74-4b0c-8a00-361f24764e7d"),
                             CountyName = "KIRINYAGA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("1e45a87c-11ae-47fe-ae98-5c018f7f35db"),
+                            Id = new Guid("f336d5ba-e212-4a08-b4af-6b3ef4317424"),
                             CountyName = "MURANG'A",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("611bd9b3-15c9-448d-b90e-7e5b9e0abe09"),
+                            Id = new Guid("54673f51-07c3-47f6-b19e-bebec7bb46e0"),
                             CountyName = "KIAMBU",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("dc15b51e-d069-4570-acbe-088c7d89d157"),
+                            Id = new Guid("96d7ac15-8a59-419f-9f50-56b56a03598a"),
                             CountyName = "TURKANA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("493fac85-1291-4b3d-9f13-c0c5580def71"),
+                            Id = new Guid("bff8235c-5792-42fa-851b-fd882860a1c7"),
                             CountyName = "WEST POKOT",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("93ad2355-2197-43dd-a9a4-a0d14b314fea"),
+                            Id = new Guid("5dac54ac-8317-46f1-b53a-c63498e7017c"),
                             CountyName = "SAMBURU",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("74570364-1ed7-4d8c-aa40-f17133442a7d"),
+                            Id = new Guid("ca5438b6-ef94-4e51-a073-c1e106548b7a"),
                             CountyName = "TRANS NZOIA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("683509e2-6e90-40ea-ad72-85ad47421563"),
+                            Id = new Guid("96dabc23-fc02-4a37-b81e-b278e73f6bd1"),
                             CountyName = "UASIN GISHU",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("90630145-de92-4bd7-92e9-dfeacb5c9dde"),
+                            Id = new Guid("393581ea-6b94-4eef-813b-b77f805caa60"),
                             CountyName = "ELGEYO/MARAKWET",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("876e513d-e1f9-40ff-a661-26c8af88f21a"),
+                            Id = new Guid("1e193740-1fb7-4c09-ae08-f6a053bd229d"),
                             CountyName = "NANDI",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("364044dc-48fc-485f-9348-bc419f25e307"),
+                            Id = new Guid("2320e02a-81b3-4912-9209-8fb0fa4c07c2"),
                             CountyName = "BARINGO",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("575ab87d-0265-436e-ad2b-dd7c8a53e65b"),
+                            Id = new Guid("2d24813a-69b2-4e9c-8924-1f05b176375b"),
                             CountyName = "LAIKIPIA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("07baec7b-0047-4fa5-97fd-1148721caee6"),
+                            Id = new Guid("572c919a-093b-4eec-a7d9-a3e522308128"),
                             CountyName = "NAKURU",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("f8a92de3-f955-4580-bf17-87b457d05137"),
+                            Id = new Guid("3507dc8a-c8c0-4006-b847-210551d0cf78"),
                             CountyName = "NAROK",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("64f27570-c385-428e-b8b9-2c18f2bc080c"),
+                            Id = new Guid("e7d912bb-0721-400f-a972-d7d3b15c8e12"),
                             CountyName = "KAJIADO",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("0c0a5991-eb4f-4476-8bd7-471e252fedca"),
+                            Id = new Guid("511618fb-e586-464f-8859-7aea887a9a62"),
                             CountyName = "KERICHO",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("4e3ea94c-148d-4141-ab45-9bbc6f6b932b"),
+                            Id = new Guid("464bdead-e300-4351-8379-f4ba9db75ce4"),
                             CountyName = "BOMET",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("69302254-2257-4250-9705-ee995c3e6632"),
+                            Id = new Guid("86152309-ba3e-4fc6-a10a-0881b6b1aa95"),
                             CountyName = "KAKAMEGA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("b32d47ae-bed1-4cc4-b5a0-904fd5e680fc"),
+                            Id = new Guid("20cf0377-ba4e-4db3-83d9-929a8badd6d9"),
                             CountyName = "VIHIGA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("08e6cd28-74e7-4c8c-9a29-66809289ada6"),
+                            Id = new Guid("49ae8876-6b82-4364-8e19-0557452367fc"),
                             CountyName = "BUNGOMA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("6e957159-e343-414b-b801-6fd8038c42b8"),
+                            Id = new Guid("e274b8bd-997d-4117-bd85-755bc4a2b914"),
                             CountyName = "BUSIA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("0f775e94-18da-494c-94fc-332afff922f5"),
+                            Id = new Guid("31081575-b255-4da8-b8cd-d91061bd608f"),
                             CountyName = "SIAYA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("52e91f17-7da6-4067-b8d8-2abde2b5a2d1"),
+                            Id = new Guid("3e160596-27f0-4cbe-bb2c-c5cc1e23f314"),
                             CountyName = "KISUMU",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("dd226992-72ec-43d7-892e-4ed392a0eeac"),
+                            Id = new Guid("92cca1b1-03ec-459d-ba8d-73473c2de828"),
                             CountyName = "HOMA BAY",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("e4e235bc-63cc-4145-9f35-b50a1b651baa"),
+                            Id = new Guid("dadd172a-42d3-41f2-8957-68b5ce51dbe9"),
                             CountyName = "MIGORI",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("9bc41daf-9591-499a-8577-9ec428ea4a13"),
+                            Id = new Guid("575c16df-c2ed-4706-a757-e9a31e369a6f"),
                             CountyName = "KISII",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("1d3fc811-6be6-47e4-8019-e4c883ea020a"),
+                            Id = new Guid("bf4cf99a-2b85-4989-a97d-94b81ec5e05b"),
                             CountyName = "NYAMIRA",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = new Guid("7fa114ab-b16e-4feb-8fca-160ee7c46d35"),
+                            Id = new Guid("b7d53b81-cbfa-424b-85c6-da792a190651"),
                             CountyName = "NAIROBI",
                             DateCreated = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
@@ -2146,40 +2264,40 @@ namespace ServiceProvider.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("eb74bc5b-8196-4a09-b09d-fd03cc00d775"),
-                            ConstituencyId = new Guid("0196a3e4-052b-46e5-beca-d0aba1f162d8"),
+                            Id = new Guid("327f48da-24cf-4720-be46-aeae3bf996d9"),
+                            ConstituencyId = new Guid("82163cc9-0277-4299-80a6-eb9492628dfa"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             LocationName = "Claycity"
                         },
                         new
                         {
-                            Id = new Guid("1654caa3-a9a6-4215-b664-e1edccb29986"),
-                            ConstituencyId = new Guid("0196a3e4-052b-46e5-beca-d0aba1f162d8"),
+                            Id = new Guid("8d1f7eee-34a1-4702-9a26-527c3df57af5"),
+                            ConstituencyId = new Guid("82163cc9-0277-4299-80a6-eb9492628dfa"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             LocationName = "Mwiki"
                         },
                         new
                         {
-                            Id = new Guid("df9b2e95-d2ac-4d8f-ac7a-6e47e8e7ab66"),
-                            ConstituencyId = new Guid("0196a3e4-052b-46e5-beca-d0aba1f162d8"),
+                            Id = new Guid("3b31d777-7752-42cc-953f-780a51583dde"),
+                            ConstituencyId = new Guid("82163cc9-0277-4299-80a6-eb9492628dfa"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             LocationName = "Ruai"
                         },
                         new
                         {
-                            Id = new Guid("0aec2f09-4991-4e7c-859b-2551491b65d3"),
-                            ConstituencyId = new Guid("0196a3e4-052b-46e5-beca-d0aba1f162d8"),
+                            Id = new Guid("a5ce4367-7339-4259-95bb-2bd058b15803"),
+                            ConstituencyId = new Guid("82163cc9-0277-4299-80a6-eb9492628dfa"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             LocationName = "Njiru"
                         },
                         new
                         {
-                            Id = new Guid("9e428f5b-5b51-4330-bb1c-c3962da5c798"),
-                            ConstituencyId = new Guid("0196a3e4-052b-46e5-beca-d0aba1f162d8"),
+                            Id = new Guid("8f021220-7017-4090-8a19-a5b14514d642"),
+                            ConstituencyId = new Guid("82163cc9-0277-4299-80a6-eb9492628dfa"),
                             DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateModified = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             LocationName = "Kasarani"
@@ -2346,9 +2464,6 @@ namespace ServiceProvider.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(19,4)");
 
-                    b.Property<byte>("Time")
-                        .HasColumnType("tinyint");
-
                     b.HasKey("Id");
 
                     b.ToTable("SP_Plan", "sp");
@@ -2500,6 +2615,10 @@ namespace ServiceProvider.Data.Migrations
                     b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2(3)");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -2515,6 +2634,215 @@ namespace ServiceProvider.Data.Migrations
                     b.HasIndex("ServiceProviderEntityId");
 
                     b.ToTable("SP_Service", "sp");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("82d31d3f-7aa2-4e68-be68-c1eb12b2f9e5"),
+                            CategoryId = new Guid("66c36b11-7162-48fb-b50e-dd57c6e039aa"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6890),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6890),
+                            Description = "Comprehensive home cleaning services including dusting, vacuuming, mopping, and sanitizing all rooms.",
+                            Name = "Home Cleaning"
+                        },
+                        new
+                        {
+                            Id = new Guid("f557a2d0-0ab2-4afb-aa88-5aaa40499152"),
+                            CategoryId = new Guid("66c36b11-7162-48fb-b50e-dd57c6e039aa"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6893),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6893),
+                            Description = "Professional office cleaning services tailored to maintain a clean and productive work environment.",
+                            Name = "Office Cleaning"
+                        },
+                        new
+                        {
+                            Id = new Guid("6d3c132f-94bd-41e1-983d-4004cba03503"),
+                            CategoryId = new Guid("66c36b11-7162-48fb-b50e-dd57c6e039aa"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6903),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6903),
+                            Description = "Specialized carpet cleaning services using advanced techniques to remove dirt, stains, and allergens.",
+                            Name = "Carpet Cleaning"
+                        },
+                        new
+                        {
+                            Id = new Guid("f2e3e9b4-4857-4c43-87a0-a00bd3aad8b9"),
+                            CategoryId = new Guid("66c36b11-7162-48fb-b50e-dd57c6e039aa"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6905),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6905),
+                            Description = "Professional window cleaning services for residential and commercial properties, ensuring streak-free results.",
+                            Name = "Window Cleaning"
+                        },
+                        new
+                        {
+                            Id = new Guid("dac28111-9aa8-4154-b52e-52e0f6c619dd"),
+                            CategoryId = new Guid("ed80a81c-7ef5-40cf-8dfa-a398b6713288"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6908),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6908),
+                            Description = "Expert plumbing services including leak repairs, fixture installations, and maintenance for residential and commercial properties.",
+                            Name = "Plumbing (leak fixes, installations)"
+                        },
+                        new
+                        {
+                            Id = new Guid("4c62b105-e9d3-4603-a877-6a4499501467"),
+                            CategoryId = new Guid("ed80a81c-7ef5-40cf-8dfa-a398b6713288"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6910),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6910),
+                            Description = "Comprehensive electrical services including repairs, installations, and maintenance for homes and businesses.",
+                            Name = "Electrical Repairs & Installations"
+                        },
+                        new
+                        {
+                            Id = new Guid("67bc0507-3f88-4f89-abe9-0e79ee3e386d"),
+                            CategoryId = new Guid("ed80a81c-7ef5-40cf-8dfa-a398b6713288"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6912),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6913),
+                            Description = "Professional carpentry services including furniture making, repairs, and custom woodwork for residential and commercial clients.",
+                            Name = "Carpentry Services"
+                        },
+                        new
+                        {
+                            Id = new Guid("a561b1d1-c6ed-4a57-8203-3dcf7dc4ebe0"),
+                            CategoryId = new Guid("ed80a81c-7ef5-40cf-8dfa-a398b6713288"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6915),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6915),
+                            Description = "Expert painting and decorating services for interior and exterior spaces, enhancing the aesthetic appeal of homes and businesses.",
+                            Name = "Painting & Decorating"
+                        },
+                        new
+                        {
+                            Id = new Guid("4c5633f8-3fe5-4163-af0e-11fbffc84790"),
+                            CategoryId = new Guid("610bdd35-889a-41c1-b096-07fb689283c7"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6917),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6918),
+                            Description = "Reliable parcel delivery services offering door-to-door delivery within the city, ensuring timely and secure transport of packages.",
+                            Name = "Parcel Delivery (door-to-door, within city)"
+                        },
+                        new
+                        {
+                            Id = new Guid("2be3a173-5704-4b52-b660-1ebe164d9182"),
+                            CategoryId = new Guid("610bdd35-889a-41c1-b096-07fb689283c7"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6920),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6921),
+                            Description = "Efficient food delivery services partnering with local restaurants to bring meals directly to customers' doorsteps.",
+                            Name = "Food Delivery"
+                        },
+                        new
+                        {
+                            Id = new Guid("4ae6f956-4d42-47e0-ba13-3ef6a1e48c0f"),
+                            CategoryId = new Guid("610bdd35-889a-41c1-b096-07fb689283c7"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6926),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6927),
+                            Description = "Convenient ride-hailing services providing safe and reliable transportation within the city for individuals and groups.",
+                            Name = "Ride Hailing (in-city transport)"
+                        },
+                        new
+                        {
+                            Id = new Guid("d406d331-163a-43c3-96f1-0cdcf9b19254"),
+                            CategoryId = new Guid("610bdd35-889a-41c1-b096-07fb689283c7"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6929),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6929),
+                            Description = "Fast and reliable grocery delivery services bringing fresh produce and essentials directly to customers' homes.",
+                            Name = "Grocery Delivery"
+                        },
+                        new
+                        {
+                            Id = new Guid("dd47f19c-53db-4548-8b30-4951fa3095d0"),
+                            CategoryId = new Guid("6243531c-0fb4-4e7b-ac51-6f15fcf8f813"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6931),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6932),
+                            Description = "Comprehensive digital marketing solutions including SEO, social media management, and online advertising to boost your online presence.",
+                            Name = "Digital Marketing Services"
+                        },
+                        new
+                        {
+                            Id = new Guid("a535aadc-6c8d-4baf-b74a-30392d86f2b2"),
+                            CategoryId = new Guid("6243531c-0fb4-4e7b-ac51-6f15fcf8f813"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6934),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6934),
+                            Description = "Creative graphic design services for branding, marketing materials, and digital content to effectively communicate your message.",
+                            Name = "Graphic Design"
+                        },
+                        new
+                        {
+                            Id = new Guid("5f7cf30b-72e8-46f3-9c99-f83e26d38f28"),
+                            CategoryId = new Guid("6243531c-0fb4-4e7b-ac51-6f15fcf8f813"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6936),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6937),
+                            Description = "Professional web development services to create responsive, user-friendly websites tailored to your business needs.",
+                            Name = "Web Development"
+                        },
+                        new
+                        {
+                            Id = new Guid("b4206fcf-52fa-4de7-9bff-d79146f5a076"),
+                            CategoryId = new Guid("6243531c-0fb4-4e7b-ac51-6f15fcf8f813"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6939),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6939),
+                            Description = "Reliable IT support services including troubleshooting, network setup, and maintenance for businesses and individuals.",
+                            Name = "IT Support Services"
+                        },
+                        new
+                        {
+                            Id = new Guid("ff19798e-72d0-4db7-af0a-b45c292b5bb7"),
+                            CategoryId = new Guid("6243531c-0fb4-4e7b-ac51-6f15fcf8f813"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6941),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6942),
+                            Description = "Expert social media management services to enhance your brand's online presence and engage with your audience effectively.",
+                            Name = "Social Media Management (SMM)"
+                        },
+                        new
+                        {
+                            Id = new Guid("fb974f92-1391-4f95-bde5-04935d2e1e4c"),
+                            CategoryId = new Guid("ed08e5e4-cc4b-437e-bbc5-362a2f7dcd77"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6944),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6944),
+                            Description = "Professional event catering services for weddings, corporate events, and special occasions, offering customized menus and exceptional service.",
+                            Name = "Event Catering (weddings, corporate)"
+                        },
+                        new
+                        {
+                            Id = new Guid("194339d6-5a45-4cac-9a35-541d630d2bb3"),
+                            CategoryId = new Guid("ed08e5e4-cc4b-437e-bbc5-362a2f7dcd77"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6949),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6949),
+                            Description = "Expert photography and videography services capturing memorable moments at events and creating stunning portraits for individuals and families.",
+                            Name = "Photography & Videography (events, portraits)"
+                        },
+                        new
+                        {
+                            Id = new Guid("999d62c7-4942-40e4-a80c-500d8eb0951d"),
+                            CategoryId = new Guid("ed08e5e4-cc4b-437e-bbc5-362a2f7dcd77"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6952),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6952),
+                            Description = "Professional decorator services for parties and functions, providing creative setups and themes to enhance the event atmosphere.",
+                            Name = "Decorator Services (party, function setup)"
+                        },
+                        new
+                        {
+                            Id = new Guid("9c19cbe9-fbc4-468a-b3eb-fc6dd403f618"),
+                            CategoryId = new Guid("ed08e5e4-cc4b-437e-bbc5-362a2f7dcd77"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6954),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6955),
+                            Description = "Reliable ushering and event staffing services to ensure smooth operations and excellent guest experiences at your events.",
+                            Name = "Ushering & Event Staffing"
+                        },
+                        new
+                        {
+                            Id = new Guid("3eb382ed-f0ae-4563-8001-d7c099ff19e7"),
+                            CategoryId = new Guid("7ab0fbf8-0421-4cc0-a7b8-6bf485133f8f"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6957),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6957),
+                            Description = "Professional beauty and spa services including facials, manicure, hairdressing, massages, and skincare treatments to promote relaxation and wellness.",
+                            Name = "Beauty & Spa Services"
+                        },
+                        new
+                        {
+                            Id = new Guid("88cadfc2-9481-4e8f-b1b2-25e61d901f0a"),
+                            CategoryId = new Guid("7ab0fbf8-0421-4cc0-a7b8-6bf485133f8f"),
+                            DateCreated = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6959),
+                            DateModified = new DateTime(2025, 12, 5, 7, 11, 30, 400, DateTimeKind.Utc).AddTicks(6960),
+                            Description = "Comprehensive fitness and wellness services including personal training, yoga & gym classes, and nutrition counseling to help you achieve your health goals.",
+                            Name = "Fitness & Wellness Services"
+                        });
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.ServiceListing", b =>
@@ -2526,8 +2854,13 @@ namespace ServiceProvider.Data.Migrations
                     b.Property<double?>("BasePrice")
                         .HasColumnType("float");
 
-                    b.Property<Guid?>("CustomServiceId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("BusinessDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BusinessName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2(3)");
@@ -2538,21 +2871,41 @@ namespace ServiceProvider.Data.Migrations
                     b.Property<byte>("PaymentMode")
                         .HasColumnType("tinyint");
 
-                    b.Property<Guid>("ServiceId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("ServiceProviderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomServiceId");
-
-                    b.HasIndex("ServiceId");
-
                     b.HasIndex("ServiceProviderId");
 
                     b.ToTable("SP_ServiceListing", "sp");
+                });
+
+            modelBuilder.Entity("ServiceProvider.Core.Models.ServiceListingsServices", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<Guid>("ServiceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ServiceListingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceId");
+
+                    b.HasIndex("ServiceListingId");
+
+                    b.ToTable("SP_ServiceListingsServices", "sp");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.ServiceProviderEntity", b =>
@@ -2560,14 +2913,6 @@ namespace ServiceProvider.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("BusinessDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BusinessName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2(3)");
@@ -2684,6 +3029,13 @@ namespace ServiceProvider.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("ResetPasswordExpires")
+                        .HasColumnType("datetime2(3)");
+
+                    b.Property<string>("ResetPasswordToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid?>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
@@ -2706,7 +3058,9 @@ namespace ServiceProvider.Data.Migrations
                             FirstName = "ADM",
                             IsActive = true,
                             LastName = "Admin",
-                            Password = "AdminPassword123!"
+                            Password = "AdminPassword123!",
+                            ResetPasswordExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ResetPasswordToken = ""
                         },
                         new
                         {
@@ -2717,7 +3071,9 @@ namespace ServiceProvider.Data.Migrations
                             FirstName = "Sam",
                             IsActive = true,
                             LastName = "Admin",
-                            Password = "AdminPassword123!"
+                            Password = "AdminPassword123!",
+                            ResetPasswordExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ResetPasswordToken = ""
                         },
                         new
                         {
@@ -2728,7 +3084,9 @@ namespace ServiceProvider.Data.Migrations
                             FirstName = "Dorcis",
                             IsActive = true,
                             LastName = "Admin",
-                            Password = "AdminPassword123!"
+                            Password = "AdminPassword123!",
+                            ResetPasswordExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ResetPasswordToken = ""
                         });
                 });
 
@@ -2780,6 +3138,17 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("ServiceListing");
 
                     b.Navigation("ServiceProvider");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ServiceProvider.Core.Models.Auth.RefreshToken", b =>
+                {
+                    b.HasOne("ServiceProvider.Core.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -2902,27 +3271,28 @@ namespace ServiceProvider.Data.Migrations
 
             modelBuilder.Entity("ServiceProvider.Core.Models.ServiceListing", b =>
                 {
-                    b.HasOne("ServiceProvider.Core.Models.CustomService", "CustomService")
-                        .WithMany()
-                        .HasForeignKey("CustomServiceId");
-
-                    b.HasOne("ServiceProvider.Core.Models.Service", "Service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ServiceProvider.Core.Models.ServiceProviderEntity", "ServiceProvider")
                         .WithMany("ServiceListings")
                         .HasForeignKey("ServiceProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CustomService");
-
-                    b.Navigation("Service");
-
                     b.Navigation("ServiceProvider");
+                });
+
+            modelBuilder.Entity("ServiceProvider.Core.Models.ServiceListingsServices", b =>
+                {
+                    b.HasOne("ServiceProvider.Core.Models.Service", null)
+                        .WithMany("ServiceListingsServices")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ServiceProvider.Core.Models.ServiceListing", null)
+                        .WithMany("ServiceListingsServices")
+                        .HasForeignKey("ServiceListingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.Subscription", b =>
@@ -3009,11 +3379,18 @@ namespace ServiceProvider.Data.Migrations
                     b.Navigation("Users");
                 });
 
+            modelBuilder.Entity("ServiceProvider.Core.Models.Service", b =>
+                {
+                    b.Navigation("ServiceListingsServices");
+                });
+
             modelBuilder.Entity("ServiceProvider.Core.Models.ServiceListing", b =>
                 {
                     b.Navigation("Bookings");
 
                     b.Navigation("Reviews");
+
+                    b.Navigation("ServiceListingsServices");
                 });
 
             modelBuilder.Entity("ServiceProvider.Core.Models.ServiceProviderEntity", b =>

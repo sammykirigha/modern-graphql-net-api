@@ -20,6 +20,7 @@
         <PackageReference Include="Microsoft.ApplicationInsights" Version="2.22.0" />
         <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="7.4.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
+        <PackageReference Include="MpesaDarajaSDK" Version="1.0.18" />
     </ItemGroup>
 
 </Project>
